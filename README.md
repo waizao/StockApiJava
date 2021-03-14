@@ -8,5 +8,6 @@
 
 歪枣网网址：http://www.waizaowang.com/
 
-![image](https://user-images.githubusercontent.com/11537252/111071338-a50d1100-8510-11eb-8aac-0b4f39576a68.png)
+![Uploading image.png…]()
+
 
