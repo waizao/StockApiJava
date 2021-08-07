@@ -9,6 +9,10 @@
 
 歪枣网网址：http://www.waizaowang.com/
 
+如果你在歪枣网上遇到任何问题，请及时反馈给我们，我们将及时解决！
+联系作者，邮箱：waizaowang@163.com
+学习交流、意见反馈，请加入QQ群：1034884107
+
 ![image](https://user-images.githubusercontent.com/11537252/111071400-f3baab00-8510-11eb-9683-c1de38d29846.png)
 
 
