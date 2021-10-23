@@ -19,17 +19,52 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b0fad2b8-abca-4cc4-a991-e5ed15681458" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="f7f208f5-1837-422b-aff3-7f5190e245a0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/WZaoStockApiDemo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DemoApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/BondBaseInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/FinanceHSBaseInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/FinanceHSDebt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/FundBaseInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/FundNav.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/FundPosition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/FundRank.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/HSGTHistory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/HSGTMoney.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/HSGTStockRank.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/PoolCX.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/PoolDT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/PoolQS.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/PoolZB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/PoolZT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/RzRjAccount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/RzRjMarket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/RzRjStock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/StockAccount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/StockBaseInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/StockDailyMarket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/StockHourKLine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/StockKLine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/StockMinuteKLine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/TradeDate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/WatchStockMinuteKLine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/bean/XQStockKLine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/constant/EnumExportType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -37,31 +72,57 @@
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="2" />
   </component>
-  <component name="ProjectId" id="1zrhXhMvhzj2rWGC5MsNf7EvuxD" />
+  <component name="ProjectId" id="1zuLEezOIhmVrfa7m1mf2pjIc7i" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="constant" />
+      <recent name="bean" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="DemoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DemoApplication" />
+      <module name="WZaoStockApiDemo" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.DemoApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b0fad2b8-abca-4cc4-a991-e5ed15681458" name="Default Changelist" comment="" />
-      <created>1634912155333</created>
+      <changelist id="f7f208f5-1837-422b-aff3-7f5190e245a0" name="Default Changelist" comment="" />
+      <created>1634992915826</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1634912155333</updated>
-      <workItem from="1634912158963" duration="116000" />
+      <updated>1634992915826</updated>
+      <workItem from="1634992920127" duration="9221000" />
     </task>
     <servers />
   </component>
@@ -79,10 +140,53 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="440" y="94" key="#Project_Structure" timestamp="1634912167748">
+    <state x="440" y="94" key="#Project_Structure" timestamp="1634993011351">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="440" y="94" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1634912167748" />
+    <state x="440" y="94" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1634993011351" />
+    <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser" timestamp="1634995345313">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1634995345313" />
+    <state width="1877" height="367" key="GridCell.Tab.0.bottom" timestamp="1635003576265">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="367" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1635003576265" />
+    <state width="1877" height="367" key="GridCell.Tab.0.center" timestamp="1635003576265">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="367" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1635003576265" />
+    <state width="1877" height="367" key="GridCell.Tab.0.left" timestamp="1635003576265">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="367" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1635003576265" />
+    <state width="1877" height="367" key="GridCell.Tab.0.right" timestamp="1635003576265">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="367" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1635003576265" />
+    <state x="490" y="175" key="Maven.ArtifactSearchDialog" timestamp="1634997708232">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="490" y="175" key="Maven.ArtifactSearchDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1634997708232" />
+    <state x="650" y="221" key="RollbackChangesDialog" timestamp="1634997485636">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="650" y="221" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1634997485636" />
+    <state x="440" y="94" key="SettingsEditor" timestamp="1635003559224">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1635003559224" />
+    <state x="690" y="279" key="extract.method.dialog" timestamp="1635000579654">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="279" key="extract.method.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1635000579654" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1634999092217">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1634999092217" />
   </component>
 </project>
