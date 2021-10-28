@@ -20,39 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f7f208f5-1837-422b-aff3-7f5190e245a0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/WZaoStockApiDemo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/DemoApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/BondBaseInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/FinanceHSBaseInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/FinanceHSDebt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/FundBaseInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/FundNav.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/FundPosition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/FundRank.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/HSGTHistory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/HSGTMoney.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/HSGTStockRank.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/PoolCX.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/PoolDT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/PoolQS.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/PoolZB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/PoolZT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/RzRjAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/RzRjMarket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/RzRjStock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/StockAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/StockBaseInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/StockDailyMarket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/StockHourKLine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/StockKLine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/StockMinuteKLine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/TradeDate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/WatchStockMinuteKLine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/XQStockKLine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/constant/EnumExportType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/trade/TradeInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/trade/strategy/TradeStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,12 +63,29 @@
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="trade" />
       <recent name="constant" />
       <recent name="bean" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.BackTest">
+    <configuration name="BackTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="trade.backtrade.BackTest" />
+      <module name="WZaoStockApiDemo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="trade.backtrade.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DemoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DemoApplication" />
       <module name="WZaoStockApiDemo" />
@@ -108,6 +95,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.BackTest" />
         <item itemvalue="Application.DemoApplication" />
       </list>
     </recent_temporary>
@@ -123,6 +111,11 @@
       <option name="presentableId" value="Default" />
       <updated>1634992915826</updated>
       <workItem from="1634992920127" duration="9221000" />
+      <workItem from="1635004040446" duration="34000" />
+      <workItem from="1635169577842" duration="631000" />
+      <workItem from="1635257846493" duration="695000" />
+      <workItem from="1635430525770" duration="1698000" />
+      <workItem from="1635432261862" duration="7000" />
     </task>
     <servers />
   </component>
@@ -139,6 +132,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -152,22 +146,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="225" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1634995345313" />
-    <state width="1877" height="367" key="GridCell.Tab.0.bottom" timestamp="1635003576265">
+    <state x="1035" y="541" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1635430586160">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1635003576265" />
-    <state width="1877" height="367" key="GridCell.Tab.0.center" timestamp="1635003576265">
+    <state x="1035" y="541" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1635430586160" />
+    <state x="1479" y="498" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1635430589909">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1635003576265" />
-    <state width="1877" height="367" key="GridCell.Tab.0.left" timestamp="1635003576265">
+    <state x="1479" y="498" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040@0.0.1920.1040" timestamp="1635430589909" />
+    <state width="1877" height="367" key="GridCell.Tab.0.bottom" timestamp="1635432237261">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1635003576265" />
-    <state width="1877" height="367" key="GridCell.Tab.0.right" timestamp="1635003576265">
+    <state width="1877" height="367" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1635432237261" />
+    <state width="1877" height="367" key="GridCell.Tab.0.center" timestamp="1635432237261">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="367" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1635003576265" />
+    <state width="1877" height="367" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1635432237261" />
+    <state width="1877" height="367" key="GridCell.Tab.0.left" timestamp="1635432237261">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="367" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1635432237261" />
+    <state width="1877" height="367" key="GridCell.Tab.0.right" timestamp="1635432237261">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="367" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1635432237261" />
     <state x="490" y="175" key="Maven.ArtifactSearchDialog" timestamp="1634997708232">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
