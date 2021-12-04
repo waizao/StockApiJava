@@ -20,8 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f7f208f5-1837-422b-aff3-7f5190e245a0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/trade/TradeInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/trade/strategy/TradeStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,6 +55,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../迅雷下载/SpringBootDemo-master/SpringBootKafkaDemo" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -116,6 +115,8 @@
       <workItem from="1635257846493" duration="695000" />
       <workItem from="1635430525770" duration="1698000" />
       <workItem from="1635432261862" duration="7000" />
+      <workItem from="1635553297591" duration="1406000" />
+      <workItem from="1635680313344" duration="189000" />
     </task>
     <servers />
   </component>
@@ -154,6 +155,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1479" y="498" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040@0.0.1920.1040" timestamp="1635430589909" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1635553347738">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1635553347738" />
     <state width="1877" height="367" key="GridCell.Tab.0.bottom" timestamp="1635432237261">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

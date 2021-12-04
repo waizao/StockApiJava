@@ -19,7 +19,7 @@ public class FundRank implements Serializable {
    //基金大类，0：场内基金 1：场外基金
     private int jjdl ;
 
-   //基金类别
+   //基金类别，场外-股票型基金、场外-混合型基金、场外-债券型基金、场外-指数型基金、场外-QDII、场外-LOF、场外-FOF
     private String jjlb ;
 
    //基金成立日期

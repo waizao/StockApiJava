@@ -13,8 +13,8 @@ public class StockBaseInfo implements Serializable {
    //股票名称
     private String name ;
 
-   //上市地，0：深交所，1：上交所，116：港交所
-    private int market ;
+   //股票类型，1：深证股票，1：上证股票，2：北证股票，4：港股
+    private int stype ;
 
    //沪深港通，1：沪股通:2：深股通、3：港股通(沪)、4：港股通(深)、5：港股通(沪+深)
     private int hsgt ;
