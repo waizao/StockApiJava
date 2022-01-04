@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Data
 public class FundBaseInfo implements Serializable {
 
-   //基金代码
+   //基金代码，多个基金用逗号分隔，每次最多30个基金；若为all，则表示全部基金，可获取任意一天内的所有基金数据
     private String code ;
 
    //基金名称

@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Data
 public class StockMinuteKLine implements Serializable {
 
-   //股票代码
+   //股票代码，多个股票用逗号分隔，不支持All参数
     private String code ;
 
    //分时时间

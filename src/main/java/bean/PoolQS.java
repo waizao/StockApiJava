@@ -13,7 +13,7 @@ public class PoolQS implements Serializable {
    //成交额（元）
     private float amount ;
 
-   //股票代码
+   //股票代码，多个股票用逗号分隔，每次最多30个股票；若为all，则表示全部股票，可获取任意一天内的所有股票数据
     private String code ;
 
    //入选理由，1：60日新高，2：近期多次涨停，3：60日新高且近期多次涨停

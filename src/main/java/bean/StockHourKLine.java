@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Data
 public class StockHourKLine implements Serializable {
 
-   //股票代码
+   //股票代码，多个股票用逗号分隔，不支持All参数
     private String code ;
 
    //股票名称

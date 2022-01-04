@@ -11,7 +11,10 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class DemoApplication {
 
@@ -21,7 +24,7 @@ public class DemoApplication {
     public static void main(String[] args) throws IOException {
         int exportType = EnumExportType.ExportType_String_Json.getType();
         String token = "";//歪枣网上登录后获取Token
-        String url = String.format("http://api.waizaowang.com/doc/getStockHSABaseInfo?code=all&fields=code,name,market&export=%s&token=%s", exportType, token);
+        String url = String.format("http://api.waizaowang.com/doc/getStockHSABaseInfo?code=all&fields=all&export=%s&token=%s", exportType, token);
         switch (exportType) {
             case 1:
                 processJson(url);
@@ -30,7 +33,6 @@ public class DemoApplication {
                 processTxt(url);
         }
     }
-
 
     private static void processTxt(String url) throws IOException {
         CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -57,6 +59,15 @@ public class DemoApplication {
             List<StockBaseInfo> data = new Gson().fromJson(JsonParser.parseString(content).getAsJsonObject().get("data"), new TypeToken<List<StockBaseInfo>>() {
             }.getType());
             System.out.println(data);
+            Set<String> one = data.stream().filter(stockBaseInfo -> stockBaseInfo.getStype() == 1).map(stockBaseInfo -> stockBaseInfo.getCode()).collect(Collectors.toSet());
+            Set<String> two = data.stream().filter(stockBaseInfo -> stockBaseInfo.getStype() == 2).map(stockBaseInfo -> stockBaseInfo.getCode()).collect(Collectors.toSet());
+            Set<String> three = data.stream().filter(stockBaseInfo -> stockBaseInfo.getStype() == 3).map(stockBaseInfo -> stockBaseInfo.getCode()).collect(Collectors.toSet());
+            Set<String> total = new HashSet<>();
+            total.addAll(one);
+            total.addAll(two);
+            total.addAll(three);
+            System.out.println(String.format("one=%s,two=%s,three=%s,sum=%s,total=%s", one.size(), two.size(), three.size(), one.size() + two.size() + three.size(), total.size()));
+
         } finally {
             response.close();
         }

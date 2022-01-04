@@ -7,13 +7,13 @@ import java.io.Serializable;
 @Data
 public class StockBaseInfo implements Serializable {
 
-   //股票代码
+   //股票代码，多个股票用逗号分隔，每次最多30个股票；若为all，则表示全部股票，可获取任意一天内的所有股票数据
     private String code ;
 
    //股票名称
     private String name ;
 
-   //股票类型，1：深证股票，1：上证股票，2：北证股票，4：港股
+   //股票类型，1：深证股票，2：上证股票，3：北证股票，4：港股
     private int stype ;
 
    //沪深港通，1：沪股通:2：深股通、3：港股通(沪)、4：港股通(深)、5：港股通(沪+深)

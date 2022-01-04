@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Data
 public class StockKLine implements Serializable {
 
-   //股票代码
+   //股票代码，多个股票用逗号分隔，每次最多30个股票；若为all，则表示全部股票，可获取任意一天内的所有股票数据
     private String code ;
 
    //股票名称
