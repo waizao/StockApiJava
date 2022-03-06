@@ -26,7 +26,7 @@ public class FundRank implements Serializable {
     private String cdate ;
 
    //更新日期
-    private String udate ;
+    private String tdate ;
 
    //基金单位净值
     private String nav ;

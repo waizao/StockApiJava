@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Data
 public class BondBaseInfo implements Serializable {
 
-   //债券代码，多个债券用逗号分隔，每次最多30个债券；若为all，则表示全部债券，可获取任意一天内的所有债券数据
+   //债券代码
     private String code ;
 
    //债券简称

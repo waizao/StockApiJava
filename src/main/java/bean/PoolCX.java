@@ -10,7 +10,7 @@ public class PoolCX implements Serializable {
    //成交额（元）
     private float amount ;
 
-   //股票代码，多个股票用逗号分隔，每次最多30个股票；若为all，则表示全部股票，可获取任意一天内的所有股票数据
+   //股票代码
     private String code ;
 
    //换手率（%）

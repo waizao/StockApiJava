@@ -16,7 +16,7 @@ public class HSGTMoney implements Serializable {
    //K线类别
     private int ktype ;
 
-   //交易日期
+   //交易时间
     private String tdate ;
 
    //净流入（万元）

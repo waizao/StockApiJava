@@ -10,7 +10,7 @@ public class HSGTHistory implements Serializable {
    //市场类别
     private int mtype ;
 
-   //交易日期
+   //交易时间
     private String tdate ;
 
    //当日资金流入

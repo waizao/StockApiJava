@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Data
 public class WatchStockTimeKLine implements Serializable {
 
-   //股票代码，多个股票用逗号分隔，每次最多30个股票；若为all，则表示全部股票，可获取任意一天内的所有股票数据
+   //股票代码
     private String code ;
 
    //交易时间
@@ -25,8 +25,11 @@ public class WatchStockTimeKLine implements Serializable {
    //最低价（元）
     private float low ;
 
-   //开盘价（元）
+   //今日开盘价（元）
     private float open ;
+
+   //昨日收盘价（元）
+    private float zrspj ;
 
    //涨跌幅度（%）
     private float zdfd ;
@@ -63,6 +66,126 @@ public class WatchStockTimeKLine implements Serializable {
 
    //内盘（手）
     private float npan ;
+
+   //市盈率（动态）
+    private float dsyl ;
+
+   //市盈率(静)
+    private float jsyl ;
+
+   //市盈率(TTM)
+    private float ttmsyl ;
+
+   //涨停价（元）
+    private float ztj ;
+
+   //跌停价（元）
+    private float dtj ;
+
+   //上市日期
+    private String ssdate ;
+
+   //ROE
+    private float roe ;
+
+   //总股本（股）
+    private float zgb ;
+
+   //流通股本（股）
+    private float ltgb ;
+
+   //流通市值（元）
+    private float ltsz ;
+
+   //总市值（元）
+    private float zsz ;
+
+   //每股收益（元）
+    private float mgsy ;
+
+   //5日涨幅（%）
+    private float zf05 ;
+
+   //10日涨幅（%）
+    private float zf10 ;
+
+   //20日涨幅（%）
+    private float zf20 ;
+
+   //60日涨幅（%）
+    private float zf60 ;
+
+   //今年以来涨幅（%）
+    private float zfy ;
+
+   //总营收（元）
+    private float zys ;
+
+   //总营收同比（%）
+    private float zystb ;
+
+   //净资产
+    private float jzc ;
+
+   //净利润
+    private float jlr ;
+
+   //毛利率
+    private float mlil ;
+
+   //净利率
+    private float jlil ;
+
+   //负债率
+    private float fzl ;
+
+   //每股未分配利润
+    private float mgwfplr ;
+
+   //每股净资产
+    private float mgjzc ;
+
+   //每股公积金（元）
+    private float mggjj ;
+
+   //今日主力净流入（元）
+    private float zljlr ;
+
+   //今日超大单流入（元）
+    private float cddlr ;
+
+   //今日超大单流出（元）
+    private float cddlc ;
+
+   //今日超大单净流入（元）
+    private float cddjlr ;
+
+   //今日大单流入（元）
+    private float ddlr ;
+
+   //今日大单流出（元）
+    private float ddlc ;
+
+   //今日大单净流入（元）
+    private float ddjlr ;
+
+   //今日中单流入（元）
+    private float zdlr ;
+
+   //今日中单流出（元）
+    private float zdlc ;
+
+   //今日中单净流入（元）
+    private float zdjlr ;
+
+   //今日小单流入（元）
+    private float xdlr ;
+
+   //今日小单流出（元）
+    private float xdlc ;
+
+   //今日小单净流入（元）
+    private float xdjlr ;
 
 }
 

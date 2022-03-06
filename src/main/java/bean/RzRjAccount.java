@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Data
 public class RzRjAccount implements Serializable {
 
-   //交易日期
+   //交易时间
     private String tdate ;
 
    //平均维持担保比例

@@ -10,7 +10,7 @@ public class RzRjMarket implements Serializable {
    //市场类型
     private int mtype ;
 
-   //交易日期
+   //交易时间
     private String tdate ;
 
    //融券偿还量(股)

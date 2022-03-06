@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class StockHourKLine implements Serializable {
+public class IndicatorMAData implements Serializable {
 
    //股票代码
     private String code ;
@@ -21,6 +21,9 @@ public class StockHourKLine implements Serializable {
 
    //交易时间
     private String tdate ;
+
+   //均线价格,多种均线价格以逗号分隔
+    private String maprice ;
 
    //开盘价
     private float open ;

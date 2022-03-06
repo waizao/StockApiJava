@@ -5,16 +5,13 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class StockDailyMarket implements Serializable {
+public class StockDailyMarketCopy implements Serializable {
 
    //股票代码
     private String code ;
 
    //交易时间
     private String tdate ;
-
-   //股票名称
-    private String name ;
 
    //最新价（元）
     private float price ;
@@ -37,29 +34,14 @@ public class StockDailyMarket implements Serializable {
    //换手率（%）
     private float hslv ;
 
-   //市净率（%）
-    private float sjlv ;
-
    //市盈率（动态）
     private float dsyl ;
 
-   //市盈率(静)
-    private float jsyl ;
-
-   //市盈率(TTM)
-    private float ttmsyl ;
-
-   //涨停价（元）
-    private float ztj ;
-
-   //跌停价（元）
-    private float dtj ;
-
-   //均价（元）
-    private float jjia ;
-
    //量比
     private float lbi ;
+
+   //股票名称
+    private String name ;
 
    //最高价（元）
     private float zgj ;
@@ -72,6 +54,21 @@ public class StockDailyMarket implements Serializable {
 
    //昨日收盘价（元）
     private float zrspj ;
+
+   //总市值（元）
+    private float zsz ;
+
+   //流通市值（元）
+    private float ltsz ;
+
+   //市净率（%）
+    private float sjlv ;
+
+   //60日涨幅（%）
+    private float zf60 ;
+
+   //今年以来涨幅（%）
+    private float zfy ;
 
    //上市日期
     private String ssdate ;
@@ -94,56 +91,23 @@ public class StockDailyMarket implements Serializable {
    //流通股本（股）
     private float ltgb ;
 
-   //流通市值（元）
-    private float ltsz ;
-
-   //总市值（元）
-    private float zsz ;
-
-   //每股收益（元）
-    private float mgsy ;
-
-   //5日涨幅（%）
-    private float zf05 ;
-
-   //10日涨幅（%）
-    private float zf10 ;
-
-   //20日涨幅（%）
-    private float zf20 ;
-
-   //60日涨幅（%）
-    private float zf60 ;
-
-   //今年以来涨幅（%）
-    private float zfy ;
-
    //总营收（元）
     private float zys ;
 
    //总营收同比（%）
     private float zystb ;
 
-   //净资产
-    private float jzc ;
-
    //净利润
     private float jlr ;
-
-   //毛利率
-    private float mlil ;
-
-   //净利率
-    private float jlil ;
-
-   //负债率
-    private float fzl ;
 
    //每股未分配利润
     private float mgwfplr ;
 
-   //每股净资产
-    private float mgjzc ;
+   //毛利率
+    private float mlil ;
+
+   //负债率
+    private float fzl ;
 
    //每股公积金（元）
     private float mggjj ;
@@ -186,6 +150,42 @@ public class StockDailyMarket implements Serializable {
 
    //今日小单净流入（元）
     private float xdjlr ;
+
+   //5日涨幅（%）
+    private float zf05 ;
+
+   //20日涨幅（%）
+    private float zf20 ;
+
+   //每股收益（元）
+    private float mgsy ;
+
+   //每股净资产
+    private float mgjzc ;
+
+   //市盈率(静)
+    private float jsyl ;
+
+   //市盈率(TTM)
+    private float ttmsyl ;
+
+   //净利率
+    private float jlil ;
+
+   //净资产
+    private float jzc ;
+
+   //10日涨幅（%）
+    private float zf10 ;
+
+   //涨停价（元）
+    private float ztj ;
+
+   //跌停价（元）
+    private float dtj ;
+
+   //均价（元）
+    private float jjia ;
 
 }
 
