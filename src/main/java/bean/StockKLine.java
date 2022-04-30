@@ -16,7 +16,7 @@ public class StockKLine implements Serializable {
    //K线类别
     private int ktype ;
 
-   //复权信息
+   //复权信息，除沪深京A股、B股、港股外，其余复权值默认为前复权
     private int fq ;
 
    //交易时间

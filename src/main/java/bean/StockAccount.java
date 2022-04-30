@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Data
 public class StockAccount implements Serializable {
 
-   //数据日期
+   //统计日期
     private String sdate ;
 
    //新增投资者数量（万户）

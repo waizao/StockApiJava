@@ -34,5 +34,20 @@ public class JiGouDiaoYanTongJi implements Serializable {
    //公告日期
     private String noticedate ;
 
+   //序号
+    private int numbernew ;
+
+   //机构类型
+    private String orgtype ;
+
+   //接待开始日期
+    private String receivestartdate ;
+
+   //接待结束日期
+    private String receiveenddate ;
+
+   //调研时间范围
+    private String receivetimeexplain ;
+
 }
 

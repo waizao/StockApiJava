@@ -16,9 +16,6 @@ public class StockHourKLine implements Serializable {
    //K线类别
     private int ktype ;
 
-   //复权信息
-    private int fq ;
-
    //交易时间
     private String tdate ;
 

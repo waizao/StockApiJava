@@ -40,5 +40,17 @@ public class JiGouDiaoYanXiangXi implements Serializable {
    //接待方式
     private String receivewayexplain ;
 
+   //接待开始日期
+    private String receivestartdate ;
+
+   //接待结束日期
+    private String receiveenddate ;
+
+   //调研时间范围
+    private String receivetimeexplain ;
+
+   //序号
+    private int numbernew ;
+
 }
 

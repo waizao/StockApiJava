@@ -22,5 +22,11 @@ public class TradeDate implements Serializable {
    //休市原因
     private String holiday ;
 
+   //休市时段，1：上午休市，2：下午休市
+    private String xs ;
+
+   //前一个交易日
+    private String lastdate ;
+
 }
 

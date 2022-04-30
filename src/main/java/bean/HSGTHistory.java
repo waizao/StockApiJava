@@ -10,41 +10,38 @@ public class HSGTHistory implements Serializable {
    //市场类别
     private int mtype ;
 
-   //交易时间
+   //交易日期
     private String tdate ;
 
-   //当日资金流入
-    private float drzjlr ;
-
-   //当日余额
-    private float drye ;
-
    //历史累计净买额
-    private float lsljjme ;
-
-   //当日成交净买额
-    private float drcjjme ;
+    private float accumdealamt ;
 
    //买入成交额
-    private float mrcje ;
+    private float buyamt ;
 
-   //卖出成交额
-    private float mccje ;
+   //当日资金流入
+    private float fundinflow ;
 
-   //领涨股代码
-    private String lcgcode ;
-
-   //领涨股名称
-    private String lcg ;
-
-   //领涨股涨跌幅
-    private float lcgzdf ;
+   //涨跌幅
+    private float indexchangerate ;
 
    //上证指数
-    private float szzs ;
+    private float indexcloseprice ;
 
-   //上证指数涨跌幅
-    private float szzfzdf ;
+   //领涨股
+    private String leadstocksname ;
+
+   //领涨股-涨跌幅
+    private float lschangerate ;
+
+   //当日成交净买额
+    private float netdealamt ;
+
+   //当日余额
+    private float quotabalance ;
+
+   //卖出成交额
+    private float sellamt ;
 
 }
 

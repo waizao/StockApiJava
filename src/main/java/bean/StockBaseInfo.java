@@ -40,8 +40,14 @@ public class StockBaseInfo implements Serializable {
    //上市日期
     private String ssdate ;
 
-   //成分股，该板块的成分股
-    private String cfg ;
+   //归属行业板块名称
+    private String z50 ;
+
+   //归属地域板块名称
+    private String z52 ;
+
+   //归属概念板块名称
+    private String z53 ;
 
 }
 

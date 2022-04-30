@@ -20,33 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f7f208f5-1837-422b-aff3-7f5190e245a0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/HsgtStockTop10.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/bean/LonghbDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/BondBaseInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/BondBaseInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/FinanceHSBaseInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/FinanceHSBaseInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/FinanceHSDebt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/FinanceHSDebt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/FundPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/FundPosition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/GZStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/GZStock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/HSGTHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/HSGTHistory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/HSGTMoney.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/HSGTMoney.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/HSGTStockRank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/HSGTStockRank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/PoolCX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/PoolCX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/PoolDT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/PoolDT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/PoolQS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/PoolQS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/PoolZB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/PoolZB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/PoolZT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/PoolZT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/RzRjAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/RzRjAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/RzRjMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/RzRjMarket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/RzRjStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/RzRjStock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/StockBaseInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/StockBaseInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/StockDailyMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/StockDailyMarket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/StockHourKLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/StockHourKLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/StockKLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/StockKLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/StockMinuteKLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/StockMinuteKLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/TSStockPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/TSStockPosition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/TradeDate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/TradeDate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/WatchStockTimeKLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/WatchStockTimeKLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bean/XQStockKLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bean/XQStockKLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,6 +131,7 @@
       <workItem from="1640955519543" duration="45000" />
       <workItem from="1640955772093" duration="5000" />
       <workItem from="1642287699171" duration="16000" />
+      <workItem from="1647043707675" duration="1043000" />
     </task>
     <servers />
   </component>

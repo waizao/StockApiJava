@@ -7,13 +7,10 @@ import java.io.Serializable;
 @Data
 public class GZMarket implements Serializable {
 
-   //市场代码，多个市场用逗号分隔；若为all，则表示全部市场，可获取任意一天内的所有市场数据
+   //市场代码
     private String code ;
 
-   //市场名称
-    private String name ;
-
-   //交易时间
+   //交易日期
     private String tdate ;
 
    //平均市盈率
