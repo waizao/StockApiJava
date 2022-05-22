@@ -28,5 +28,8 @@ public class TradeDate implements Serializable {
    //前一个交易日
     private String lastdate ;
 
+   //后一个交易日
+    private String nextdate ;
+
 }
 

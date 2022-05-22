@@ -37,8 +37,5 @@ public class HSGTBlockRank implements Serializable {
    //北向资金今日持股-市值
     private float hkvalue ;
 
-   //涨跌幅
-    private float indexchangeratio ;
-
 }
 
