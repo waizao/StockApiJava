@@ -2,7 +2,7 @@
 
 <p align=center>
   <a href="http://www.waizaowang.com/">
-    <img src="http://www.waizaowang.com/assets/git/waizaowang.png" alt="财经数据接口" style="width:260px;height:120px">
+    <img src="./doc/images/waizaowang.png" alt="财经数据接口" style="width:260px;height:120px">
   </a>
 </p>
 
@@ -49,16 +49,16 @@
 3、接口搜索，展示所有接口信息，可以使用 Ctrl+F 快捷键，搜索你所需要的数据字段。<br>
 4、支持的请求类型，支持GET方法和POST方法，且两种请求方式的路径和入参均相同。<br>
 5、接口更新信息，包括接口更新周期、接口最后更新时间、接口更新耗时会在页面上更新。<br><br>
-![image](http://www.waizaowang.com/assets/git/apiOne.png)
-![image](http://www.waizaowang.com/assets/git/apiTwo.png)
-![image](http://www.waizaowang.com/assets/git/apiThree.png)
+![image](./doc/images/apiOne.png)
+![image](./doc/images/apiTwo.png)
+![image](./doc/images/apiThree.png)
 
 
 ## 项目地址
 目前项目托管在 Gitee 和 Github 平台上中，欢迎大家 Star 和 Fork 支持~ <br>
 Gitee地址： <br>
-Java SDK：https://github.com/waizao/StockApiJava <br>
-Python SDK:https://github.com/waizao/StockApiPython <br>
+Java SDK：https://gitee.com/waizao/StockApiJava <br>
+Python SDK:https://gitee.com/waizao/StockApiPython <br>
 Github地址： <br>
 Java SDK：https://github.com/waizao/StockApiJava <br>
 Python SDK:https://github.com/waizao/StockApiPython <br>
@@ -72,7 +72,7 @@ Python SDK:https://github.com/waizao/StockApiPython <br>
 
 |                                微信公众号                                 | QQ群【推荐】                                                                                  |
 |:--------------------------------------------------------------------:|------------------------------------------------------------------------------------------|
-| <img src="http://www.waizaowang.com/assets/git/gongzhonghao.png" width="200" height="200" /> | <img src="http://www.waizaowang.com/assets/git/qqGroup.png" width="200"  height="200" /> |
+| <img src="./doc/images/gongzhonghao.png" width="200" height="200" /> | <img src="./doc/images/qqGroup.png" width="200"  height="200" /> |
 
 
 
