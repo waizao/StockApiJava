@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class IndicatorTaROC implements Serializable {
+public class IndicatorTaRoc implements Serializable {
 
    //股票代码
     private String code ;
@@ -13,8 +13,8 @@ public class IndicatorTaROC implements Serializable {
    //交易时间
     private String tdate ;
 
-   //roc值
-    private float roc ;
+   //指标值
+    private String output ;
 
    //开盘价
     private float open ;
@@ -34,7 +34,7 @@ public class IndicatorTaROC implements Serializable {
    //成交额
     private float cje ;
 
-   //换手率，仅日线、周线、月线有换手率。
+   //换手率，日线、周线、月线有换手率，其余无换手率参数值。
     private float hsl ;
 
 }

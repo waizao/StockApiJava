@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class IndicatorTaCCI implements Serializable {
+public class IndicatorTaCci implements Serializable {
 
    //股票代码
     private String code ;
@@ -13,8 +13,8 @@ public class IndicatorTaCCI implements Serializable {
    //交易时间
     private String tdate ;
 
-   //cci值，多个取值之间用逗号分割。
-    private String cci ;
+   //指标值
+    private String output ;
 
    //开盘价
     private float open ;
@@ -34,7 +34,7 @@ public class IndicatorTaCCI implements Serializable {
    //成交额
     private float cje ;
 
-   //换手率，日线、周线、月线有换手率，其余无换手率参数。
+   //换手率，日线、周线、月线有换手率，其余无换手率参数值。
     private float hsl ;
 
 }

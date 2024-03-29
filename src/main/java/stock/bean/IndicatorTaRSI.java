@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class IndicatorTaRSI implements Serializable {
+public class IndicatorTaRsi implements Serializable {
 
    //股票代码
     private String code ;
@@ -13,8 +13,8 @@ public class IndicatorTaRSI implements Serializable {
    //交易时间
     private String tdate ;
 
-   //rsi值，多个RSI之间用逗号分割。
-    private String rsi ;
+   //指标值
+    private String output ;
 
    //开盘价
     private float open ;
@@ -34,7 +34,7 @@ public class IndicatorTaRSI implements Serializable {
    //成交额
     private float cje ;
 
-   //换手率，日线、周线、月线有换手率，其余无换手率参数。
+   //换手率，日线、周线、月线有换手率，其余无换手率参数值。
     private float hsl ;
 
 }

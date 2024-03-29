@@ -69,7 +69,7 @@ public class ApiDemo {
                 "",
                 MethodType.GET,
                 ExportType.String_Txt);
-        
+
         //返回的Txt字符串转List<String>
         List<String> txt = ExportTool.toTxt(result);
 

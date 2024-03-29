@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class IndicatorTaMACD implements Serializable {
+public class IndicatorTaMacd implements Serializable {
 
    //股票代码
     private String code ;
@@ -13,14 +13,14 @@ public class IndicatorTaMACD implements Serializable {
    //交易时间
     private String tdate ;
 
-   //DEA值
-    private float dea ;
+   //DIF指标值
+    private String output1 ;
 
-   //DIFF值
-    private float diff ;
+   //DEA指标值
+    private String output2 ;
 
-   //MACD值
-    private float macd ;
+   //MACD指标值 = （DIF - DEA） * 2
+    private String output3 ;
 
    //开盘价
     private float open ;
@@ -40,7 +40,7 @@ public class IndicatorTaMACD implements Serializable {
    //成交额
     private float cje ;
 
-   //换手率，日线、周线、月线有换手率，其余无换手率参数。
+   //换手率，日线、周线、月线有换手率，其余无换手率参数值。
     private float hsl ;
 
 }
