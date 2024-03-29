@@ -2,7 +2,6 @@ import com.google.gson.reflect.TypeToken;
 import constant.*;
 import stock.ExportTool;
 import stock.api.StockApi;
-import stock.bean.StockBaseInfo;
 import stock.bean.StockKLine;
 
 import java.io.File;
@@ -21,10 +20,11 @@ public class ApiDemo {
     public static void main(String[] args) throws IOException {
         String token = "";//歪枣网（www.waizaowang.com）上登录后获取Token
         StockApi restSpider = new StockApi();
+
         //请求日线数据，返回JSON格式
         String result = restSpider.getDayKLine(
                 AssertType.Stock_HS_A.getType(),
-                "all",//返回全部字段
+                "all",//请求A股所有股票
                 KLineType.Day.getType(),
                 FqType.Before.getType(),
                 "2024-02-01",//code选择all的场景下，开始日期和结束日期必须相同，表示返回市场上当天所有股票的数据
@@ -38,6 +38,7 @@ public class ApiDemo {
         //返回的Json字符串转Obj对象
         List<StockKLine> list = ExportTool.toObj(result, new TypeToken<List<StockKLine>>() {
         }.getType());
+
         //返回的Json字符串转List<Map<String,String>>
         List<Map<String, String>> map = ExportTool.toJson(result);
 
@@ -68,6 +69,7 @@ public class ApiDemo {
                 "",
                 MethodType.GET,
                 ExportType.String_Txt);
+        
         //返回的Txt字符串转List<String>
         List<String> txt = ExportTool.toTxt(result);
 
