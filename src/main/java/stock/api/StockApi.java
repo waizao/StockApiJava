@@ -489,7 +489,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaAcos对象
      * @throws IOException
      */
 
@@ -529,7 +529,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaAd对象
      * @throws IOException
      */
 
@@ -570,7 +570,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel4对象
+     * @return 参考IndicatorTaAdOsc对象
      * @throws IOException
      */
 
@@ -613,7 +613,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel5对象
+     * @return 参考IndicatorTaAdd对象
      * @throws IOException
      */
 
@@ -655,7 +655,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaAdx对象
      * @throws IOException
      */
 
@@ -696,7 +696,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaAdxr对象
      * @throws IOException
      */
 
@@ -740,7 +740,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel17对象
+     * @return 参考IndicatorTaApo对象
      * @throws IOException
      */
 
@@ -784,7 +784,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel8对象
+     * @return 参考IndicatorTaAroon对象
      * @throws IOException
      */
 
@@ -825,7 +825,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaAroonOsc对象
      * @throws IOException
      */
 
@@ -866,7 +866,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaAsin对象
      * @throws IOException
      */
 
@@ -907,7 +907,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaAtan对象
      * @throws IOException
      */
 
@@ -948,7 +948,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaAtr对象
      * @throws IOException
      */
 
@@ -988,7 +988,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaAvgPrice对象
      * @throws IOException
      */
 
@@ -1032,7 +1032,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel21对象
+     * @return 参考IndicatorTaBbands对象
      * @throws IOException
      */
 
@@ -1079,7 +1079,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel13对象
+     * @return 参考IndicatorTaBeta对象
      * @throws IOException
      */
 
@@ -1121,7 +1121,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaBop对象
      * @throws IOException
      */
 
@@ -1161,7 +1161,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaCci对象
      * @throws IOException
      */
 
@@ -1201,7 +1201,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdl2Crows对象
      * @throws IOException
      */
 
@@ -1240,7 +1240,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdl3BlackCrows对象
      * @throws IOException
      */
 
@@ -1279,7 +1279,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdl3Inside对象
      * @throws IOException
      */
 
@@ -1318,7 +1318,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdl3LineStrike对象
      * @throws IOException
      */
 
@@ -1357,7 +1357,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdl3Outside对象
      * @throws IOException
      */
 
@@ -1396,7 +1396,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdl3StarsInSouth对象
      * @throws IOException
      */
 
@@ -1435,7 +1435,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdl3WhiteSoldiers对象
      * @throws IOException
      */
 
@@ -1475,7 +1475,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaCdlAbandonedBaby对象
      * @throws IOException
      */
 
@@ -1515,7 +1515,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlAdvanceBlock对象
      * @throws IOException
      */
 
@@ -1554,7 +1554,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlBeltHold对象
      * @throws IOException
      */
 
@@ -1593,7 +1593,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlBreakaway对象
      * @throws IOException
      */
 
@@ -1632,7 +1632,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlClosingMarubozu对象
      * @throws IOException
      */
 
@@ -1671,7 +1671,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlConcealBabysWall对象
      * @throws IOException
      */
 
@@ -1710,7 +1710,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlCounterAttack对象
      * @throws IOException
      */
 
@@ -1750,7 +1750,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaCdlDarkCloudCover对象
      * @throws IOException
      */
 
@@ -1790,7 +1790,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlDoji对象
      * @throws IOException
      */
 
@@ -1829,7 +1829,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlDojiStar对象
      * @throws IOException
      */
 
@@ -1868,7 +1868,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlDragonflyDoji对象
      * @throws IOException
      */
 
@@ -1907,7 +1907,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlEngulfing对象
      * @throws IOException
      */
 
@@ -1947,7 +1947,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaCdlEveningDojiStar对象
      * @throws IOException
      */
 
@@ -1988,7 +1988,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaCdlEveningStar对象
      * @throws IOException
      */
 
@@ -2028,7 +2028,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlGapSideSideWhite对象
      * @throws IOException
      */
 
@@ -2067,7 +2067,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlGravestoneDoji对象
      * @throws IOException
      */
 
@@ -2106,7 +2106,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlHammer对象
      * @throws IOException
      */
 
@@ -2145,7 +2145,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlHangingMan对象
      * @throws IOException
      */
 
@@ -2184,7 +2184,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlHarami对象
      * @throws IOException
      */
 
@@ -2223,7 +2223,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlHaramiCross对象
      * @throws IOException
      */
 
@@ -2262,7 +2262,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlHignWave对象
      * @throws IOException
      */
 
@@ -2301,7 +2301,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlHikkake对象
      * @throws IOException
      */
 
@@ -2340,7 +2340,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlHikkakeMod对象
      * @throws IOException
      */
 
@@ -2379,7 +2379,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlHomingPigeon对象
      * @throws IOException
      */
 
@@ -2418,7 +2418,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlIdentical3Crows对象
      * @throws IOException
      */
 
@@ -2457,7 +2457,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlInNeck对象
      * @throws IOException
      */
 
@@ -2496,7 +2496,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlInvertedHammer对象
      * @throws IOException
      */
 
@@ -2535,7 +2535,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlKicking对象
      * @throws IOException
      */
 
@@ -2574,7 +2574,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlKickingByLength对象
      * @throws IOException
      */
 
@@ -2613,7 +2613,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlLadderBottom对象
      * @throws IOException
      */
 
@@ -2652,7 +2652,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlLongLeggedDoji对象
      * @throws IOException
      */
 
@@ -2691,7 +2691,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlLongLine对象
      * @throws IOException
      */
 
@@ -2730,7 +2730,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlMarubozu对象
      * @throws IOException
      */
 
@@ -2770,7 +2770,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaCdlMatHold对象
      * @throws IOException
      */
 
@@ -2810,7 +2810,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlMatchingLow对象
      * @throws IOException
      */
 
@@ -2850,7 +2850,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaCdlMorningDojiStar对象
      * @throws IOException
      */
 
@@ -2891,7 +2891,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaCdlMorningStar对象
      * @throws IOException
      */
 
@@ -2931,7 +2931,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlOnNeck对象
      * @throws IOException
      */
 
@@ -2970,7 +2970,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlPiercing对象
      * @throws IOException
      */
 
@@ -3009,7 +3009,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlRickshawMan对象
      * @throws IOException
      */
 
@@ -3048,7 +3048,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlRiseFall3Methods对象
      * @throws IOException
      */
 
@@ -3087,7 +3087,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlSeperatingLines对象
      * @throws IOException
      */
 
@@ -3126,7 +3126,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlShootingStar对象
      * @throws IOException
      */
 
@@ -3165,7 +3165,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlShortLine对象
      * @throws IOException
      */
 
@@ -3204,7 +3204,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlSpinningTop对象
      * @throws IOException
      */
 
@@ -3243,7 +3243,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlStalledPattern对象
      * @throws IOException
      */
 
@@ -3282,7 +3282,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlStickSandwhich对象
      * @throws IOException
      */
 
@@ -3321,7 +3321,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlTakuri对象
      * @throws IOException
      */
 
@@ -3360,7 +3360,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlTasukiGap对象
      * @throws IOException
      */
 
@@ -3399,7 +3399,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlThrusting对象
      * @throws IOException
      */
 
@@ -3438,7 +3438,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlTristar对象
      * @throws IOException
      */
 
@@ -3477,7 +3477,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlUnique3River对象
      * @throws IOException
      */
 
@@ -3516,7 +3516,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlUpsideGap2Crows对象
      * @throws IOException
      */
 
@@ -3555,7 +3555,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaCdlXSideGap3Methods对象
      * @throws IOException
      */
 
@@ -3595,7 +3595,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaCeil对象
      * @throws IOException
      */
 
@@ -3637,7 +3637,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaCmo对象
      * @throws IOException
      */
 
@@ -3681,7 +3681,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel13对象
+     * @return 参考IndicatorTaCorrel对象
      * @throws IOException
      */
 
@@ -3724,7 +3724,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaCos对象
      * @throws IOException
      */
 
@@ -3765,7 +3765,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaCosh对象
      * @throws IOException
      */
 
@@ -3807,7 +3807,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaDema对象
      * @throws IOException
      */
 
@@ -3850,7 +3850,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel5对象
+     * @return 参考IndicatorTaDiv对象
      * @throws IOException
      */
 
@@ -3892,7 +3892,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaDx对象
      * @throws IOException
      */
 
@@ -3934,7 +3934,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaEma对象
      * @throws IOException
      */
 
@@ -3976,7 +3976,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaExp对象
      * @throws IOException
      */
 
@@ -4017,7 +4017,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaFloor对象
      * @throws IOException
      */
 
@@ -4058,7 +4058,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaHtDcPeriod对象
      * @throws IOException
      */
 
@@ -4099,7 +4099,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaHtDcPhase对象
      * @throws IOException
      */
 
@@ -4140,7 +4140,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel6对象
+     * @return 参考IndicatorTaHtPhasor对象
      * @throws IOException
      */
 
@@ -4181,7 +4181,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel6对象
+     * @return 参考IndicatorTaHtSine对象
      * @throws IOException
      */
 
@@ -4222,7 +4222,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaHtTrendMode对象
      * @throws IOException
      */
 
@@ -4263,7 +4263,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaHtTrendline对象
      * @throws IOException
      */
 
@@ -4305,7 +4305,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaKama对象
      * @throws IOException
      */
 
@@ -4348,7 +4348,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaLinearReg对象
      * @throws IOException
      */
 
@@ -4391,7 +4391,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaLinearRegAngle对象
      * @throws IOException
      */
 
@@ -4434,7 +4434,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaLinearRegIntercept对象
      * @throws IOException
      */
 
@@ -4477,7 +4477,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaLinearRegSlope对象
      * @throws IOException
      */
 
@@ -4519,7 +4519,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaLn对象
      * @throws IOException
      */
 
@@ -4560,7 +4560,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaLog10对象
      * @throws IOException
      */
 
@@ -4604,7 +4604,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel19对象
+     * @return 参考IndicatorTaMacd对象
      * @throws IOException
      */
 
@@ -4654,7 +4654,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel23对象
+     * @return 参考IndicatorTaMacdExt对象
      * @throws IOException
      */
 
@@ -4702,7 +4702,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel14对象
+     * @return 参考IndicatorTaMacdFix对象
      * @throws IOException
      */
 
@@ -4746,7 +4746,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel15对象
+     * @return 参考IndicatorTaMama对象
      * @throws IOException
      */
 
@@ -4790,7 +4790,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaMax对象
      * @throws IOException
      */
 
@@ -4833,7 +4833,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaMaxIndex对象
      * @throws IOException
      */
 
@@ -4874,7 +4874,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaMedPrice对象
      * @throws IOException
      */
 
@@ -4914,7 +4914,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaMfi对象
      * @throws IOException
      */
 
@@ -4956,7 +4956,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaMidPoint对象
      * @throws IOException
      */
 
@@ -4998,7 +4998,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaMidPrice对象
      * @throws IOException
      */
 
@@ -5040,7 +5040,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaMin对象
      * @throws IOException
      */
 
@@ -5083,7 +5083,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaMinIndex对象
      * @throws IOException
      */
 
@@ -5126,7 +5126,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel9对象
+     * @return 参考IndicatorTaMinMax对象
      * @throws IOException
      */
 
@@ -5169,7 +5169,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel9对象
+     * @return 参考IndicatorTaMinMaxIndex对象
      * @throws IOException
      */
 
@@ -5211,7 +5211,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaMinusDI对象
      * @throws IOException
      */
 
@@ -5252,7 +5252,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaMinusDM对象
      * @throws IOException
      */
 
@@ -5294,7 +5294,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaMom对象
      * @throws IOException
      */
 
@@ -5338,7 +5338,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel11对象
+     * @return 参考IndicatorTaMovingAverage对象
      * @throws IOException
      */
 
@@ -5382,7 +5382,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel5对象
+     * @return 参考IndicatorTaMult对象
      * @throws IOException
      */
 
@@ -5424,7 +5424,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaNatr对象
      * @throws IOException
      */
 
@@ -5465,7 +5465,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaObv对象
      * @throws IOException
      */
 
@@ -5506,7 +5506,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaPlusDI对象
      * @throws IOException
      */
 
@@ -5547,7 +5547,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaPlusDM对象
      * @throws IOException
      */
 
@@ -5591,7 +5591,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel17对象
+     * @return 参考IndicatorTaPpo对象
      * @throws IOException
      */
 
@@ -5636,7 +5636,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaRoc对象
      * @throws IOException
      */
 
@@ -5679,7 +5679,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaRocP对象
      * @throws IOException
      */
 
@@ -5722,7 +5722,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaRocR对象
      * @throws IOException
      */
 
@@ -5765,7 +5765,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaRocR100对象
      * @throws IOException
      */
 
@@ -5808,7 +5808,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaRsi对象
      * @throws IOException
      */
 
@@ -5851,7 +5851,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel4对象
+     * @return 参考IndicatorTaSar对象
      * @throws IOException
      */
 
@@ -5900,7 +5900,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel22对象
+     * @return 参考IndicatorTaSarExt对象
      * @throws IOException
      */
 
@@ -5948,7 +5948,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaSin对象
      * @throws IOException
      */
 
@@ -5989,7 +5989,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaSinh对象
      * @throws IOException
      */
 
@@ -6031,7 +6031,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaSma对象
      * @throws IOException
      */
 
@@ -6073,7 +6073,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaSqrt对象
      * @throws IOException
      */
 
@@ -6116,7 +6116,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel10对象
+     * @return 参考IndicatorTaStdDev对象
      * @throws IOException
      */
 
@@ -6163,7 +6163,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel18对象
+     * @return 参考IndicatorTaStoch对象
      * @throws IOException
      */
 
@@ -6210,7 +6210,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel16对象
+     * @return 参考IndicatorTaStochF对象
      * @throws IOException
      */
 
@@ -6257,7 +6257,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel20对象
+     * @return 参考IndicatorTaStochRsi对象
      * @throws IOException
      */
 
@@ -6303,7 +6303,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel5对象
+     * @return 参考IndicatorTaSub对象
      * @throws IOException
      */
 
@@ -6346,7 +6346,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaSum对象
      * @throws IOException
      */
 
@@ -6390,7 +6390,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel10对象
+     * @return 参考IndicatorTaT3对象
      * @throws IOException
      */
 
@@ -6433,7 +6433,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaTan对象
      * @throws IOException
      */
 
@@ -6474,7 +6474,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel1对象
+     * @return 参考IndicatorTaTanh对象
      * @throws IOException
      */
 
@@ -6516,7 +6516,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaTema对象
      * @throws IOException
      */
 
@@ -6559,7 +6559,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaTrima对象
      * @throws IOException
      */
 
@@ -6602,7 +6602,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaTrix对象
      * @throws IOException
      */
 
@@ -6643,7 +6643,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaTrueRange对象
      * @throws IOException
      */
 
@@ -6684,7 +6684,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaTsf对象
      * @throws IOException
      */
 
@@ -6725,7 +6725,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaTypPrice对象
      * @throws IOException
      */
 
@@ -6767,7 +6767,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel12对象
+     * @return 参考IndicatorTaUltOsc对象
      * @throws IOException
      */
 
@@ -6812,7 +6812,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel10对象
+     * @return 参考IndicatorTaVariance对象
      * @throws IOException
      */
 
@@ -6854,7 +6854,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel2对象
+     * @return 参考IndicatorTaWclPrice对象
      * @throws IOException
      */
 
@@ -6894,7 +6894,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel3对象
+     * @return 参考IndicatorTaWillR对象
      * @throws IOException
      */
 
@@ -6936,7 +6936,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaModel7对象
+     * @return 参考IndicatorTaWma对象
      * @throws IOException
      */
 
