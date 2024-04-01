@@ -60,7 +60,7 @@
 ### Java SDK :
 
 Gitee地址：https://gitee.com/waizao/StockApiJava <br>
-Github地址：Java SDK：https://github.com/waizao/StockApiJava <br>
+Github地址：https://github.com/waizao/StockApiJava <br>
 
 #### 初始化:
 
