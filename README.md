@@ -7,7 +7,7 @@
 </p>
 
 <p align=center>
-   歪枣网，民间版财经数据库，提供全面、准确、稳定的财经数据
+   歪枣网，提供全面、准确、稳定的财经数据
 </p>
 
 ##  前言
@@ -53,21 +53,59 @@
 ![image](./doc/images/apiTwo.png)
 ![image](./doc/images/apiThree.png)
 
+## 初始化
+
+###     
+
+```shell
+pip install akshare --upgrade
+```
+
+### China
+
+```shell
+pip install akshare -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com  --upgrade
+```
 
 ## 项目地址
+
 目前项目托管在 Gitee 和 Github 平台上中，欢迎大家 Star 和 Fork 支持~ <br>
-Gitee地址： <br>
-Java SDK：https://gitee.com/waizao/StockApiJava <br>
-Python SDK:https://gitee.com/waizao/StockApiPython <br>
-Github地址： <br>
-Java SDK：https://github.com/waizao/StockApiJava <br>
-Python SDK:https://github.com/waizao/StockApiPython <br>
+
+### Java SDK :
+
+Gitee地址：https://gitee.com/waizao/StockApiJava <br>
+Github地址：Java SDK：https://github.com/waizao/StockApiJava <br>
+
+#### 初始化:
+
+``` maven
+<dependency>
+    <groupId>io.gitee.waizao</groupId>
+    <artifactId>openapi</artifactId>
+    <version>1.1.1</version>
+</dependency>
+```
+
+### Python SDK:
+
+#### 托管平台:
+
+Gitee地址：https://gitee.com/waizao/StockApiPython <br>
+Github地址：:https://github.com/waizao/StockApiPython <br>
+
+#### 初始化:
+
+```shell
+pip install waizao -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com  --upgrade
+```
 
 [社区论坛](http://bbs.waizaowang.com/) <br>
 [二次开发手册](http://www.waizaowang.com/wiki/index.html#_%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91)<br>
 
 ## 关注&交流
-为了方便小伙伴们沟通交流，创建了QQ群 (加群备注：歪枣网) ，目前项目还存在很多不足之处，欢迎各位大佬进群进行交流，为了防止广告进入，希望加群的时候能添加备注，谢谢~<br>
+
+为了方便小伙伴们沟通交流，创建了QQ群 (加群备注：歪枣网)
+，目前项目还存在很多不足之处，欢迎各位大佬进群进行交流，为了防止广告进入，希望加群的时候能添加备注，谢谢~<br>
 如遇问题联系作者，邮箱：waizaowang@163.com <br>
 
 |                                微信公众号                                 | QQ群【推荐】                                                                                  |
