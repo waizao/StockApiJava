@@ -53,20 +53,6 @@
 ![image](./doc/images/apiTwo.png)
 ![image](./doc/images/apiThree.png)
 
-## 初始化
-
-###     
-
-```shell
-pip install akshare --upgrade
-```
-
-### China
-
-```shell
-pip install akshare -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com  --upgrade
-```
-
 ## 项目地址
 
 目前项目托管在 Gitee 和 Github 平台上中，欢迎大家 Star 和 Fork 支持~ <br>
@@ -87,8 +73,6 @@ Github地址：Java SDK：https://github.com/waizao/StockApiJava <br>
 ```
 
 ### Python SDK:
-
-#### 托管平台:
 
 Gitee地址：https://gitee.com/waizao/StockApiPython <br>
 Github地址：:https://github.com/waizao/StockApiPython <br>
