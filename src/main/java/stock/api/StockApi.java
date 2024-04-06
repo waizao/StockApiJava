@@ -27,7 +27,7 @@ public class StockApi {
      */
 
     public String getBaseInfo(int type, String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -57,7 +57,7 @@ public class StockApi {
      */
 
     public String getStockType(long flags, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getStockType";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("flags", flags)
                 .put("fields", fields)
@@ -88,7 +88,7 @@ public class StockApi {
      */
 
     public String getTradeDate(int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/TradeDate";
+        String url = "http://api.waizaowang.com/doc/getTradeDate";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("mtype", mtype)
                 .put("startDate", startDate)
@@ -122,7 +122,7 @@ public class StockApi {
      */
 
     public String getIndicatorMoney(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorMuchMoney";
+        String url = "http://api.waizaowang.com/doc/getIndicatorMoney";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -157,7 +157,7 @@ public class StockApi {
      */
 
     public String getIndicatorBaseInfo(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getIndicatorBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -192,7 +192,7 @@ public class StockApi {
      */
 
     public String getDailyMarket(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockDailyMarketCopy";
+        String url = "http://api.waizaowang.com/doc/getDailyMarket";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -227,7 +227,7 @@ public class StockApi {
      */
 
     public String getMinuteKLine(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockMinuteKLine";
+        String url = "http://api.waizaowang.com/doc/getMinuteKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -263,7 +263,7 @@ public class StockApi {
      */
 
     public String getHourKLine(int type, String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockHourKLine";
+        String url = "http://api.waizaowang.com/doc/getHourKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -301,7 +301,7 @@ public class StockApi {
      */
 
     public String getDayKLine(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockKLine";
+        String url = "http://api.waizaowang.com/doc/getDayKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -338,7 +338,7 @@ public class StockApi {
      */
 
     public String getLevel2TimeDeal(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockLevel2TimeDeal";
+        String url = "http://api.waizaowang.com/doc/getLevel2TimeDeal";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -370,7 +370,7 @@ public class StockApi {
      */
 
     public String getHangyeCfg(String bkcode, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getHangyeCfg";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("bkcode", bkcode)
                 .put("fields", fields)
@@ -399,7 +399,7 @@ public class StockApi {
      */
 
     public String getZhiShuChengFenGuZhongZhen(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/ZhiShuChengFenGuZhongZhen";
+        String url = "http://api.waizaowang.com/doc/getZhiShuChengFenGuZhongZhen";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -428,7 +428,7 @@ public class StockApi {
      */
 
     public String getZhiShuChengFenGu(int mtype, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/ZhiShuChengFenGu";
+        String url = "http://api.waizaowang.com/doc/getZhiShuChengFenGu";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("mtype", mtype)
                 .put("fields", fields)
@@ -458,7 +458,7 @@ public class StockApi {
      */
 
     public String getWatchStockTimeKLine(int type, String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/WatchStockTimeKLine";
+        String url = "http://api.waizaowang.com/doc/getWatchStockTimeKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -494,7 +494,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaAcos(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaAcos";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaAcos";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -534,7 +534,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaAd(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaAd";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaAd";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -575,7 +575,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaAdOsc(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaAdOsc";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaAdOsc";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -618,7 +618,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaAdd(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaAdd";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaAdd";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -660,7 +660,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaAdx(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaAdx";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaAdx";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -701,7 +701,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaAdxr(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaAdxr";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaAdxr";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -745,7 +745,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaApo(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaApo";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaApo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -789,7 +789,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaAroon(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaAroon";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaAroon";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -830,7 +830,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaAroonOsc(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaAroonOsc";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaAroonOsc";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -871,7 +871,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaAsin(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaAsin";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaAsin";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -912,7 +912,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaAtan(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaAtan";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaAtan";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -953,7 +953,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaAtr(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaAtr";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaAtr";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -993,7 +993,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaAvgPrice(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaAvgPrice";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaAvgPrice";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1037,7 +1037,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaBbands(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String input5, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaBbands";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaBbands";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1084,7 +1084,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaBeta(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaBeta";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaBeta";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1126,7 +1126,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaBop(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaBop";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaBop";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1166,7 +1166,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCci(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCci";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCci";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1206,7 +1206,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdl2Crows(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdl2Crows";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdl2Crows";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1245,7 +1245,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdl3BlackCrows(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdl3BlackCrows";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdl3BlackCrows";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1284,7 +1284,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdl3Inside(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdl3Inside";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdl3Inside";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1323,7 +1323,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdl3LineStrike(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdl3LineStrike";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdl3LineStrike";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1362,7 +1362,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdl3Outside(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdl3Outside";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdl3Outside";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1401,7 +1401,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdl3StarsInSouth(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdl3StarsInSouth";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdl3StarsInSouth";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1440,7 +1440,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdl3WhiteSoldiers(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdl3WhiteSoldiers";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdl3WhiteSoldiers";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1480,7 +1480,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlAbandonedBaby(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlAbandonedBaby";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlAbandonedBaby";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1520,7 +1520,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlAdvanceBlock(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlAdvanceBlock";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlAdvanceBlock";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1559,7 +1559,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlBeltHold(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlBeltHold";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlBeltHold";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1598,7 +1598,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlBreakaway(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlBreakaway";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlBreakaway";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1637,7 +1637,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlClosingMarubozu(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlClosingMarubozu";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlClosingMarubozu";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1676,7 +1676,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlConcealBabysWall(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlConcealBabysWall";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlConcealBabysWall";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1715,7 +1715,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlCounterAttack(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlCounterAttack";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlCounterAttack";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1755,7 +1755,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlDarkCloudCover(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlDarkCloudCover";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlDarkCloudCover";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1795,7 +1795,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlDoji(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlDoji";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlDoji";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1834,7 +1834,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlDojiStar(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlDojiStar";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlDojiStar";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1873,7 +1873,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlDragonflyDoji(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlDragonflyDoji";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlDragonflyDoji";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1912,7 +1912,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlEngulfing(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlEngulfing";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlEngulfing";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1952,7 +1952,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlEveningDojiStar(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlEveningDojiStar";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlEveningDojiStar";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -1993,7 +1993,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlEveningStar(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlEveningStar";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlEveningStar";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2033,7 +2033,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlGapSideSideWhite(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlGapSideSideWhite";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlGapSideSideWhite";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2072,7 +2072,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlGravestoneDoji(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlGravestoneDoji";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlGravestoneDoji";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2111,7 +2111,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlHammer(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlHammer";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlHammer";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2150,7 +2150,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlHangingMan(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlHangingMan";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlHangingMan";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2189,7 +2189,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlHarami(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlHarami";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlHarami";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2228,7 +2228,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlHaramiCross(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlHaramiCross";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlHaramiCross";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2267,7 +2267,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlHignWave(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlHignWave";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlHignWave";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2306,7 +2306,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlHikkake(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlHikkake";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlHikkake";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2345,7 +2345,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlHikkakeMod(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlHikkakeMod";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlHikkakeMod";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2384,7 +2384,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlHomingPigeon(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlHomingPigeon";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlHomingPigeon";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2423,7 +2423,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlIdentical3Crows(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlIdentical3Crows";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlIdentical3Crows";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2462,7 +2462,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlInNeck(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlInNeck";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlInNeck";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2501,7 +2501,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlInvertedHammer(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlInvertedHammer";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlInvertedHammer";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2540,7 +2540,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlKicking(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlKicking";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlKicking";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2579,7 +2579,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlKickingByLength(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlKickingByLength";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlKickingByLength";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2618,7 +2618,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlLadderBottom(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlLadderBottom";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlLadderBottom";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2657,7 +2657,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlLongLeggedDoji(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlLongLeggedDoji";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlLongLeggedDoji";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2696,7 +2696,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlLongLine(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlLongLine";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlLongLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2735,7 +2735,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlMarubozu(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlMarubozu";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlMarubozu";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2775,7 +2775,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlMatHold(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlMatHold";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlMatHold";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2815,7 +2815,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlMatchingLow(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlMatchingLow";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlMatchingLow";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2855,7 +2855,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlMorningDojiStar(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlMorningDojiStar";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlMorningDojiStar";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2896,7 +2896,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlMorningStar(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlMorningStar";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlMorningStar";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2936,7 +2936,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlOnNeck(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlOnNeck";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlOnNeck";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -2975,7 +2975,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlPiercing(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlPiercing";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlPiercing";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3014,7 +3014,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlRickshawMan(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlRickshawMan";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlRickshawMan";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3053,7 +3053,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlRiseFall3Methods(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlRiseFall3Methods";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlRiseFall3Methods";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3092,7 +3092,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlSeperatingLines(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlSeperatingLines";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlSeperatingLines";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3131,7 +3131,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlShootingStar(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlShootingStar";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlShootingStar";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3170,7 +3170,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlShortLine(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlShortLine";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlShortLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3209,7 +3209,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlSpinningTop(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlSpinningTop";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlSpinningTop";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3248,7 +3248,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlStalledPattern(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlStalledPattern";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlStalledPattern";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3287,7 +3287,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlStickSandwhich(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlStickSandwhich";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlStickSandwhich";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3326,7 +3326,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlTakuri(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlTakuri";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlTakuri";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3365,7 +3365,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlTasukiGap(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlTasukiGap";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlTasukiGap";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3404,7 +3404,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlThrusting(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlThrusting";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlThrusting";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3443,7 +3443,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlTristar(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlTristar";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlTristar";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3482,7 +3482,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlUnique3River(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlUnique3River";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlUnique3River";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3521,7 +3521,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlUpsideGap2Crows(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlUpsideGap2Crows";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlUpsideGap2Crows";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3560,7 +3560,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCdlXSideGap3Methods(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCdlXSideGap3Methods";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlXSideGap3Methods";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3600,7 +3600,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCeil(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCeil";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCeil";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3642,7 +3642,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCmo(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCmo";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCmo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3686,7 +3686,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCorrel(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCorrel";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCorrel";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3729,7 +3729,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCos(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCos";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCos";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3770,7 +3770,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaCosh(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaCosh";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaCosh";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3812,7 +3812,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaDema(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaDema";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaDema";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3855,7 +3855,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaDiv(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaDiv";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaDiv";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3897,7 +3897,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaDx(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaDx";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaDx";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3939,7 +3939,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaEma(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaEma";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaEma";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -3981,7 +3981,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaExp(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaExp";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaExp";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4022,7 +4022,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaFloor(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaFloor";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaFloor";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4063,7 +4063,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaHtDcPeriod(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaHtDcPeriod";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaHtDcPeriod";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4104,7 +4104,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaHtDcPhase(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaHtDcPhase";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaHtDcPhase";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4145,7 +4145,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaHtPhasor(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaHtPhasor";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaHtPhasor";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4186,7 +4186,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaHtSine(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaHtSine";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaHtSine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4227,7 +4227,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaHtTrendMode(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaHtTrendMode";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaHtTrendMode";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4268,7 +4268,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaHtTrendline(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaHtTrendline";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaHtTrendline";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4310,7 +4310,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaKama(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaKama";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaKama";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4353,7 +4353,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaLinearReg(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaLinearReg";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaLinearReg";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4396,7 +4396,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaLinearRegAngle(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaLinearRegAngle";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaLinearRegAngle";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4439,7 +4439,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaLinearRegIntercept(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaLinearRegIntercept";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaLinearRegIntercept";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4482,7 +4482,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaLinearRegSlope(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaLinearRegSlope";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaLinearRegSlope";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4524,7 +4524,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaLn(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaLn";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaLn";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4565,7 +4565,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaLog10(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaLog10";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaLog10";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4609,7 +4609,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMacd(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMacd";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMacd";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4659,7 +4659,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMacdExt(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String input5, String input6, String input7, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMacdExt";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMacdExt";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4707,7 +4707,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMacdFix(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMacdFix";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMacdFix";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4751,7 +4751,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMama(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMama";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMama";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4795,7 +4795,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMax(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMax";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMax";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4838,7 +4838,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMaxIndex(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMaxIndex";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMaxIndex";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4879,7 +4879,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMedPrice(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMedPrice";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMedPrice";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4919,7 +4919,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMfi(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMfi";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMfi";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -4961,7 +4961,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMidPoint(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMidPoint";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMidPoint";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5003,7 +5003,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMidPrice(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMidPrice";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMidPrice";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5045,7 +5045,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMin(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMin";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMin";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5088,7 +5088,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMinIndex(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMinIndex";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMinIndex";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5131,7 +5131,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMinMax(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMinMax";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMinMax";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5174,7 +5174,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMinMaxIndex(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMinMaxIndex";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMinMaxIndex";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5216,7 +5216,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMinusDI(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMinusDI";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMinusDI";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5257,7 +5257,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMinusDM(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMinusDM";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMinusDM";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5299,7 +5299,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMom(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMom";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMom";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5343,7 +5343,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMovingAverage(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMovingAverage";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMovingAverage";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5387,7 +5387,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaMult(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaMult";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaMult";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5429,7 +5429,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaNatr(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaNatr";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaNatr";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5470,7 +5470,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaObv(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaObv";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaObv";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5511,7 +5511,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaPlusDI(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaPlusDI";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaPlusDI";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5552,7 +5552,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaPlusDM(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaPlusDM";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaPlusDM";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5596,7 +5596,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaPpo(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaPpo";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaPpo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5641,7 +5641,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaRoc(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaRoc";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaRoc";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5684,7 +5684,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaRocP(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaRocP";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaRocP";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5727,7 +5727,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaRocR(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaRocR";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaRocR";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5770,7 +5770,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaRocR100(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaRocR100";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaRocR100";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5813,7 +5813,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaRsi(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaRsi";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaRsi";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5856,7 +5856,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaSar(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaSar";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaSar";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5905,7 +5905,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaSarExt(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String input5, String input6, String input7, String input8, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaSarExt";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaSarExt";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5953,7 +5953,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaSin(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaSin";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaSin";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -5994,7 +5994,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaSinh(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaSinh";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaSinh";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6036,7 +6036,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaSma(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaSma";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaSma";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6078,7 +6078,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaSqrt(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaSqrt";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaSqrt";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6121,7 +6121,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaStdDev(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaStdDev";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaStdDev";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6168,7 +6168,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaStoch(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String input5, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaStoch";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaStoch";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6215,7 +6215,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaStochF(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaStochF";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaStochF";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6262,7 +6262,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaStochRsi(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String input5, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaStochRsi";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaStochRsi";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6308,7 +6308,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaSub(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaSub";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaSub";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6351,7 +6351,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaSum(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaSum";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaSum";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6395,7 +6395,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaT3(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaT3";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaT3";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6438,7 +6438,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaTan(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaTan";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaTan";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6479,7 +6479,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaTanh(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaTanh";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaTanh";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6521,7 +6521,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaTema(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaTema";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaTema";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6564,7 +6564,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaTrima(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaTrima";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaTrima";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6607,7 +6607,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaTrix(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaTrix";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaTrix";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6648,7 +6648,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaTrueRange(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaTrueRange";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaTrueRange";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6689,7 +6689,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaTsf(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaTsf";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaTsf";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6730,7 +6730,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaTypPrice(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaTypPrice";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaTypPrice";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6772,7 +6772,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaUltOsc(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaUltOsc";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaUltOsc";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6817,7 +6817,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaVariance(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaVariance";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaVariance";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6859,7 +6859,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaWclPrice(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaWclPrice";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaWclPrice";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6899,7 +6899,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaWillR(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaWillR";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaWillR";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6941,7 +6941,7 @@ public class StockApi {
      */
 
     public String getIndicatorTaWma(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/IndicatorTaWma";
+        String url = "http://api.waizaowang.com/doc/getIndicatorTaWma";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
@@ -6977,7 +6977,7 @@ public class StockApi {
      */
 
     public String getStockHSABaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getStockHSABaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -7008,7 +7008,7 @@ public class StockApi {
      */
 
     public String getStockHSADailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockDailyMarket";
+        String url = "http://api.waizaowang.com/doc/getStockHSADailyMarket";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -7041,7 +7041,7 @@ public class StockApi {
      */
 
     public String getStockHSAMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockMinuteKLine";
+        String url = "http://api.waizaowang.com/doc/getStockHSAMinuteKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -7075,7 +7075,7 @@ public class StockApi {
      */
 
     public String getStockHSAHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockHourKLine";
+        String url = "http://api.waizaowang.com/doc/getStockHSAHourKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -7111,7 +7111,7 @@ public class StockApi {
      */
 
     public String getStockHSADayKLine(String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockKLine";
+        String url = "http://api.waizaowang.com/doc/getStockHSADayKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -7144,7 +7144,7 @@ public class StockApi {
      */
 
     public String getStockHSBBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getStockHSBBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -7175,7 +7175,7 @@ public class StockApi {
      */
 
     public String getStockHSBDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockDailyMarket";
+        String url = "http://api.waizaowang.com/doc/getStockHSBDailyMarket";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -7208,7 +7208,7 @@ public class StockApi {
      */
 
     public String getStockHSBMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockMinuteKLine";
+        String url = "http://api.waizaowang.com/doc/getStockHSBMinuteKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -7242,7 +7242,7 @@ public class StockApi {
      */
 
     public String getStockHSBHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockHourKLine";
+        String url = "http://api.waizaowang.com/doc/getStockHSBHourKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -7278,7 +7278,7 @@ public class StockApi {
      */
 
     public String getStockHSBDayKLine(String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockKLine";
+        String url = "http://api.waizaowang.com/doc/getStockHSBDayKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -7313,7 +7313,7 @@ public class StockApi {
      */
 
     public String getStockReName(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockReName";
+        String url = "http://api.waizaowang.com/doc/getStockReName";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -7344,7 +7344,7 @@ public class StockApi {
      */
 
     public String getCompanyInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/CompanyInfo";
+        String url = "http://api.waizaowang.com/doc/getCompanyInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -7372,7 +7372,7 @@ public class StockApi {
      */
 
     public String getStockAccount(String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockAccount";
+        String url = "http://api.waizaowang.com/doc/getStockAccount";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("fields", fields)
                 .put("token", token)
@@ -7401,7 +7401,7 @@ public class StockApi {
      */
 
     public String getStockTradeDate(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/HSTradeDate";
+        String url = "http://api.waizaowang.com/doc/getStockTradeDate";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("startDate", startDate)
                 .put("endDate", endDate)
@@ -7433,7 +7433,7 @@ public class StockApi {
      */
 
     public String getChuQuanChuXi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/ChuQuanChuXi";
+        String url = "http://api.waizaowang.com/doc/getChuQuanChuXi";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -7467,7 +7467,7 @@ public class StockApi {
      */
 
     public String getFuQuanYinZi(String code, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/FuQuanYinZi";
+        String url = "http://api.waizaowang.com/doc/getFuQuanYinZi";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fq", fq)
@@ -7501,7 +7501,7 @@ public class StockApi {
      */
 
     public String getJiGouDiaoYanTongJi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/JiGouDiaoYanTongJi";
+        String url = "http://api.waizaowang.com/doc/getJiGouDiaoYanTongJi";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -7534,7 +7534,7 @@ public class StockApi {
      */
 
     public String getJiGouDiaoYanXiangXi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/JiGouDiaoYanXiangXi";
+        String url = "http://api.waizaowang.com/doc/getJiGouDiaoYanXiangXi";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -7565,7 +7565,7 @@ public class StockApi {
      */
 
     public String getJiGouDiaoYanJiLv(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/JiGouDiaoYanJiLv";
+        String url = "http://api.waizaowang.com/doc/getJiGouDiaoYanJiLv";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -7596,7 +7596,7 @@ public class StockApi {
      */
 
     public String getLonghbDetail(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/LonghbDetail";
+        String url = "http://api.waizaowang.com/doc/getLonghbDetail";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -7628,7 +7628,7 @@ public class StockApi {
      */
 
     public String getLonghbActive(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/LonghbActive";
+        String url = "http://api.waizaowang.com/doc/getLonghbActive";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("startDate", startDate)
                 .put("endDate", endDate)
@@ -7660,7 +7660,7 @@ public class StockApi {
      */
 
     public String getLonghbJigou(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/LonghbJigou";
+        String url = "http://api.waizaowang.com/doc/getLonghbJigou";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -7693,7 +7693,7 @@ public class StockApi {
      */
 
     public String getRzRjMarket(int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/RzRjMarket";
+        String url = "http://api.waizaowang.com/doc/getRzRjMarket";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("mtype", mtype)
                 .put("startDate", startDate)
@@ -7726,7 +7726,7 @@ public class StockApi {
      */
 
     public String getRzRjHangye(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/RzRjHangye";
+        String url = "http://api.waizaowang.com/doc/getRzRjHangye";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -7759,7 +7759,7 @@ public class StockApi {
      */
 
     public String getStockRzRj(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/RzRjStock";
+        String url = "http://api.waizaowang.com/doc/getStockRzRj";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -7791,7 +7791,7 @@ public class StockApi {
      */
 
     public String getRzRjAccount(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/RzRjAccount";
+        String url = "http://api.waizaowang.com/doc/getRzRjAccount";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("startDate", startDate)
                 .put("endDate", endDate)
@@ -7825,7 +7825,7 @@ public class StockApi {
      */
 
     public String getStockXQHSADayKLine(String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/XQStockKLine";
+        String url = "http://api.waizaowang.com/doc/getStockXQHSADayKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -7860,7 +7860,7 @@ public class StockApi {
      */
 
     public String getYanBaoStock(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/YanBaoStock";
+        String url = "http://api.waizaowang.com/doc/getYanBaoStock";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -7892,7 +7892,7 @@ public class StockApi {
      */
 
     public String getYanBaoXinGu(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/YanBaoXinGu";
+        String url = "http://api.waizaowang.com/doc/getYanBaoXinGu";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("startDate", startDate)
                 .put("endDate", endDate)
@@ -7923,7 +7923,7 @@ public class StockApi {
      */
 
     public String getYanBaoHangYe(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/YanBaoHangYe";
+        String url = "http://api.waizaowang.com/doc/getYanBaoHangYe";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("startDate", startDate)
                 .put("endDate", endDate)
@@ -7954,7 +7954,7 @@ public class StockApi {
      */
 
     public String getYanbaoCelue(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/YanBaoCeLue";
+        String url = "http://api.waizaowang.com/doc/getYanbaoCelue";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("startDate", startDate)
                 .put("endDate", endDate)
@@ -7985,7 +7985,7 @@ public class StockApi {
      */
 
     public String getYanBaoChenBao(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/YanBaoChenBao";
+        String url = "http://api.waizaowang.com/doc/getYanBaoChenBao";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("startDate", startDate)
                 .put("endDate", endDate)
@@ -8016,7 +8016,7 @@ public class StockApi {
      */
 
     public String getYanBaoHongGuan(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/YanBaoHongGuan";
+        String url = "http://api.waizaowang.com/doc/getYanBaoHongGuan";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("startDate", startDate)
                 .put("endDate", endDate)
@@ -8046,7 +8046,7 @@ public class StockApi {
      */
 
     public String getYanBaoYingLi(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/YanBaoYingLi";
+        String url = "http://api.waizaowang.com/doc/getYanBaoYingLi";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -8077,7 +8077,7 @@ public class StockApi {
      */
 
     public String getReportNianBao(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/ReportNianBao";
+        String url = "http://api.waizaowang.com/doc/getReportNianBao";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -8110,7 +8110,7 @@ public class StockApi {
      */
 
     public String getReportKuaiBao(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/ReportKuaiBao";
+        String url = "http://api.waizaowang.com/doc/getReportKuaiBao";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -8143,7 +8143,7 @@ public class StockApi {
      */
 
     public String getReportYugao(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/ReportYugao";
+        String url = "http://api.waizaowang.com/doc/getReportYugao";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -8176,7 +8176,7 @@ public class StockApi {
      */
 
     public String getReportYuyueTime(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/ReportYuyueTime";
+        String url = "http://api.waizaowang.com/doc/getReportYuyueTime";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -8209,7 +8209,7 @@ public class StockApi {
      */
 
     public String getReportFuzhai(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/ReportFuzhai";
+        String url = "http://api.waizaowang.com/doc/getReportFuzhai";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -8242,7 +8242,7 @@ public class StockApi {
      */
 
     public String getReportLirun(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/ReportLirun";
+        String url = "http://api.waizaowang.com/doc/getReportLirun";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -8275,7 +8275,7 @@ public class StockApi {
      */
 
     public String getReportXianjin(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/ReportXianjin";
+        String url = "http://api.waizaowang.com/doc/getReportXianjin";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -8308,7 +8308,7 @@ public class StockApi {
      */
 
     public String getReportFenhong(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/ReportFenhong";
+        String url = "http://api.waizaowang.com/doc/getReportFenhong";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -8342,7 +8342,7 @@ public class StockApi {
      */
 
     public String getHSGTMoney(int mtype, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/HSGTMoney";
+        String url = "http://api.waizaowang.com/doc/getHSGTMoney";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("mtype", mtype)
                 .put("ktype", ktype)
@@ -8376,7 +8376,7 @@ public class StockApi {
      */
 
     public String getHSGTBlockRank(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/HSGTBlockRank";
+        String url = "http://api.waizaowang.com/doc/getHSGTBlockRank";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -8409,7 +8409,7 @@ public class StockApi {
      */
 
     public String getHSGTStockRank(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/HSGTStockRank";
+        String url = "http://api.waizaowang.com/doc/getHSGTStockRank";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -8442,7 +8442,7 @@ public class StockApi {
      */
 
     public String getHSGTHistory(int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/HSGTHistory";
+        String url = "http://api.waizaowang.com/doc/getHSGTHistory";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("mtype", mtype)
                 .put("startDate", startDate)
@@ -8476,7 +8476,7 @@ public class StockApi {
      */
 
     public String getHsgtStockTop10(String code, int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/HsgtStockTop10";
+        String url = "http://api.waizaowang.com/doc/getHsgtStockTop10";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("mtype", mtype)
@@ -8511,7 +8511,7 @@ public class StockApi {
      */
 
     public String getCaiWuZYZBReportHSA(String code, int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/CaiWuZYZBReportHSA";
+        String url = "http://api.waizaowang.com/doc/getCaiWuZYZBReportHSA";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("mtype", mtype)
@@ -8545,7 +8545,7 @@ public class StockApi {
      */
 
     public String getCaiWuZYZBQuarterHSA(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/CaiWuZYZBQuarterHSA";
+        String url = "http://api.waizaowang.com/doc/getCaiWuZYZBQuarterHSA";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -8579,7 +8579,7 @@ public class StockApi {
      */
 
     public String getFinanceHSDebt(String code, int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/FinanceHSDebt";
+        String url = "http://api.waizaowang.com/doc/getFinanceHSDebt";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("mtype", mtype)
@@ -8612,7 +8612,7 @@ public class StockApi {
      */
 
     public String getPoolZT(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/PoolZT";
+        String url = "http://api.waizaowang.com/doc/getPoolZT";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("startDate", startDate)
                 .put("endDate", endDate)
@@ -8643,7 +8643,7 @@ public class StockApi {
      */
 
     public String getPoolQS(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/PoolQS";
+        String url = "http://api.waizaowang.com/doc/getPoolQS";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("startDate", startDate)
                 .put("endDate", endDate)
@@ -8673,7 +8673,7 @@ public class StockApi {
      */
 
     public String getPoolCX(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/PoolCX";
+        String url = "http://api.waizaowang.com/doc/getPoolCX";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -8703,7 +8703,7 @@ public class StockApi {
      */
 
     public String getPoolZB(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/PoolZB";
+        String url = "http://api.waizaowang.com/doc/getPoolZB";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("startDate", startDate)
                 .put("endDate", endDate)
@@ -8734,7 +8734,7 @@ public class StockApi {
      */
 
     public String getPoolDT(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/PoolDT";
+        String url = "http://api.waizaowang.com/doc/getPoolDT";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("startDate", startDate)
                 .put("endDate", endDate)
@@ -8764,7 +8764,7 @@ public class StockApi {
      */
 
     public String getCnFundBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getCnFundBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -8795,7 +8795,7 @@ public class StockApi {
      */
 
     public String getCnFundDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockDailyMarket";
+        String url = "http://api.waizaowang.com/doc/getCnFundDailyMarket";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -8828,7 +8828,7 @@ public class StockApi {
      */
 
     public String getCnFundMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockMinuteKLine";
+        String url = "http://api.waizaowang.com/doc/getCnFundMinuteKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -8862,7 +8862,7 @@ public class StockApi {
      */
 
     public String getCnFundHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockHourKLine";
+        String url = "http://api.waizaowang.com/doc/getCnFundHourKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -8897,7 +8897,7 @@ public class StockApi {
      */
 
     public String getCnFundADayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockKLine";
+        String url = "http://api.waizaowang.com/doc/getCnFundADayKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -8929,7 +8929,7 @@ public class StockApi {
      */
 
     public String getFundBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/FundBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getFundBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -8960,7 +8960,7 @@ public class StockApi {
      */
 
     public String getFundRank(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/FundRank";
+        String url = "http://api.waizaowang.com/doc/getFundRank";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -8993,7 +8993,7 @@ public class StockApi {
      */
 
     public String getFundNav(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/FundNav";
+        String url = "http://api.waizaowang.com/doc/getFundNav";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -9024,7 +9024,7 @@ public class StockApi {
      */
 
     public String getFundMaxBack(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/FundMaxBack";
+        String url = "http://api.waizaowang.com/doc/getFundMaxBack";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -9055,7 +9055,7 @@ public class StockApi {
      */
 
     public String getFundPosition(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/FundPosition";
+        String url = "http://api.waizaowang.com/doc/getFundPosition";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -9088,7 +9088,7 @@ public class StockApi {
      */
 
     public String getStockPosition(String scode, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/FundPosition";
+        String url = "http://api.waizaowang.com/doc/getStockPosition";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("scode", scode)
                 .put("startDate", startDate)
@@ -9119,7 +9119,7 @@ public class StockApi {
      */
 
     public String getStockHyBKBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getStockHyBKBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -9148,7 +9148,7 @@ public class StockApi {
      */
 
     public String getStockGnBKBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getStockGnBKBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -9177,7 +9177,7 @@ public class StockApi {
      */
 
     public String getStockDyBKBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getStockDyBKBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -9208,7 +9208,7 @@ public class StockApi {
      */
 
     public String getStockHYADailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockDailyMarket";
+        String url = "http://api.waizaowang.com/doc/getStockHYADailyMarket";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -9242,7 +9242,7 @@ public class StockApi {
      */
 
     public String getStockBKDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockKLine";
+        String url = "http://api.waizaowang.com/doc/getStockBKDayKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -9276,7 +9276,7 @@ public class StockApi {
      */
 
     public String getGZMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/GZMarket";
+        String url = "http://api.waizaowang.com/doc/getGZMarket";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -9309,7 +9309,7 @@ public class StockApi {
      */
 
     public String getGZHangYe(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/GZHangYe";
+        String url = "http://api.waizaowang.com/doc/getGZHangYe";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -9342,7 +9342,7 @@ public class StockApi {
      */
 
     public String getHSGZStock(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/GZStock";
+        String url = "http://api.waizaowang.com/doc/getHSGZStock";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -9373,7 +9373,7 @@ public class StockApi {
      */
 
     public String getBaseInfoPlatB(int type, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfoPlatB";
+        String url = "http://api.waizaowang.com/doc/getBaseInfoPlatB";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("fields", fields)
@@ -9402,7 +9402,7 @@ public class StockApi {
      */
 
     public String getHangyeCfgPlatB(String bkcode, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfoPlatB";
+        String url = "http://api.waizaowang.com/doc/getHangyeCfgPlatB";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("bkcode", bkcode)
                 .put("fields", fields)
@@ -9431,7 +9431,7 @@ public class StockApi {
      */
 
     public String getStockHKBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getStockHKBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -9462,7 +9462,7 @@ public class StockApi {
      */
 
     public String getStockHKDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockDailyMarket";
+        String url = "http://api.waizaowang.com/doc/getStockHKDailyMarket";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -9495,7 +9495,7 @@ public class StockApi {
      */
 
     public String getStockHKMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockMinuteKLine";
+        String url = "http://api.waizaowang.com/doc/getStockHKMinuteKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -9529,7 +9529,7 @@ public class StockApi {
      */
 
     public String getStockHKHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockHourKLine";
+        String url = "http://api.waizaowang.com/doc/getStockHKHourKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -9564,7 +9564,7 @@ public class StockApi {
      */
 
     public String getStockHKDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockKLine";
+        String url = "http://api.waizaowang.com/doc/getStockHKDayKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -9596,7 +9596,7 @@ public class StockApi {
      */
 
     public String getStockUSABaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getStockUSABaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -9627,7 +9627,7 @@ public class StockApi {
      */
 
     public String getStockUSADailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockDailyMarket";
+        String url = "http://api.waizaowang.com/doc/getStockUSADailyMarket";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -9660,7 +9660,7 @@ public class StockApi {
      */
 
     public String getStockUSAMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockMinuteKLine";
+        String url = "http://api.waizaowang.com/doc/getStockUSAMinuteKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -9694,7 +9694,7 @@ public class StockApi {
      */
 
     public String getStockUSAHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockHourKLine";
+        String url = "http://api.waizaowang.com/doc/getStockUSAHourKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -9729,7 +9729,7 @@ public class StockApi {
      */
 
     public String getStockUSADayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockKLine";
+        String url = "http://api.waizaowang.com/doc/getStockUSADayKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -9761,7 +9761,7 @@ public class StockApi {
      */
 
     public String getIndexHSBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getIndexHSBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -9790,7 +9790,7 @@ public class StockApi {
      */
 
     public String getIndexHKBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getIndexHKBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -9819,7 +9819,7 @@ public class StockApi {
      */
 
     public String getIndexQQBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getIndexQQBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -9848,7 +9848,7 @@ public class StockApi {
      */
 
     public String getIndexBondBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getIndexBondBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -9879,7 +9879,7 @@ public class StockApi {
      */
 
     public String getIndexDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockDailyMarket";
+        String url = "http://api.waizaowang.com/doc/getIndexDailyMarket";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -9913,7 +9913,7 @@ public class StockApi {
      */
 
     public String getIndexHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockHourKLine";
+        String url = "http://api.waizaowang.com/doc/getIndexHourKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -9948,7 +9948,7 @@ public class StockApi {
      */
 
     public String getIndexDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockKLine";
+        String url = "http://api.waizaowang.com/doc/getIndexDayKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -9980,7 +9980,7 @@ public class StockApi {
      */
 
     public String getBondHSBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getBondHSBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -10009,7 +10009,7 @@ public class StockApi {
      */
 
     public String getBondHSDetailInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/BondBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getBondHSDetailInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -10040,7 +10040,7 @@ public class StockApi {
      */
 
     public String getBondHSDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockDailyMarket";
+        String url = "http://api.waizaowang.com/doc/getBondHSDailyMarket";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -10073,7 +10073,7 @@ public class StockApi {
      */
 
     public String getBondMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockMinuteKLine";
+        String url = "http://api.waizaowang.com/doc/getBondMinuteKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -10107,7 +10107,7 @@ public class StockApi {
      */
 
     public String getBondHSHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockHourKLine";
+        String url = "http://api.waizaowang.com/doc/getBondHSHourKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -10142,7 +10142,7 @@ public class StockApi {
      */
 
     public String getBondHSDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockKLine";
+        String url = "http://api.waizaowang.com/doc/getBondHSDayKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -10174,7 +10174,7 @@ public class StockApi {
      */
 
     public String getGoldBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getGoldBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -10206,7 +10206,7 @@ public class StockApi {
      */
 
     public String getGoldDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockKLine";
+        String url = "http://api.waizaowang.com/doc/getGoldDayKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -10238,7 +10238,7 @@ public class StockApi {
      */
 
     public String getWaihuiBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getWaihuiBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -10270,7 +10270,7 @@ public class StockApi {
      */
 
     public String getWaihuiDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockKLine";
+        String url = "http://api.waizaowang.com/doc/getWaihuiDayKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -10302,7 +10302,7 @@ public class StockApi {
      */
 
     public String getReitsBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getReitsBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -10334,7 +10334,7 @@ public class StockApi {
      */
 
     public String getReitsDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/StockKLine";
+        String url = "http://api.waizaowang.com/doc/getReitsDayKLine";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("ktype", ktype)
@@ -10366,7 +10366,7 @@ public class StockApi {
      */
 
     public String getQihuoBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/QiHuoBaseInfo";
+        String url = "http://api.waizaowang.com/doc/getQihuoBaseInfo";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("fields", fields)
@@ -10397,7 +10397,7 @@ public class StockApi {
      */
 
     public String getQihuoDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/QiHuoKLine";
+        String url = "http://api.waizaowang.com/doc/getQihuoDailyMarket";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
                 .put("startDate", startDate)
@@ -10431,7 +10431,7 @@ public class StockApi {
      */
 
     public String getTSStockPosition(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/TSStockPosition";
+        String url = "http://api.waizaowang.com/doc/getTSStockPosition";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("type", type)
                 .put("code", code)
