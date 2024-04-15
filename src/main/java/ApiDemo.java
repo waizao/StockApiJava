@@ -1,3 +1,4 @@
+import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import constant.*;
 import stock.ExportTool;
@@ -34,13 +35,16 @@ public class ApiDemo {
                 "",
                 MethodType.GET,
                 ExportType.String_Json);//返回数据类型
+        System.out.println(String.format("输出Json字符串：%s", result));//输出
 
         //返回的Json字符串转Obj对象
         List<StockKLine> list = ExportTool.toObj(result, new TypeToken<List<StockKLine>>() {
         }.getType());
+        System.out.println(String.format("输出List对象：%s", list));//输出
 
         //返回的Json字符串转List<Map<String,String>>
         List<Map<String, String>> map = ExportTool.toJson(result);
+        System.out.println(String.format("输出map对象：%s", map));//输出
 
         //请求日线数据，返回List<StockKLine>格式
         List<StockKLine> data =
@@ -69,6 +73,7 @@ public class ApiDemo {
                 "",
                 MethodType.GET,
                 ExportType.String_Txt);
+        System.out.println(String.format("输出Txt字符串：%s", result));//输出
 
         //返回的Txt字符串转List<String>
         List<String> txt = ExportTool.toTxt(result);
@@ -87,6 +92,7 @@ public class ApiDemo {
                 MethodType.POST, ExportType.File_Csv);//返回CSV文件内容
         String filePath = System.getProperty("user.dir") + File.separator + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")) + ".csv";
         ExportTool.toFile(result, new File(filePath));//导出CSV文件
+        System.out.println(String.format("导出Csv文件：filePath=%s", filePath));//输出
 
         //请求日线数据，返回Json文件
         result = restSpider.getDayKLine(
@@ -102,6 +108,7 @@ public class ApiDemo {
                 MethodType.POST, ExportType.File_JSON);//返回JSON文件内容
         filePath = System.getProperty("user.dir") + File.separator + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")) + ".json";
         ExportTool.toFile(result, new File(filePath));//导出JSON文件
+        System.out.println(String.format("导出Json文件：filePath=%s", filePath));//输出
 
         //请求日线数据，返回TXT文件
         result = restSpider.getDayKLine(
@@ -117,5 +124,6 @@ public class ApiDemo {
                 MethodType.POST, ExportType.File_Txt);
         filePath = System.getProperty("user.dir") + File.separator + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")) + ".txt";
         ExportTool.toFile(result, new File(filePath));//导出TXT文件
+        System.out.println(String.format("导出txt文件：filePath=%s", filePath));//输出
     }
 }

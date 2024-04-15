@@ -52,5 +52,8 @@ public class StockKLine implements Serializable {
    //换手率
     private float hsl ;
 
+   //昨日收盘价
+    private float yclose ;
+
 }
 
