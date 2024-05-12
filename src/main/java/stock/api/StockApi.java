@@ -477,6 +477,190 @@ public class StockApi {
     }
 
     /**
+     *  盘口异动数据，数据更新周期1分钟。沪深京股票交易时间：上午9：15--11：30，下午：13：00--15：00。港股交易时间：（1）正常交易时段：9:30至12:00；13:00至16:00。（2）早盘竞价时段：09:00至09:20；收市竞价交易：16:00至16:10。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
+     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考StockYiDong对象
+     * @throws IOException
+     */
+
+    public String getStockYiDong(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getStockYiDong";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("startDate", startDate)
+                .put("endDate", endDate)
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<StockYiDong> getStockYiDong(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getStockYiDong(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<StockYiDong>>() {
+        }.getType());
+    }
+
+    /**
+     *  包含当日当前涨停的所有A股股票(不含未中断连续一字涨停板的新股)。注：涨停板行情专题统计不包含ST股票及科创板股票。数据更新周期1分钟。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
+     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考PoolZT对象
+     * @throws IOException
+     */
+
+    public String getPoolZT(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getPoolZT";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("startDate", startDate)
+                .put("endDate", endDate)
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<PoolZT> getPoolZT(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getPoolZT(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<PoolZT>>() {
+        }.getType());
+    }
+
+    /**
+     *  包含创下60日新高或近期多次涨停的A股股票。注：涨停板行情专题统计不包含ST股票及科创板股票。数据更新周期1分钟。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
+     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考PoolQS对象
+     * @throws IOException
+     */
+
+    public String getPoolQS(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getPoolQS";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("startDate", startDate)
+                .put("endDate", endDate)
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<PoolQS> getPoolQS(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getPoolQS(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<PoolQS>>() {
+        }.getType());
+    }
+
+    /**
+     *  包含上市一年以内且中断了连续一字涨停板的A股股票。注：涨停板行情专题统计不包含ST股票及科创板股票。数据更新周期1分钟。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param code        股票代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考PoolCX对象
+     * @throws IOException
+     */
+
+    public String getPoolCX(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getPoolCX";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("code", code)
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<PoolCX> getPoolCX(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getPoolCX(code , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<PoolCX>>() {
+        }.getType());
+    }
+
+    /**
+     *  包含当日触及过涨停板且当前未封板的A股股票。注：涨停板行情专题统计不包含ST股票及科创板股票。数据更新周期1分钟。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
+     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考PoolZB对象
+     * @throws IOException
+     */
+
+    public String getPoolZB(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getPoolZB";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("startDate", startDate)
+                .put("endDate", endDate)
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<PoolZB> getPoolZB(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getPoolZB(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<PoolZB>>() {
+        }.getType());
+    }
+
+    /**
+     *  包含当日当前跌停的所有A股股票。注：涨停板行情专题统计不包含ST股票及科创板股票。数据更新周期1分钟。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
+     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考PoolDT对象
+     * @throws IOException
+     */
+
+    public String getPoolDT(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getPoolDT";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("startDate", startDate)
+                .put("endDate", endDate)
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<PoolDT> getPoolDT(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getPoolDT(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<PoolDT>>() {
+        }.getType());
+    }
+
+    /**
      *  反余弦函数。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
      * 
      * @param type        资产类型，取值范围：1|沪深京A股；2|沪深京B股；3|港股；4|美股；5|黄金；6|汇率；7|Reits；10|沪深指数；11|香港指数；12|全球指数；13|债券指数；20|场内基金；30|沪深债券；40|行业板块；41|概念板块；42|地域板块
@@ -7003,7 +7187,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarket对象
+     * @return 参考StockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -7021,9 +7205,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarket> getStockHSADailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<StockDailyMarketCopy> getStockHSADailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHSADailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarket>>() {
+        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
         }.getType());
     }
 
@@ -7170,7 +7354,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarket对象
+     * @return 参考StockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -7188,9 +7372,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarket> getStockHSBDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<StockDailyMarketCopy> getStockHSBDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHSBDailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarket>>() {
+        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
         }.getType());
     }
 
@@ -7300,6 +7484,126 @@ public class StockApi {
     }
 
     /**
+     *  沪深两市每日行情统计。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
+     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考MarketView对象
+     * @throws IOException
+     */
+
+    public String getMarketView(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getMarketView";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("startDate", startDate)
+                .put("endDate", endDate)
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<MarketView> getMarketView(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getMarketView(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<MarketView>>() {
+        }.getType());
+    }
+
+    /**
+     *  沪深A股公司概况信息。温馨提示：code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param code        股票代码，code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考F10CompanyBaseInfo对象
+     * @throws IOException
+     */
+
+    public String getF10CompanyBaseInfo(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getF10CompanyBaseInfo";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("code", code)
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<F10CompanyBaseInfo> getF10CompanyBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getF10CompanyBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<F10CompanyBaseInfo>>() {
+        }.getType());
+    }
+
+    /**
+     *  主力数据。温馨提示：code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param code        股票代码，code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
+     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
+     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考StockZhuLi对象
+     * @throws IOException
+     */
+
+    public String getStockZhuLi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getStockZhuLi";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("code", code)
+                .put("startDate", startDate)
+                .put("endDate", endDate)
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<StockZhuLi> getStockZhuLi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getStockZhuLi(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<StockZhuLi>>() {
+        }.getType());
+    }
+
+    /**
+     *  AH股比价。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考StockAHComparePrice对象
+     * @throws IOException
+     */
+
+    public String getStockAHComparePrice(String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getStockAHComparePrice";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<StockAHComparePrice> getStockAHComparePrice(String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getStockAHComparePrice(fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<StockAHComparePrice>>() {
+        }.getType());
+    }
+
+    /**
      *  沪深A股股票曾用名。温馨提示：code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
      * 
      * @param code        股票代码，code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
@@ -7333,7 +7637,7 @@ public class StockApi {
     }
 
     /**
-     *  沪深A股公司信息。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
+     *  沪深A股公司题材信息。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
      * 
      * @param code        股票代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；不支持all参数查询。
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
@@ -8600,111 +8904,22 @@ public class StockApi {
     }
 
     /**
-     *  包含当日当前涨停的所有A股股票(不含未中断连续一字涨停板的新股)。注：涨停板行情专题统计不包含ST股票及科创板股票。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
+     *  股东户数。温馨提示：code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
      * 
+     * @param code        股票代码，code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
      * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
      * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考PoolZT对象
+     * @return 参考SharePeoples对象
      * @throws IOException
      */
 
-    public String getPoolZT(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getPoolZT";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("startDate", startDate)
-                .put("endDate", endDate)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<PoolZT> getPoolZT(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getPoolZT(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<PoolZT>>() {
-        }.getType());
-    }
-
-    /**
-     *  包含创下60日新高或近期多次涨停的A股股票。注：涨停板行情专题统计不包含ST股票及科创板股票。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
-     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考PoolQS对象
-     * @throws IOException
-     */
-
-    public String getPoolQS(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getPoolQS";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("startDate", startDate)
-                .put("endDate", endDate)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<PoolQS> getPoolQS(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getPoolQS(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<PoolQS>>() {
-        }.getType());
-    }
-
-    /**
-     *  包含上市一年以内且中断了连续一字涨停板的A股股票。注：涨停板行情专题统计不包含ST股票及科创板股票。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param code        股票代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考PoolCX对象
-     * @throws IOException
-     */
-
-    public String getPoolCX(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getPoolCX";
+    public String getSharePeoples(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getSharePeoples";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("code", code)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<PoolCX> getPoolCX(String code, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getPoolCX(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<PoolCX>>() {
-        }.getType());
-    }
-
-    /**
-     *  包含当日触及过涨停板且当前未封板的A股股票。注：涨停板行情专题统计不包含ST股票及科创板股票。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
-     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考PoolZB对象
-     * @throws IOException
-     */
-
-    public String getPoolZB(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getPoolZB";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
                 .put("startDate", startDate)
                 .put("endDate", endDate)
                 .put("fields", fields)
@@ -8715,27 +8930,29 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<PoolZB> getPoolZB(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getPoolZB(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<PoolZB>>() {
+    public List<SharePeoples> getSharePeoples(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getSharePeoples(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<SharePeoples>>() {
         }.getType());
     }
 
     /**
-     *  包含当日当前跌停的所有A股股票。注：涨停板行情专题统计不包含ST股票及科创板股票。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
+     *  十大股东。温馨提示：code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
      * 
+     * @param code        股票代码，code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
      * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
      * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考PoolDT对象
+     * @return 参考ShareTopHolder对象
      * @throws IOException
      */
 
-    public String getPoolDT(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getPoolDT";
+    public String getShareTopHolder(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getShareTopHolder";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("code", code)
                 .put("startDate", startDate)
                 .put("endDate", endDate)
                 .put("fields", fields)
@@ -8746,9 +8963,108 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<PoolDT> getPoolDT(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getPoolDT(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<PoolDT>>() {
+    public List<ShareTopHolder> getShareTopHolder(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getShareTopHolder(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<ShareTopHolder>>() {
+        }.getType());
+    }
+
+    /**
+     *  股东解禁。温馨提示：code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param code        股票代码，code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
+     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
+     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考ShareJieJin对象
+     * @throws IOException
+     */
+
+    public String getShareJieJin(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getShareJieJin";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("code", code)
+                .put("startDate", startDate)
+                .put("endDate", endDate)
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<ShareJieJin> getShareJieJin(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getShareJieJin(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<ShareJieJin>>() {
+        }.getType());
+    }
+
+    /**
+     *  股东增减持。温馨提示：code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param code        股票代码，code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
+     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
+     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考ShareZengJianChi对象
+     * @throws IOException
+     */
+
+    public String getShareZengJianChi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getShareZengJianChi";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("code", code)
+                .put("startDate", startDate)
+                .put("endDate", endDate)
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<ShareZengJianChi> getShareZengJianChi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getShareZengJianChi(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<ShareZengJianChi>>() {
+        }.getType());
+    }
+
+    /**
+     *  高管增减持。温馨提示：code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param code        股票代码，code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
+     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
+     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考ShareGaoGuanZengJianChi对象
+     * @throws IOException
+     */
+
+    public String getShareGaoGuanZengJianChi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getShareGaoGuanZengJianChi";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("code", code)
+                .put("startDate", startDate)
+                .put("endDate", endDate)
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<ShareGaoGuanZengJianChi> getShareGaoGuanZengJianChi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getShareGaoGuanZengJianChi(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<ShareGaoGuanZengJianChi>>() {
         }.getType());
     }
 
@@ -8790,7 +9106,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarket对象
+     * @return 参考StockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -8808,9 +9124,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarket> getCnFundDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<StockDailyMarketCopy> getCnFundDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getCnFundDailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarket>>() {
+        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
         }.getType());
     }
 
@@ -9203,7 +9519,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarket对象
+     * @return 参考StockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -9221,9 +9537,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarket> getStockHYADailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<StockDailyMarketCopy> getStockHYADailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHYADailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarket>>() {
+        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
         }.getType());
     }
 
@@ -9457,7 +9773,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarket对象
+     * @return 参考StockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -9475,9 +9791,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarket> getStockHKDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<StockDailyMarketCopy> getStockHKDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHKDailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarket>>() {
+        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
         }.getType());
     }
 
@@ -9622,7 +9938,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarket对象
+     * @return 参考StockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -9640,9 +9956,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarket> getStockUSADailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<StockDailyMarketCopy> getStockUSADailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockUSADailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarket>>() {
+        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
         }.getType());
     }
 
@@ -9874,7 +10190,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarket对象
+     * @return 参考StockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -9892,9 +10208,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarket> getIndexDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<StockDailyMarketCopy> getIndexDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndexDailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarket>>() {
+        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
         }.getType());
     }
 
@@ -10035,7 +10351,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarket对象
+     * @return 参考StockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -10053,9 +10369,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarket> getBondHSDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<StockDailyMarketCopy> getBondHSDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getBondHSDailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarket>>() {
+        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
         }.getType());
     }
 

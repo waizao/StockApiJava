@@ -52,5 +52,8 @@ public class PoolCX implements Serializable {
    //涨停统计，n/m代表m天中有n次涨停板
     private String zttj ;
 
+   //更新时间
+    private String wtime ;
+
 }
 

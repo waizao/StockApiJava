@@ -25,7 +25,9 @@ public enum AssertType {
     BK_GN("概念板块", 41),
     BK_DY("地域板块", 42),
     BK_ZJH("证监会板块", 43),
-    QIHUO("期货", 50);
+    QIHUO("期货", 50),
+
+    COIN("加密货币", 60);
     @Setter
     @Getter
     private final String name;

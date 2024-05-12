@@ -55,5 +55,8 @@ public class PoolDT implements Serializable {
    //涨跌幅（%）
     private float zdp ;
 
+   //更新时间
+    private String wtime ;
+
 }
 

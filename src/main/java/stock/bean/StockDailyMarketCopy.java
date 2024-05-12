@@ -265,6 +265,12 @@ public class StockDailyMarketCopy implements Serializable {
    //今日主力净流入-净占比（%）
     private float z118 ;
 
+   //溢价（A/H）%
+    private float z122 ;
+
+   //比价（A/H）
+    private float z123 ;
+
    //今日主力净流入最大股名称
     private String z137 ;
 
