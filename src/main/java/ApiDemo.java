@@ -1,9 +1,11 @@
-import com.google.gson.Gson;
+import com.google.common.collect.ImmutableList;
 import com.google.gson.reflect.TypeToken;
 import constant.*;
 import stock.ExportTool;
 import stock.api.StockApi;
 import stock.bean.StockKLine;
+import stock.bean.StockPanKou;
+import stock.spider.SpiderApi;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +21,12 @@ public class ApiDemo {
      * 歪枣网   http://www.waizaowang.com/
      */
     public static void main(String[] args) throws IOException {
+        //请求买卖五档，盘口数据
+        SpiderApi realTimeApi = new SpiderApi();
+        List<StockPanKou> datas = realTimeApi.getPanKou(ImmutableList.of("sz000001", "sh600000", "bj833171"));
+        System.out.println(String.format("输出List对象：%s", datas));//输出
+
+
         String token = "";//歪枣网（www.waizaowang.com）上登录后获取Token
         StockApi restSpider = new StockApi();
 

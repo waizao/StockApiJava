@@ -15,9 +15,9 @@ import java.util.Map;
 public class StockApi {
 
     /**
-     *  沪深京A股、沪深京B股、港股、美股、黄金、汇率、Reits、沪深指数、香港指数、全球指数、债券指数、场内基金、沪深债券、行业板块、概念板块、地域板块等范围列表。其中行业数据包括行业板块、概念板块、地域板块；场内基金包括ETF基金和LOF基金。可根据股票代码，调用通用接口中的每日行情、分线数据、时线数据、日线数据等接口。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
+     *  沪深京A股、沪深京B股、港股、美股、黄金、汇率、Reits、加密货币、沪深指数、香港指数、全球指数、债券指数、场内基金、沪深债券、行业板块、概念板块、地域板块等范围列表。其中行业数据包括行业板块、概念板块、地域板块；场内基金包括ETF基金和LOF基金。可根据股票代码，调用通用接口中的每日行情、分线数据、时线数据、日线数据等接口。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
      * 
-     * @param type        资产类型，取值范围：1|沪深京A股；2|沪深京B股；3|港股；4|美股；5|黄金；6|汇率；7|Reits；10|沪深指数；11|香港指数；12|全球指数；13|债券指数；20|场内基金；30|沪深债券；40|行业板块；41|概念板块；42|地域板块
+     * @param type        资产类型，取值范围：1|沪深京A股；2|沪深京B股；3|港股；4|美股；5|黄金；6|汇率；7|Reits；10|沪深指数；11|香港指数；12|全球指数；13|债券指数；14|重要指数；15|A-指数；20|场内基金；30|沪深债券；37|A-一级行业；38|A-二级行业；39|A-三级行业；40|B-行业板块；41|B-概念板块；42|B-地域板块；47|C-地域板块；48|C-行业板块；49|C-概念板块；60|加密货币
      * @param code        股票代码，支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
@@ -213,7 +213,7 @@ public class StockApi {
     }
 
     /**
-     *  分线数据，数据以分钟为粒度。数据均为不复权数据。数据范围包括沪深京A股、沪深京B股、港股、美股、场内基金、沪深债券，提供开盘竞价数据。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
+     *  分线数据，数据以分钟为粒度。数据均为不复权数据。数据范围包括沪深京A股、沪深京B股、港股、美股、场内基金、沪深债券。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
      * 
      * @param type        资产类型，取值范围：1|沪深京A股；2|沪深京B股；3|港股；4|美股；5|黄金；6|汇率；7|Reits；10|沪深指数；11|香港指数；12|全球指数；13|债券指数；20|场内基金；30|沪深债券；40|行业板块；41|概念板块；42|地域板块
      * @param code        股票代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；不支持all参数查询。
@@ -285,9 +285,9 @@ public class StockApi {
     }
 
     /**
-     *  如果想收盘后立即获取当日的收盘数据，可通过【实时行情】或者【每日行情】接口获取收盘后的日K线数据。日线、周线、月线数据，数据范围包括沪深京A股、沪深京B股、港股、美股、黄金、汇率、Reits、沪深指数、香港指数、全球指数、债券指数、场内基金、沪深债券、行业板块、概念板块、地域板块。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
+     *  如果想收盘后立即获取当日的收盘数据，可通过【实时行情】或者【每日行情】接口获取收盘后的日K线数据。日线、周线、月线数据，数据范围包括沪深京A股、沪深京B股、港股、美股、黄金、汇率、Reits、加密货币、沪深指数、香港指数、全球指数、债券指数、场内基金、沪深债券、行业板块、概念板块、地域板块。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
      * 
-     * @param type        资产类型，取值范围：1|沪深京A股；2|沪深京B股；3|港股；4|美股；5|黄金；6|汇率；7|Reits；10|沪深指数；11|香港指数；12|全球指数；13|债券指数；20|场内基金；30|沪深债券；40|行业板块；41|概念板块；42|地域板块
+     * @param type        资产类型，取值范围：1|沪深京A股；2|沪深京B股；3|港股；4|美股；5|黄金；6|汇率；7|Reits；10|沪深指数；11|香港指数；12|全球指数；13|债券指数；14|重要指数；15|A-指数；20|场内基金；30|沪深债券；37|A-一级行业；38|A-二级行业；39|A-三级行业；40|B-行业板块；41|B-概念板块；42|B-地域板块；47|C-地域板块；48|C-行业板块；49|C-概念板块；60|加密货币
      * @param code        股票代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
      * @param ktype       K线类别，取值范围：101|日线；102|周线；103|月线
      * @param fq          复权信息，取值范围：0|不复权；1|前复权；2|后复权
@@ -355,6 +355,41 @@ public class StockApi {
     public List<StockLevel2TimeDeal> getLevel2TimeDeal(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getLevel2TimeDeal(type , code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
         return ExportTool.toObj(data, new TypeToken<List<StockLevel2TimeDeal>>() {
+        }.getType());
+    }
+
+    /**
+     *  指数或者行业板块成分股数据。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param type        资产类型，取值范围：14|重要指数；15|A-综合指数；37|A-一级行业；38|A-二级行业；39|A-三级行业；40|B-行业板块；41|B-概念板块；42|B-地域板块；44|C-地域板块；45|C-行业板块；46|C-概念板块
+     * @param code        股票代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；不支持all参数查询。
+     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
+     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考StockChengFenGu对象
+     * @throws IOException
+     */
+
+    public String getStockChengFenGu(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getStockChengFenGu";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("type", type)
+                .put("code", code)
+                .put("startDate", startDate)
+                .put("endDate", endDate)
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<StockChengFenGu> getStockChengFenGu(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getStockChengFenGu(type , code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<StockChengFenGu>>() {
         }.getType());
     }
 
@@ -442,6 +477,35 @@ public class StockApi {
     public List<ZhiShuChengFenGu> getZhiShuChengFenGu(int mtype, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getZhiShuChengFenGu(mtype , fields , token , filter ,  method, ExportType.String_Json);
         return ExportTool.toObj(data, new TypeToken<List<ZhiShuChengFenGu>>() {
+        }.getType());
+    }
+
+    /**
+     *  盘口买卖五档。纯爬虫接口，完全免费使用，歪枣网不校验权限也不存储任何数据，如做商业目的，请自行解决合规问题。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param code        股票代码
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考StockPanKou对象
+     * @throws IOException
+     */
+
+    public String getStockPanKou(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getStockPanKou";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("code", code)
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<StockPanKou> getStockPanKou(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getStockPanKou(code , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<StockPanKou>>() {
         }.getType());
     }
 
@@ -7212,7 +7276,7 @@ public class StockApi {
     }
 
     /**
-     *  沪深京A股分线数据，数据以分钟为粒度。数据均为不复权数据，提供开盘竞价数据。温馨提示：code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
+     *  沪深京A股分线数据，数据以分钟为粒度。数据均为不复权数据。温馨提示：code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
      * 
      * @param code        股票代码，code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；不支持all参数查询。
      * @param startDate   开始日期，yyyy-MM-dd HH:mm:ss格式，例如：2020-01-01 01:00:00
@@ -7379,7 +7443,7 @@ public class StockApi {
     }
 
     /**
-     *  沪深京B股分线数据，数据以分钟为粒度，提供开盘竞价数据。温馨提示：code参数可以从【沪深京->B股->B股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
+     *  沪深京B股分线数据，数据以分钟为粒度。温馨提示：code参数可以从【沪深京->B股->B股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
      * 
      * @param code        股票代码，code参数可以从【沪深京->B股->B股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；不支持all参数查询。
      * @param startDate   开始日期，yyyy-MM-dd HH:mm:ss格式，例如：2020-01-01 01:00:00
@@ -9131,7 +9195,7 @@ public class StockApi {
     }
 
     /**
-     *  场内基金（ETF、LOF）分线数据，数据以分钟为粒度，提供开盘竞价数据。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
+     *  场内基金（ETF、LOF）分线数据，数据以分钟为粒度。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
      * 
      * @param code        股票代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；不支持all参数查询。
      * @param startDate   开始日期，yyyy-MM-dd HH:mm:ss格式，例如：2020-01-01 01:00:00
@@ -9798,7 +9862,7 @@ public class StockApi {
     }
 
     /**
-     *  港股分线数据，数据以分钟为粒度，提供开盘竞价数据，提供开盘竞价数据。温馨提示：code参数可以从【港股->港股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
+     *  港股分线数据，数据以分钟为粒度。温馨提示：code参数可以从【港股->港股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
      * 
      * @param code        股票代码，code参数可以从【港股->港股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；不支持all参数查询。
      * @param startDate   开始日期，yyyy-MM-dd HH:mm:ss格式，例如：2020-01-01 01:00:00
@@ -9963,7 +10027,7 @@ public class StockApi {
     }
 
     /**
-     *  美股分线数据，数据以分钟为粒度，提供开盘竞价数据。温馨提示：code参数可以从【美股->美股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
+     *  美股分线数据，数据以分钟为粒度。温馨提示：code参数可以从【美股->美股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
      * 
      * @param code        股票代码，code参数可以从【美股->美股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；不支持all参数查询。
      * @param startDate   开始日期，yyyy-MM-dd HH:mm:ss格式，例如：2020-01-01 01:00:00
@@ -10376,7 +10440,7 @@ public class StockApi {
     }
 
     /**
-     *  可转债分线数据，数据以分钟为粒度，提供开盘竞价数据。温馨提示：code参数可以从【债券->可转债列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
+     *  可转债分线数据，数据以分钟为粒度。温馨提示：code参数可以从【债券->可转债列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
      * 
      * @param code        股票代码，code参数可以从【债券->可转债列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；不支持all参数查询。
      * @param startDate   开始日期，yyyy-MM-dd HH:mm:ss格式，例如：2020-01-01 01:00:00
