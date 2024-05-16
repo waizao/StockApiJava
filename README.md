@@ -73,7 +73,7 @@ Github地址：https://github.com/waizao/StockApiJava <br>
 <dependency>
     <groupId>io.gitee.waizao</groupId>
     <artifactId>openapi</artifactId>
-    <version>1.1.2</version>
+    <version>1.1.3</version>
 </dependency>
 ```
 
