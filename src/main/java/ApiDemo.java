@@ -24,8 +24,10 @@ public class ApiDemo {
         //请求买卖五档，盘口数据
         SpiderApi realTimeApi = new SpiderApi();
         List<StockPanKou> datas = realTimeApi.getPanKou(ImmutableList.of("sz000001", "sh600000", "bj833171"));
-        System.out.println(String.format("输出List对象：%s", datas));//输出
+        System.out.println(String.format("输出List对象：%s", datas));//沪深京股票输出
 
+        datas = realTimeApi.getPanKou(ImmutableList.of("gb_ifn"));
+        System.out.println(String.format("输出List对象：%s", datas));//美股输出
 
         String token = "";//歪枣网（www.waizaowang.com）上登录后获取Token
         StockApi restSpider = new StockApi();

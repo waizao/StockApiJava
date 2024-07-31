@@ -40,6 +40,9 @@ public class StockBaseInfo implements Serializable {
    //上市日期
     private String ssdate ;
 
+   //该个股归属的行业或者指数，Json格式：{t：指数或板块对应资产类型，c：指数或板块代码，n：指数或板块名称}。
+    private String relation ;
+
    //归属行业板块名称
     private String z50 ;
 
