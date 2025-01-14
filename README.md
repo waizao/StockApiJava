@@ -41,6 +41,11 @@
 - 实时数据，提供交易日当天实时交易数据<br>
   更多数据请访问网站：[歪枣网](http://www.waizaowang.com/)
 
+历史分钟数据下载地址  
+为了降低服务器压力，将历史股票K线数据按一分钟、五分钟、十五分钟、三十分钟、六十分钟为粒度，上传到了百度网盘。打开可以自由下载。
+链接：https://pan.baidu.com/s/1JrIFmzPmiVYehRSqctfNdA
+提取码：vdes
+
 ## 项目特点
 
 主要功能包括:<br>
@@ -93,12 +98,11 @@ pip install waizao -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirr
 为了方便小伙伴们沟通交流，创建了QQ群 (加群备注：歪枣网)
 ，目前项目还存在很多不足之处，欢迎各位大佬进群进行交流，为了防止广告进入，希望加群的时候能添加备注，谢谢~<br>
 如遇问题联系作者，邮箱：waizaowang@163.com <br>
-[社区论坛](http://bbs.waizaowang.com/) <br>
-[二次开发手册](http://www.waizaowang.com/wiki/index.html#_%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91)<br>
+[网站说明文档](https://ccn9lag3l54q.feishu.cn/wiki/KxFlwcXzhi4WRVkCAN4cnyhennb)<br>
 
-|                                微信公众号                                 | QQ群【推荐】                                                                                  |
-|:--------------------------------------------------------------------:|------------------------------------------------------------------------------------------|
-| <img src="./doc/images/gongzhonghao.png" width="200" height="200" /> | <img src="./doc/images/qqGroup.png" width="200"  height="200" /> |
+| QQ群【推荐】                                                                                  |
+|------------------------------------------------------------------------------------------|
+| <img src="./doc/images/qqGroup.png" width="200"  height="200" /> |
 
 
 
