@@ -15,6 +15,33 @@ import java.util.Map;
 public class StockApi {
 
     /**
+     *  记录每日行情、分线数据、时线数据、日线数据等部分接口数据更新时间信息。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考DataUpdateInfo对象
+     * @throws IOException
+     */
+
+    public String getUpdateInfo(String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getUpdateInfo";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<DataUpdateInfo> getUpdateInfo(String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getUpdateInfo(fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<DataUpdateInfo>>() {
+        }.getType());
+    }
+
+    /**
      *  沪深京A股、沪深京B股、港股、美股、黄金、汇率、Reits、加密货币、沪深指数、香港指数、全球指数、债券指数、场内基金、沪深债券、行业板块、概念板块、地域板块等范围列表。其中行业数据包括行业板块、概念板块、地域板块；场内基金包括ETF基金和LOF基金。可根据股票代码，调用通用接口中的每日行情、分线数据、时线数据、日线数据等接口。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
      * 
      * @param type        资产类型，取值范围：1|沪深京A股；2|沪深京B股；3|港股；4|美股；5|黄金；6|汇率；7|Reits；10|沪深指数；11|香港指数；12|全球指数；13|债券指数；14|成分股指数；15|A-综合指数；20|场内基金；30|沪深债券；37|A-一级行业；38|A-二级行业；39|A-三级行业；40|B-行业板块；41|B-概念板块；42|B-地域板块；47|C-行业板块；48|C-概念板块；49|C-地域板块；60|加密货币
@@ -22,7 +49,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -39,9 +66,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getBaseInfo(int type, String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getBaseInfo(int type, String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getBaseInfo(type , code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -52,7 +79,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -68,9 +95,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getStockType(long flags, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getStockType(long flags, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockType(flags , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -83,7 +110,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考TradeDate对象
+     * @return 参考DataTradeDate对象
      * @throws IOException
      */
 
@@ -101,79 +128,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<TradeDate> getTradeDate(int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataTradeDate> getTradeDate(int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getTradeDate(mtype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<TradeDate>>() {
-        }.getType());
-    }
-
-    /**
-     *  资金情况，数据范围包括沪深京A股、港股、美股、沪深指数、场内基金、行业板块、概念板块、地域板块。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param type        资产类型，取值范围：1|沪深京A股；3|港股；4|美股；10|沪深指数；20|场内基金；40|行业板块；41|概念板块；42|地域板块
-     * @param code        股票代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
-     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
-     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorMuchMoney对象
-     * @throws IOException
-     */
-
-    public String getIndicatorMoney(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getIndicatorMoney";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("type", type)
-                .put("code", code)
-                .put("startDate", startDate)
-                .put("endDate", endDate)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<IndicatorMuchMoney> getIndicatorMoney(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getIndicatorMoney(type , code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorMuchMoney>>() {
-        }.getType());
-    }
-
-    /**
-     *  基本指标，数据范围包括沪深京A股、港股、美股、场内基金。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param type        资产类型，取值范围：1|沪深京A股；3|港股；4|美股；20|场内基金
-     * @param code        股票代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
-     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
-     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorBaseInfo对象
-     * @throws IOException
-     */
-
-    public String getIndicatorBaseInfo(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getIndicatorBaseInfo";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("type", type)
-                .put("code", code)
-                .put("startDate", startDate)
-                .put("endDate", endDate)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<IndicatorBaseInfo> getIndicatorBaseInfo(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getIndicatorBaseInfo(type , code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataTradeDate>>() {
         }.getType());
     }
 
@@ -187,7 +144,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarketCopy对象
+     * @return 参考DataStockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -206,9 +163,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarketCopy> getDailyMarket(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockDailyMarketCopy> getDailyMarket(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getDailyMarket(type , code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockDailyMarketCopy>>() {
         }.getType());
     }
 
@@ -222,7 +179,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockMinuteKLine对象
+     * @return 参考DataStockMinuteKLine对象
      * @throws IOException
      */
 
@@ -241,9 +198,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockMinuteKLine> getMinuteKLine(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockMinuteKLine> getMinuteKLine(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getMinuteKLine(type , code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockMinuteKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockMinuteKLine>>() {
         }.getType());
     }
 
@@ -258,7 +215,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockHourKLine对象
+     * @return 参考DataStockHourKLine对象
      * @throws IOException
      */
 
@@ -278,9 +235,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockHourKLine> getHourKLine(int type, String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockHourKLine> getHourKLine(int type, String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getHourKLine(type , code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockHourKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockHourKLine>>() {
         }.getType());
     }
 
@@ -296,7 +253,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockKLine对象
+     * @return 参考DataStockKLine对象
      * @throws IOException
      */
 
@@ -317,9 +274,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockKLine> getDayKLine(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockKLine> getDayKLine(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getDayKLine(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockKLine>>() {
         }.getType());
     }
 
@@ -333,7 +290,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockLevel2TimeDeal对象
+     * @return 参考DataStockLevel2TimeDeal对象
      * @throws IOException
      */
 
@@ -352,9 +309,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockLevel2TimeDeal> getLevel2TimeDeal(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockLevel2TimeDeal> getLevel2TimeDeal(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getLevel2TimeDeal(type , code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockLevel2TimeDeal>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockLevel2TimeDeal>>() {
         }.getType());
     }
 
@@ -368,7 +325,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockChengFenGu对象
+     * @return 参考DataStockChengFenGu对象
      * @throws IOException
      */
 
@@ -387,96 +344,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockChengFenGu> getStockChengFenGu(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockChengFenGu> getStockChengFenGu(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockChengFenGu(type , code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockChengFenGu>>() {
-        }.getType());
-    }
-
-    /**
-     *  查询行业板块、概念板块、地域板块下的成分股。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param bkcode      板块代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；不支持all参数查询。
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
-     * @throws IOException
-     */
-
-    public String getHangyeCfg(String bkcode, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getHangyeCfg";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("bkcode", bkcode)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<StockBaseInfo> getHangyeCfg(String bkcode, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getHangyeCfg(bkcode , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
-        }.getType());
-    }
-
-    /**
-     *  主要包含沪深京主要指数和香港主要指数的成分股数据。特别说明：指数成分股接口中指数只有沪深指数、香港指数中的一部分，大约有700只指数的成分股数据，也就是说沪深指数、香港指数中有部分指数是查不到成分股数据的。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param code        指数代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；不支持all参数查询。
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考ZhiShuChengFenGuZhongZhen对象
-     * @throws IOException
-     */
-
-    public String getZhiShuChengFenGuZhongZhen(String code, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getZhiShuChengFenGuZhongZhen";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("code", code)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<ZhiShuChengFenGuZhongZhen> getZhiShuChengFenGuZhongZhen(String code, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getZhiShuChengFenGuZhongZhen(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<ZhiShuChengFenGuZhongZhen>>() {
-        }.getType());
-    }
-
-    /**
-     *  只包含沪深300、上证50、中证500、科创50四个指数的成分股数据。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param mtype       指数类别，取值范围：1|沪深300；2|上证50；3|中证500；4|科创50
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考ZhiShuChengFenGu对象
-     * @throws IOException
-     */
-
-    public String getZhiShuChengFenGu(int mtype, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getZhiShuChengFenGu";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("mtype", mtype)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<ZhiShuChengFenGu> getZhiShuChengFenGu(int mtype, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getZhiShuChengFenGu(mtype , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<ZhiShuChengFenGu>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockChengFenGu>>() {
         }.getType());
     }
 
@@ -487,7 +357,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockPanKou对象
+     * @return 参考DataStockPanKou对象
      * @throws IOException
      */
 
@@ -503,21 +373,21 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockPanKou> getStockPanKou(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockPanKou> getStockPanKou(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockPanKou(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockPanKou>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockPanKou>>() {
         }.getType());
     }
 
     /**
      *  如果想立即获取当天的收盘数据，收盘后可通过本接口采集当天日K线数据。提供沪深京A股、沪深京B股、港股、美股、黄金、汇率、Reits、沪深指数、香港指数、全球指数、债券指数、场内基金（ETF）、沪深债券实时数据获取接口。接口提供交易日当天实时交易数据，数据更新周期1分钟。沪深京股票交易时间：上午9：15--11：30，下午：13：00--15：00。港股交易时间：（1）正常交易时段：9:30至12:00；13:00至16:00。（2）早盘竞价时段：09:00至09:20；收市竞价交易：16:00至16:10。备注：每次请求实时接口只会返回当前最新一条数据。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
      * 
-     * @param type        资产类型，取值范围：1|沪深京A股；2|沪深京B股；3|港股；4|美股；5|黄金；6|汇率；7|Reits；10|沪深指数；11|香港指数；12|全球指数；13|债券指数；20|场内基金；30|沪深债券；40|行业板块；41|概念板块；42|地域板块
+     * @param type        资产类型，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；不支持all参数查询。
      * @param code        股票代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考WatchStockTimeKLine对象
+     * @return 参考DataWatchStockTimeKLine对象
      * @throws IOException
      */
 
@@ -534,29 +404,25 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<WatchStockTimeKLine> getWatchStockTimeKLine(int type, String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataWatchStockTimeKLine> getWatchStockTimeKLine(int type, String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getWatchStockTimeKLine(type , code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<WatchStockTimeKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataWatchStockTimeKLine>>() {
         }.getType());
     }
 
     /**
      *  盘口异动数据，数据更新周期1分钟。沪深京股票交易时间：上午9：15--11：30，下午：13：00--15：00。港股交易时间：（1）正常交易时段：9:30至12:00；13:00至16:00。（2）早盘竞价时段：09:00至09:20；收市竞价交易：16:00至16:10。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
      * 
-     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
-     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockYiDong对象
+     * @return 参考DataWatchStockYiDong对象
      * @throws IOException
      */
 
-    public String getStockYiDong(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getStockYiDong";
+    public String getWatchStockYiDong(String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getWatchStockYiDong";
         Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("startDate", startDate)
-                .put("endDate", endDate)
                 .put("fields", fields)
                 .put("token", token)
                 .put("filter", filter)
@@ -565,9 +431,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockYiDong> getStockYiDong(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getStockYiDong(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockYiDong>>() {
+    public List<DataWatchStockYiDong> getWatchStockYiDong(String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getWatchStockYiDong(fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<DataWatchStockYiDong>>() {
         }.getType());
     }
 
@@ -579,7 +445,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考PoolZT对象
+     * @return 参考DataPoolZT对象
      * @throws IOException
      */
 
@@ -596,9 +462,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<PoolZT> getPoolZT(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataPoolZT> getPoolZT(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getPoolZT(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<PoolZT>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataPoolZT>>() {
         }.getType());
     }
 
@@ -610,7 +476,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考PoolQS对象
+     * @return 参考DataPoolQS对象
      * @throws IOException
      */
 
@@ -627,9 +493,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<PoolQS> getPoolQS(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataPoolQS> getPoolQS(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getPoolQS(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<PoolQS>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataPoolQS>>() {
         }.getType());
     }
 
@@ -640,7 +506,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考PoolCX对象
+     * @return 参考DataPoolCX对象
      * @throws IOException
      */
 
@@ -656,9 +522,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<PoolCX> getPoolCX(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataPoolCX> getPoolCX(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getPoolCX(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<PoolCX>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataPoolCX>>() {
         }.getType());
     }
 
@@ -670,7 +536,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考PoolZB对象
+     * @return 参考DataPoolZB对象
      * @throws IOException
      */
 
@@ -687,9 +553,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<PoolZB> getPoolZB(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataPoolZB> getPoolZB(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getPoolZB(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<PoolZB>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataPoolZB>>() {
         }.getType());
     }
 
@@ -701,7 +567,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考PoolDT对象
+     * @return 参考DataPoolDT对象
      * @throws IOException
      */
 
@@ -718,9 +584,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<PoolDT> getPoolDT(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataPoolDT> getPoolDT(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getPoolDT(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<PoolDT>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataPoolDT>>() {
         }.getType());
     }
 
@@ -737,7 +603,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaAcos对象
+     * @return 参考DataIndicatorTaAcos对象
      * @throws IOException
      */
 
@@ -759,9 +625,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaAcos> getIndicatorTaAcos(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaAcos> getIndicatorTaAcos(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaAcos(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaAcos>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaAcos>>() {
         }.getType());
     }
 
@@ -777,7 +643,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaAd对象
+     * @return 参考DataIndicatorTaAd对象
      * @throws IOException
      */
 
@@ -798,9 +664,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaAd> getIndicatorTaAd(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaAd> getIndicatorTaAd(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaAd(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaAd>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaAd>>() {
         }.getType());
     }
 
@@ -818,7 +684,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaAdOsc对象
+     * @return 参考DataIndicatorTaAdOsc对象
      * @throws IOException
      */
 
@@ -841,9 +707,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaAdOsc> getIndicatorTaAdOsc(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaAdOsc> getIndicatorTaAdOsc(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaAdOsc(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaAdOsc>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaAdOsc>>() {
         }.getType());
     }
 
@@ -861,7 +727,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaAdd对象
+     * @return 参考DataIndicatorTaAdd对象
      * @throws IOException
      */
 
@@ -884,9 +750,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaAdd> getIndicatorTaAdd(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaAdd> getIndicatorTaAdd(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaAdd(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaAdd>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaAdd>>() {
         }.getType());
     }
 
@@ -903,7 +769,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaAdx对象
+     * @return 参考DataIndicatorTaAdx对象
      * @throws IOException
      */
 
@@ -925,9 +791,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaAdx> getIndicatorTaAdx(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaAdx> getIndicatorTaAdx(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaAdx(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaAdx>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaAdx>>() {
         }.getType());
     }
 
@@ -944,7 +810,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaAdxr对象
+     * @return 参考DataIndicatorTaAdxr对象
      * @throws IOException
      */
 
@@ -966,9 +832,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaAdxr> getIndicatorTaAdxr(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaAdxr> getIndicatorTaAdxr(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaAdxr(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaAdxr>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaAdxr>>() {
         }.getType());
     }
 
@@ -988,7 +854,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaApo对象
+     * @return 参考DataIndicatorTaApo对象
      * @throws IOException
      */
 
@@ -1013,9 +879,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaApo> getIndicatorTaApo(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaApo> getIndicatorTaApo(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaApo(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , input4 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaApo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaApo>>() {
         }.getType());
     }
 
@@ -1032,7 +898,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaAroon对象
+     * @return 参考DataIndicatorTaAroon对象
      * @throws IOException
      */
 
@@ -1054,9 +920,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaAroon> getIndicatorTaAroon(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaAroon> getIndicatorTaAroon(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaAroon(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaAroon>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaAroon>>() {
         }.getType());
     }
 
@@ -1073,7 +939,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaAroonOsc对象
+     * @return 参考DataIndicatorTaAroonOsc对象
      * @throws IOException
      */
 
@@ -1095,9 +961,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaAroonOsc> getIndicatorTaAroonOsc(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaAroonOsc> getIndicatorTaAroonOsc(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaAroonOsc(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaAroonOsc>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaAroonOsc>>() {
         }.getType());
     }
 
@@ -1114,7 +980,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaAsin对象
+     * @return 参考DataIndicatorTaAsin对象
      * @throws IOException
      */
 
@@ -1136,9 +1002,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaAsin> getIndicatorTaAsin(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaAsin> getIndicatorTaAsin(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaAsin(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaAsin>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaAsin>>() {
         }.getType());
     }
 
@@ -1155,7 +1021,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaAtan对象
+     * @return 参考DataIndicatorTaAtan对象
      * @throws IOException
      */
 
@@ -1177,9 +1043,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaAtan> getIndicatorTaAtan(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaAtan> getIndicatorTaAtan(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaAtan(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaAtan>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaAtan>>() {
         }.getType());
     }
 
@@ -1196,7 +1062,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaAtr对象
+     * @return 参考DataIndicatorTaAtr对象
      * @throws IOException
      */
 
@@ -1218,9 +1084,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaAtr> getIndicatorTaAtr(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaAtr> getIndicatorTaAtr(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaAtr(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaAtr>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaAtr>>() {
         }.getType());
     }
 
@@ -1236,7 +1102,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaAvgPrice对象
+     * @return 参考DataIndicatorTaAvgPrice对象
      * @throws IOException
      */
 
@@ -1257,9 +1123,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaAvgPrice> getIndicatorTaAvgPrice(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaAvgPrice> getIndicatorTaAvgPrice(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaAvgPrice(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaAvgPrice>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaAvgPrice>>() {
         }.getType());
     }
 
@@ -1280,7 +1146,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaBbands对象
+     * @return 参考DataIndicatorTaBbands对象
      * @throws IOException
      */
 
@@ -1306,9 +1172,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaBbands> getIndicatorTaBbands(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String input5, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaBbands> getIndicatorTaBbands(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String input5, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaBbands(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , input4 , input5 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaBbands>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaBbands>>() {
         }.getType());
     }
 
@@ -1327,7 +1193,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaBeta对象
+     * @return 参考DataIndicatorTaBeta对象
      * @throws IOException
      */
 
@@ -1351,9 +1217,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaBeta> getIndicatorTaBeta(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaBeta> getIndicatorTaBeta(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaBeta(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaBeta>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaBeta>>() {
         }.getType());
     }
 
@@ -1369,7 +1235,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaBop对象
+     * @return 参考DataIndicatorTaBop对象
      * @throws IOException
      */
 
@@ -1390,9 +1256,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaBop> getIndicatorTaBop(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaBop> getIndicatorTaBop(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaBop(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaBop>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaBop>>() {
         }.getType());
     }
 
@@ -1409,7 +1275,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCci对象
+     * @return 参考DataIndicatorTaCci对象
      * @throws IOException
      */
 
@@ -1431,9 +1297,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCci> getIndicatorTaCci(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCci> getIndicatorTaCci(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCci(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCci>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCci>>() {
         }.getType());
     }
 
@@ -1449,7 +1315,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdl2Crows对象
+     * @return 参考DataIndicatorTaCdl2Crows对象
      * @throws IOException
      */
 
@@ -1470,9 +1336,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdl2Crows> getIndicatorTaCdl2Crows(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdl2Crows> getIndicatorTaCdl2Crows(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdl2Crows(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdl2Crows>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdl2Crows>>() {
         }.getType());
     }
 
@@ -1488,7 +1354,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdl3BlackCrows对象
+     * @return 参考DataIndicatorTaCdl3BlackCrows对象
      * @throws IOException
      */
 
@@ -1509,9 +1375,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdl3BlackCrows> getIndicatorTaCdl3BlackCrows(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdl3BlackCrows> getIndicatorTaCdl3BlackCrows(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdl3BlackCrows(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdl3BlackCrows>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdl3BlackCrows>>() {
         }.getType());
     }
 
@@ -1527,7 +1393,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdl3Inside对象
+     * @return 参考DataIndicatorTaCdl3Inside对象
      * @throws IOException
      */
 
@@ -1548,9 +1414,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdl3Inside> getIndicatorTaCdl3Inside(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdl3Inside> getIndicatorTaCdl3Inside(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdl3Inside(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdl3Inside>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdl3Inside>>() {
         }.getType());
     }
 
@@ -1566,7 +1432,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdl3LineStrike对象
+     * @return 参考DataIndicatorTaCdl3LineStrike对象
      * @throws IOException
      */
 
@@ -1587,9 +1453,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdl3LineStrike> getIndicatorTaCdl3LineStrike(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdl3LineStrike> getIndicatorTaCdl3LineStrike(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdl3LineStrike(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdl3LineStrike>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdl3LineStrike>>() {
         }.getType());
     }
 
@@ -1605,7 +1471,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdl3Outside对象
+     * @return 参考DataIndicatorTaCdl3Outside对象
      * @throws IOException
      */
 
@@ -1626,9 +1492,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdl3Outside> getIndicatorTaCdl3Outside(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdl3Outside> getIndicatorTaCdl3Outside(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdl3Outside(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdl3Outside>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdl3Outside>>() {
         }.getType());
     }
 
@@ -1644,7 +1510,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdl3StarsInSouth对象
+     * @return 参考DataIndicatorTaCdl3StarsInSouth对象
      * @throws IOException
      */
 
@@ -1665,9 +1531,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdl3StarsInSouth> getIndicatorTaCdl3StarsInSouth(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdl3StarsInSouth> getIndicatorTaCdl3StarsInSouth(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdl3StarsInSouth(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdl3StarsInSouth>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdl3StarsInSouth>>() {
         }.getType());
     }
 
@@ -1683,7 +1549,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdl3WhiteSoldiers对象
+     * @return 参考DataIndicatorTaCdl3WhiteSoldiers对象
      * @throws IOException
      */
 
@@ -1704,9 +1570,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdl3WhiteSoldiers> getIndicatorTaCdl3WhiteSoldiers(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdl3WhiteSoldiers> getIndicatorTaCdl3WhiteSoldiers(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdl3WhiteSoldiers(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdl3WhiteSoldiers>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdl3WhiteSoldiers>>() {
         }.getType());
     }
 
@@ -1723,7 +1589,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlAbandonedBaby对象
+     * @return 参考DataIndicatorTaCdlAbandonedBaby对象
      * @throws IOException
      */
 
@@ -1745,9 +1611,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlAbandonedBaby> getIndicatorTaCdlAbandonedBaby(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlAbandonedBaby> getIndicatorTaCdlAbandonedBaby(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlAbandonedBaby(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlAbandonedBaby>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlAbandonedBaby>>() {
         }.getType());
     }
 
@@ -1763,7 +1629,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlAdvanceBlock对象
+     * @return 参考DataIndicatorTaCdlAdvanceBlock对象
      * @throws IOException
      */
 
@@ -1784,9 +1650,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlAdvanceBlock> getIndicatorTaCdlAdvanceBlock(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlAdvanceBlock> getIndicatorTaCdlAdvanceBlock(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlAdvanceBlock(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlAdvanceBlock>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlAdvanceBlock>>() {
         }.getType());
     }
 
@@ -1802,7 +1668,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlBeltHold对象
+     * @return 参考DataIndicatorTaCdlBeltHold对象
      * @throws IOException
      */
 
@@ -1823,9 +1689,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlBeltHold> getIndicatorTaCdlBeltHold(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlBeltHold> getIndicatorTaCdlBeltHold(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlBeltHold(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlBeltHold>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlBeltHold>>() {
         }.getType());
     }
 
@@ -1841,7 +1707,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlBreakaway对象
+     * @return 参考DataIndicatorTaCdlBreakaway对象
      * @throws IOException
      */
 
@@ -1862,9 +1728,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlBreakaway> getIndicatorTaCdlBreakaway(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlBreakaway> getIndicatorTaCdlBreakaway(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlBreakaway(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlBreakaway>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlBreakaway>>() {
         }.getType());
     }
 
@@ -1880,7 +1746,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlClosingMarubozu对象
+     * @return 参考DataIndicatorTaCdlClosingMarubozu对象
      * @throws IOException
      */
 
@@ -1901,9 +1767,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlClosingMarubozu> getIndicatorTaCdlClosingMarubozu(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlClosingMarubozu> getIndicatorTaCdlClosingMarubozu(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlClosingMarubozu(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlClosingMarubozu>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlClosingMarubozu>>() {
         }.getType());
     }
 
@@ -1919,7 +1785,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlConcealBabysWall对象
+     * @return 参考DataIndicatorTaCdlConcealBabysWall对象
      * @throws IOException
      */
 
@@ -1940,9 +1806,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlConcealBabysWall> getIndicatorTaCdlConcealBabysWall(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlConcealBabysWall> getIndicatorTaCdlConcealBabysWall(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlConcealBabysWall(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlConcealBabysWall>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlConcealBabysWall>>() {
         }.getType());
     }
 
@@ -1958,7 +1824,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlCounterAttack对象
+     * @return 参考DataIndicatorTaCdlCounterAttack对象
      * @throws IOException
      */
 
@@ -1979,9 +1845,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlCounterAttack> getIndicatorTaCdlCounterAttack(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlCounterAttack> getIndicatorTaCdlCounterAttack(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlCounterAttack(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlCounterAttack>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlCounterAttack>>() {
         }.getType());
     }
 
@@ -1998,7 +1864,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlDarkCloudCover对象
+     * @return 参考DataIndicatorTaCdlDarkCloudCover对象
      * @throws IOException
      */
 
@@ -2020,9 +1886,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlDarkCloudCover> getIndicatorTaCdlDarkCloudCover(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlDarkCloudCover> getIndicatorTaCdlDarkCloudCover(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlDarkCloudCover(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlDarkCloudCover>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlDarkCloudCover>>() {
         }.getType());
     }
 
@@ -2038,7 +1904,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlDoji对象
+     * @return 参考DataIndicatorTaCdlDoji对象
      * @throws IOException
      */
 
@@ -2059,9 +1925,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlDoji> getIndicatorTaCdlDoji(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlDoji> getIndicatorTaCdlDoji(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlDoji(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlDoji>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlDoji>>() {
         }.getType());
     }
 
@@ -2077,7 +1943,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlDojiStar对象
+     * @return 参考DataIndicatorTaCdlDojiStar对象
      * @throws IOException
      */
 
@@ -2098,9 +1964,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlDojiStar> getIndicatorTaCdlDojiStar(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlDojiStar> getIndicatorTaCdlDojiStar(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlDojiStar(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlDojiStar>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlDojiStar>>() {
         }.getType());
     }
 
@@ -2116,7 +1982,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlDragonflyDoji对象
+     * @return 参考DataIndicatorTaCdlDragonflyDoji对象
      * @throws IOException
      */
 
@@ -2137,9 +2003,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlDragonflyDoji> getIndicatorTaCdlDragonflyDoji(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlDragonflyDoji> getIndicatorTaCdlDragonflyDoji(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlDragonflyDoji(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlDragonflyDoji>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlDragonflyDoji>>() {
         }.getType());
     }
 
@@ -2155,7 +2021,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlEngulfing对象
+     * @return 参考DataIndicatorTaCdlEngulfing对象
      * @throws IOException
      */
 
@@ -2176,9 +2042,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlEngulfing> getIndicatorTaCdlEngulfing(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlEngulfing> getIndicatorTaCdlEngulfing(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlEngulfing(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlEngulfing>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlEngulfing>>() {
         }.getType());
     }
 
@@ -2195,7 +2061,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlEveningDojiStar对象
+     * @return 参考DataIndicatorTaCdlEveningDojiStar对象
      * @throws IOException
      */
 
@@ -2217,9 +2083,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlEveningDojiStar> getIndicatorTaCdlEveningDojiStar(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlEveningDojiStar> getIndicatorTaCdlEveningDojiStar(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlEveningDojiStar(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlEveningDojiStar>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlEveningDojiStar>>() {
         }.getType());
     }
 
@@ -2236,7 +2102,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlEveningStar对象
+     * @return 参考DataIndicatorTaCdlEveningStar对象
      * @throws IOException
      */
 
@@ -2258,9 +2124,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlEveningStar> getIndicatorTaCdlEveningStar(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlEveningStar> getIndicatorTaCdlEveningStar(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlEveningStar(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlEveningStar>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlEveningStar>>() {
         }.getType());
     }
 
@@ -2276,7 +2142,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlGapSideSideWhite对象
+     * @return 参考DataIndicatorTaCdlGapSideSideWhite对象
      * @throws IOException
      */
 
@@ -2297,9 +2163,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlGapSideSideWhite> getIndicatorTaCdlGapSideSideWhite(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlGapSideSideWhite> getIndicatorTaCdlGapSideSideWhite(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlGapSideSideWhite(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlGapSideSideWhite>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlGapSideSideWhite>>() {
         }.getType());
     }
 
@@ -2315,7 +2181,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlGravestoneDoji对象
+     * @return 参考DataIndicatorTaCdlGravestoneDoji对象
      * @throws IOException
      */
 
@@ -2336,9 +2202,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlGravestoneDoji> getIndicatorTaCdlGravestoneDoji(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlGravestoneDoji> getIndicatorTaCdlGravestoneDoji(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlGravestoneDoji(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlGravestoneDoji>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlGravestoneDoji>>() {
         }.getType());
     }
 
@@ -2354,7 +2220,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlHammer对象
+     * @return 参考DataIndicatorTaCdlHammer对象
      * @throws IOException
      */
 
@@ -2375,9 +2241,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlHammer> getIndicatorTaCdlHammer(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlHammer> getIndicatorTaCdlHammer(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlHammer(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlHammer>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlHammer>>() {
         }.getType());
     }
 
@@ -2393,7 +2259,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlHangingMan对象
+     * @return 参考DataIndicatorTaCdlHangingMan对象
      * @throws IOException
      */
 
@@ -2414,9 +2280,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlHangingMan> getIndicatorTaCdlHangingMan(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlHangingMan> getIndicatorTaCdlHangingMan(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlHangingMan(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlHangingMan>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlHangingMan>>() {
         }.getType());
     }
 
@@ -2432,7 +2298,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlHarami对象
+     * @return 参考DataIndicatorTaCdlHarami对象
      * @throws IOException
      */
 
@@ -2453,9 +2319,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlHarami> getIndicatorTaCdlHarami(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlHarami> getIndicatorTaCdlHarami(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlHarami(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlHarami>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlHarami>>() {
         }.getType());
     }
 
@@ -2471,7 +2337,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlHaramiCross对象
+     * @return 参考DataIndicatorTaCdlHaramiCross对象
      * @throws IOException
      */
 
@@ -2492,9 +2358,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlHaramiCross> getIndicatorTaCdlHaramiCross(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlHaramiCross> getIndicatorTaCdlHaramiCross(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlHaramiCross(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlHaramiCross>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlHaramiCross>>() {
         }.getType());
     }
 
@@ -2510,7 +2376,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlHignWave对象
+     * @return 参考DataIndicatorTaCdlHignWave对象
      * @throws IOException
      */
 
@@ -2531,9 +2397,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlHignWave> getIndicatorTaCdlHignWave(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlHignWave> getIndicatorTaCdlHignWave(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlHignWave(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlHignWave>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlHignWave>>() {
         }.getType());
     }
 
@@ -2549,7 +2415,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlHikkake对象
+     * @return 参考DataIndicatorTaCdlHikkake对象
      * @throws IOException
      */
 
@@ -2570,9 +2436,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlHikkake> getIndicatorTaCdlHikkake(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlHikkake> getIndicatorTaCdlHikkake(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlHikkake(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlHikkake>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlHikkake>>() {
         }.getType());
     }
 
@@ -2588,7 +2454,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlHikkakeMod对象
+     * @return 参考DataIndicatorTaCdlHikkakeMod对象
      * @throws IOException
      */
 
@@ -2609,9 +2475,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlHikkakeMod> getIndicatorTaCdlHikkakeMod(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlHikkakeMod> getIndicatorTaCdlHikkakeMod(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlHikkakeMod(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlHikkakeMod>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlHikkakeMod>>() {
         }.getType());
     }
 
@@ -2627,7 +2493,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlHomingPigeon对象
+     * @return 参考DataIndicatorTaCdlHomingPigeon对象
      * @throws IOException
      */
 
@@ -2648,9 +2514,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlHomingPigeon> getIndicatorTaCdlHomingPigeon(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlHomingPigeon> getIndicatorTaCdlHomingPigeon(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlHomingPigeon(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlHomingPigeon>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlHomingPigeon>>() {
         }.getType());
     }
 
@@ -2666,7 +2532,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlIdentical3Crows对象
+     * @return 参考DataIndicatorTaCdlIdentical3Crows对象
      * @throws IOException
      */
 
@@ -2687,9 +2553,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlIdentical3Crows> getIndicatorTaCdlIdentical3Crows(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlIdentical3Crows> getIndicatorTaCdlIdentical3Crows(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlIdentical3Crows(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlIdentical3Crows>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlIdentical3Crows>>() {
         }.getType());
     }
 
@@ -2705,7 +2571,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlInNeck对象
+     * @return 参考DataIndicatorTaCdlInNeck对象
      * @throws IOException
      */
 
@@ -2726,9 +2592,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlInNeck> getIndicatorTaCdlInNeck(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlInNeck> getIndicatorTaCdlInNeck(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlInNeck(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlInNeck>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlInNeck>>() {
         }.getType());
     }
 
@@ -2744,7 +2610,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlInvertedHammer对象
+     * @return 参考DataIndicatorTaCdlInvertedHammer对象
      * @throws IOException
      */
 
@@ -2765,9 +2631,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlInvertedHammer> getIndicatorTaCdlInvertedHammer(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlInvertedHammer> getIndicatorTaCdlInvertedHammer(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlInvertedHammer(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlInvertedHammer>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlInvertedHammer>>() {
         }.getType());
     }
 
@@ -2783,7 +2649,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlKicking对象
+     * @return 参考DataIndicatorTaCdlKicking对象
      * @throws IOException
      */
 
@@ -2804,9 +2670,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlKicking> getIndicatorTaCdlKicking(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlKicking> getIndicatorTaCdlKicking(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlKicking(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlKicking>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlKicking>>() {
         }.getType());
     }
 
@@ -2822,7 +2688,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlKickingByLength对象
+     * @return 参考DataIndicatorTaCdlKickingByLength对象
      * @throws IOException
      */
 
@@ -2843,9 +2709,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlKickingByLength> getIndicatorTaCdlKickingByLength(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlKickingByLength> getIndicatorTaCdlKickingByLength(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlKickingByLength(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlKickingByLength>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlKickingByLength>>() {
         }.getType());
     }
 
@@ -2861,7 +2727,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlLadderBottom对象
+     * @return 参考DataIndicatorTaCdlLadderBottom对象
      * @throws IOException
      */
 
@@ -2882,9 +2748,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlLadderBottom> getIndicatorTaCdlLadderBottom(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlLadderBottom> getIndicatorTaCdlLadderBottom(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlLadderBottom(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlLadderBottom>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlLadderBottom>>() {
         }.getType());
     }
 
@@ -2900,7 +2766,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlLongLeggedDoji对象
+     * @return 参考DataIndicatorTaCdlLongLeggedDoji对象
      * @throws IOException
      */
 
@@ -2921,9 +2787,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlLongLeggedDoji> getIndicatorTaCdlLongLeggedDoji(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlLongLeggedDoji> getIndicatorTaCdlLongLeggedDoji(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlLongLeggedDoji(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlLongLeggedDoji>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlLongLeggedDoji>>() {
         }.getType());
     }
 
@@ -2939,7 +2805,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlLongLine对象
+     * @return 参考DataIndicatorTaCdlLongLine对象
      * @throws IOException
      */
 
@@ -2960,9 +2826,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlLongLine> getIndicatorTaCdlLongLine(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlLongLine> getIndicatorTaCdlLongLine(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlLongLine(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlLongLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlLongLine>>() {
         }.getType());
     }
 
@@ -2978,7 +2844,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlMarubozu对象
+     * @return 参考DataIndicatorTaCdlMarubozu对象
      * @throws IOException
      */
 
@@ -2999,9 +2865,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlMarubozu> getIndicatorTaCdlMarubozu(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlMarubozu> getIndicatorTaCdlMarubozu(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlMarubozu(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlMarubozu>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlMarubozu>>() {
         }.getType());
     }
 
@@ -3018,7 +2884,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlMatHold对象
+     * @return 参考DataIndicatorTaCdlMatHold对象
      * @throws IOException
      */
 
@@ -3040,9 +2906,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlMatHold> getIndicatorTaCdlMatHold(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlMatHold> getIndicatorTaCdlMatHold(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlMatHold(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlMatHold>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlMatHold>>() {
         }.getType());
     }
 
@@ -3058,7 +2924,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlMatchingLow对象
+     * @return 参考DataIndicatorTaCdlMatchingLow对象
      * @throws IOException
      */
 
@@ -3079,9 +2945,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlMatchingLow> getIndicatorTaCdlMatchingLow(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlMatchingLow> getIndicatorTaCdlMatchingLow(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlMatchingLow(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlMatchingLow>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlMatchingLow>>() {
         }.getType());
     }
 
@@ -3098,7 +2964,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlMorningDojiStar对象
+     * @return 参考DataIndicatorTaCdlMorningDojiStar对象
      * @throws IOException
      */
 
@@ -3120,9 +2986,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlMorningDojiStar> getIndicatorTaCdlMorningDojiStar(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlMorningDojiStar> getIndicatorTaCdlMorningDojiStar(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlMorningDojiStar(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlMorningDojiStar>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlMorningDojiStar>>() {
         }.getType());
     }
 
@@ -3139,7 +3005,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlMorningStar对象
+     * @return 参考DataIndicatorTaCdlMorningStar对象
      * @throws IOException
      */
 
@@ -3161,9 +3027,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlMorningStar> getIndicatorTaCdlMorningStar(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlMorningStar> getIndicatorTaCdlMorningStar(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlMorningStar(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlMorningStar>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlMorningStar>>() {
         }.getType());
     }
 
@@ -3179,7 +3045,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlOnNeck对象
+     * @return 参考DataIndicatorTaCdlOnNeck对象
      * @throws IOException
      */
 
@@ -3200,9 +3066,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlOnNeck> getIndicatorTaCdlOnNeck(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlOnNeck> getIndicatorTaCdlOnNeck(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlOnNeck(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlOnNeck>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlOnNeck>>() {
         }.getType());
     }
 
@@ -3218,7 +3084,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlPiercing对象
+     * @return 参考DataIndicatorTaCdlPiercing对象
      * @throws IOException
      */
 
@@ -3239,9 +3105,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlPiercing> getIndicatorTaCdlPiercing(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlPiercing> getIndicatorTaCdlPiercing(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlPiercing(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlPiercing>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlPiercing>>() {
         }.getType());
     }
 
@@ -3257,7 +3123,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlRickshawMan对象
+     * @return 参考DataIndicatorTaCdlRickshawMan对象
      * @throws IOException
      */
 
@@ -3278,9 +3144,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlRickshawMan> getIndicatorTaCdlRickshawMan(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlRickshawMan> getIndicatorTaCdlRickshawMan(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlRickshawMan(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlRickshawMan>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlRickshawMan>>() {
         }.getType());
     }
 
@@ -3296,7 +3162,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlRiseFall3Methods对象
+     * @return 参考DataIndicatorTaCdlRiseFall3Methods对象
      * @throws IOException
      */
 
@@ -3317,48 +3183,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlRiseFall3Methods> getIndicatorTaCdlRiseFall3Methods(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlRiseFall3Methods> getIndicatorTaCdlRiseFall3Methods(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlRiseFall3Methods(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlRiseFall3Methods>>() {
-        }.getType());
-    }
-
-    /**
-     *  形态识别-CdlSeperatingLines指标。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param type        资产类型，取值范围：1|沪深京A股；2|沪深京B股；3|港股；4|美股；5|黄金；6|汇率；7|Reits；10|沪深指数；11|香港指数；12|全球指数；13|债券指数；20|场内基金；30|沪深债券；40|行业板块；41|概念板块；42|地域板块
-     * @param code        股票代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；不支持all参数查询。
-     * @param ktype       K线类别，取值范围：1|1分钟；5|5分钟；15|15分钟；30|30分钟；60|60分钟；101|日线；102|周线；103|月线
-     * @param fq          复权信息，取值范围：0|不复权；1|前复权；2|后复权
-     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
-     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlSeperatingLines对象
-     * @throws IOException
-     */
-
-    public String getIndicatorTaCdlSeperatingLines(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlSeperatingLines";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("type", type)
-                .put("code", code)
-                .put("ktype", ktype)
-                .put("fq", fq)
-                .put("startDate", startDate)
-                .put("endDate", endDate)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<IndicatorTaCdlSeperatingLines> getIndicatorTaCdlSeperatingLines(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getIndicatorTaCdlSeperatingLines(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlSeperatingLines>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlRiseFall3Methods>>() {
         }.getType());
     }
 
@@ -3374,7 +3201,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlShootingStar对象
+     * @return 参考DataIndicatorTaCdlShootingStar对象
      * @throws IOException
      */
 
@@ -3395,9 +3222,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlShootingStar> getIndicatorTaCdlShootingStar(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlShootingStar> getIndicatorTaCdlShootingStar(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlShootingStar(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlShootingStar>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlShootingStar>>() {
         }.getType());
     }
 
@@ -3413,7 +3240,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlShortLine对象
+     * @return 参考DataIndicatorTaCdlShortLine对象
      * @throws IOException
      */
 
@@ -3434,9 +3261,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlShortLine> getIndicatorTaCdlShortLine(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlShortLine> getIndicatorTaCdlShortLine(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlShortLine(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlShortLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlShortLine>>() {
         }.getType());
     }
 
@@ -3452,7 +3279,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlSpinningTop对象
+     * @return 参考DataIndicatorTaCdlSpinningTop对象
      * @throws IOException
      */
 
@@ -3473,9 +3300,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlSpinningTop> getIndicatorTaCdlSpinningTop(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlSpinningTop> getIndicatorTaCdlSpinningTop(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlSpinningTop(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlSpinningTop>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlSpinningTop>>() {
         }.getType());
     }
 
@@ -3491,7 +3318,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlStalledPattern对象
+     * @return 参考DataIndicatorTaCdlStalledPattern对象
      * @throws IOException
      */
 
@@ -3512,48 +3339,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlStalledPattern> getIndicatorTaCdlStalledPattern(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlStalledPattern> getIndicatorTaCdlStalledPattern(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlStalledPattern(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlStalledPattern>>() {
-        }.getType());
-    }
-
-    /**
-     *  形态识别-CdlStickSandwhich指标。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param type        资产类型，取值范围：1|沪深京A股；2|沪深京B股；3|港股；4|美股；5|黄金；6|汇率；7|Reits；10|沪深指数；11|香港指数；12|全球指数；13|债券指数；20|场内基金；30|沪深债券；40|行业板块；41|概念板块；42|地域板块
-     * @param code        股票代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；不支持all参数查询。
-     * @param ktype       K线类别，取值范围：1|1分钟；5|5分钟；15|15分钟；30|30分钟；60|60分钟；101|日线；102|周线；103|月线
-     * @param fq          复权信息，取值范围：0|不复权；1|前复权；2|后复权
-     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
-     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlStickSandwhich对象
-     * @throws IOException
-     */
-
-    public String getIndicatorTaCdlStickSandwhich(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getIndicatorTaCdlStickSandwhich";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("type", type)
-                .put("code", code)
-                .put("ktype", ktype)
-                .put("fq", fq)
-                .put("startDate", startDate)
-                .put("endDate", endDate)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<IndicatorTaCdlStickSandwhich> getIndicatorTaCdlStickSandwhich(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getIndicatorTaCdlStickSandwhich(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlStickSandwhich>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlStalledPattern>>() {
         }.getType());
     }
 
@@ -3569,7 +3357,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlTakuri对象
+     * @return 参考DataIndicatorTaCdlTakuri对象
      * @throws IOException
      */
 
@@ -3590,9 +3378,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlTakuri> getIndicatorTaCdlTakuri(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlTakuri> getIndicatorTaCdlTakuri(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlTakuri(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlTakuri>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlTakuri>>() {
         }.getType());
     }
 
@@ -3608,7 +3396,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlTasukiGap对象
+     * @return 参考DataIndicatorTaCdlTasukiGap对象
      * @throws IOException
      */
 
@@ -3629,9 +3417,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlTasukiGap> getIndicatorTaCdlTasukiGap(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlTasukiGap> getIndicatorTaCdlTasukiGap(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlTasukiGap(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlTasukiGap>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlTasukiGap>>() {
         }.getType());
     }
 
@@ -3647,7 +3435,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlThrusting对象
+     * @return 参考DataIndicatorTaCdlThrusting对象
      * @throws IOException
      */
 
@@ -3668,9 +3456,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlThrusting> getIndicatorTaCdlThrusting(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlThrusting> getIndicatorTaCdlThrusting(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlThrusting(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlThrusting>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlThrusting>>() {
         }.getType());
     }
 
@@ -3686,7 +3474,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlTristar对象
+     * @return 参考DataIndicatorTaCdlTristar对象
      * @throws IOException
      */
 
@@ -3707,9 +3495,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlTristar> getIndicatorTaCdlTristar(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlTristar> getIndicatorTaCdlTristar(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlTristar(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlTristar>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlTristar>>() {
         }.getType());
     }
 
@@ -3725,7 +3513,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlUnique3River对象
+     * @return 参考DataIndicatorTaCdlUnique3River对象
      * @throws IOException
      */
 
@@ -3746,9 +3534,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlUnique3River> getIndicatorTaCdlUnique3River(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlUnique3River> getIndicatorTaCdlUnique3River(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlUnique3River(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlUnique3River>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlUnique3River>>() {
         }.getType());
     }
 
@@ -3764,7 +3552,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlUpsideGap2Crows对象
+     * @return 参考DataIndicatorTaCdlUpsideGap2Crows对象
      * @throws IOException
      */
 
@@ -3785,9 +3573,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlUpsideGap2Crows> getIndicatorTaCdlUpsideGap2Crows(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlUpsideGap2Crows> getIndicatorTaCdlUpsideGap2Crows(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlUpsideGap2Crows(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlUpsideGap2Crows>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlUpsideGap2Crows>>() {
         }.getType());
     }
 
@@ -3803,7 +3591,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCdlXSideGap3Methods对象
+     * @return 参考DataIndicatorTaCdlXSideGap3Methods对象
      * @throws IOException
      */
 
@@ -3824,9 +3612,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCdlXSideGap3Methods> getIndicatorTaCdlXSideGap3Methods(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCdlXSideGap3Methods> getIndicatorTaCdlXSideGap3Methods(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCdlXSideGap3Methods(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCdlXSideGap3Methods>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCdlXSideGap3Methods>>() {
         }.getType());
     }
 
@@ -3843,7 +3631,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCeil对象
+     * @return 参考DataIndicatorTaCeil对象
      * @throws IOException
      */
 
@@ -3865,9 +3653,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCeil> getIndicatorTaCeil(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCeil> getIndicatorTaCeil(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCeil(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCeil>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCeil>>() {
         }.getType());
     }
 
@@ -3885,7 +3673,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCmo对象
+     * @return 参考DataIndicatorTaCmo对象
      * @throws IOException
      */
 
@@ -3908,9 +3696,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCmo> getIndicatorTaCmo(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCmo> getIndicatorTaCmo(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCmo(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCmo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCmo>>() {
         }.getType());
     }
 
@@ -3929,7 +3717,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCorrel对象
+     * @return 参考DataIndicatorTaCorrel对象
      * @throws IOException
      */
 
@@ -3953,9 +3741,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCorrel> getIndicatorTaCorrel(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCorrel> getIndicatorTaCorrel(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCorrel(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCorrel>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCorrel>>() {
         }.getType());
     }
 
@@ -3972,7 +3760,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCos对象
+     * @return 参考DataIndicatorTaCos对象
      * @throws IOException
      */
 
@@ -3994,9 +3782,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCos> getIndicatorTaCos(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCos> getIndicatorTaCos(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCos(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCos>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCos>>() {
         }.getType());
     }
 
@@ -4013,7 +3801,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaCosh对象
+     * @return 参考DataIndicatorTaCosh对象
      * @throws IOException
      */
 
@@ -4035,9 +3823,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaCosh> getIndicatorTaCosh(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaCosh> getIndicatorTaCosh(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaCosh(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaCosh>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaCosh>>() {
         }.getType());
     }
 
@@ -4055,7 +3843,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaDema对象
+     * @return 参考DataIndicatorTaDema对象
      * @throws IOException
      */
 
@@ -4078,9 +3866,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaDema> getIndicatorTaDema(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaDema> getIndicatorTaDema(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaDema(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaDema>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaDema>>() {
         }.getType());
     }
 
@@ -4098,7 +3886,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaDiv对象
+     * @return 参考DataIndicatorTaDiv对象
      * @throws IOException
      */
 
@@ -4121,9 +3909,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaDiv> getIndicatorTaDiv(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaDiv> getIndicatorTaDiv(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaDiv(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaDiv>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaDiv>>() {
         }.getType());
     }
 
@@ -4140,7 +3928,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaDx对象
+     * @return 参考DataIndicatorTaDx对象
      * @throws IOException
      */
 
@@ -4162,9 +3950,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaDx> getIndicatorTaDx(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaDx> getIndicatorTaDx(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaDx(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaDx>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaDx>>() {
         }.getType());
     }
 
@@ -4182,7 +3970,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaEma对象
+     * @return 参考DataIndicatorTaEma对象
      * @throws IOException
      */
 
@@ -4205,9 +3993,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaEma> getIndicatorTaEma(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaEma> getIndicatorTaEma(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaEma(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaEma>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaEma>>() {
         }.getType());
     }
 
@@ -4224,7 +4012,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaExp对象
+     * @return 参考DataIndicatorTaExp对象
      * @throws IOException
      */
 
@@ -4246,9 +4034,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaExp> getIndicatorTaExp(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaExp> getIndicatorTaExp(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaExp(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaExp>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaExp>>() {
         }.getType());
     }
 
@@ -4265,7 +4053,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaFloor对象
+     * @return 参考DataIndicatorTaFloor对象
      * @throws IOException
      */
 
@@ -4287,9 +4075,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaFloor> getIndicatorTaFloor(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaFloor> getIndicatorTaFloor(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaFloor(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaFloor>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaFloor>>() {
         }.getType());
     }
 
@@ -4306,7 +4094,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaHtDcPeriod对象
+     * @return 参考DataIndicatorTaHtDcPeriod对象
      * @throws IOException
      */
 
@@ -4328,9 +4116,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaHtDcPeriod> getIndicatorTaHtDcPeriod(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaHtDcPeriod> getIndicatorTaHtDcPeriod(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaHtDcPeriod(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaHtDcPeriod>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaHtDcPeriod>>() {
         }.getType());
     }
 
@@ -4347,7 +4135,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaHtDcPhase对象
+     * @return 参考DataIndicatorTaHtDcPhase对象
      * @throws IOException
      */
 
@@ -4369,9 +4157,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaHtDcPhase> getIndicatorTaHtDcPhase(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaHtDcPhase> getIndicatorTaHtDcPhase(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaHtDcPhase(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaHtDcPhase>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaHtDcPhase>>() {
         }.getType());
     }
 
@@ -4388,7 +4176,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaHtPhasor对象
+     * @return 参考DataIndicatorTaHtPhasor对象
      * @throws IOException
      */
 
@@ -4410,9 +4198,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaHtPhasor> getIndicatorTaHtPhasor(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaHtPhasor> getIndicatorTaHtPhasor(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaHtPhasor(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaHtPhasor>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaHtPhasor>>() {
         }.getType());
     }
 
@@ -4429,7 +4217,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaHtSine对象
+     * @return 参考DataIndicatorTaHtSine对象
      * @throws IOException
      */
 
@@ -4451,9 +4239,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaHtSine> getIndicatorTaHtSine(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaHtSine> getIndicatorTaHtSine(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaHtSine(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaHtSine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaHtSine>>() {
         }.getType());
     }
 
@@ -4470,7 +4258,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaHtTrendMode对象
+     * @return 参考DataIndicatorTaHtTrendMode对象
      * @throws IOException
      */
 
@@ -4492,9 +4280,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaHtTrendMode> getIndicatorTaHtTrendMode(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaHtTrendMode> getIndicatorTaHtTrendMode(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaHtTrendMode(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaHtTrendMode>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaHtTrendMode>>() {
         }.getType());
     }
 
@@ -4511,7 +4299,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaHtTrendline对象
+     * @return 参考DataIndicatorTaHtTrendline对象
      * @throws IOException
      */
 
@@ -4533,9 +4321,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaHtTrendline> getIndicatorTaHtTrendline(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaHtTrendline> getIndicatorTaHtTrendline(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaHtTrendline(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaHtTrendline>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaHtTrendline>>() {
         }.getType());
     }
 
@@ -4553,7 +4341,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaKama对象
+     * @return 参考DataIndicatorTaKama对象
      * @throws IOException
      */
 
@@ -4576,9 +4364,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaKama> getIndicatorTaKama(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaKama> getIndicatorTaKama(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaKama(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaKama>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaKama>>() {
         }.getType());
     }
 
@@ -4596,7 +4384,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaLinearReg对象
+     * @return 参考DataIndicatorTaLinearReg对象
      * @throws IOException
      */
 
@@ -4619,9 +4407,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaLinearReg> getIndicatorTaLinearReg(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaLinearReg> getIndicatorTaLinearReg(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaLinearReg(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaLinearReg>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaLinearReg>>() {
         }.getType());
     }
 
@@ -4639,7 +4427,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaLinearRegAngle对象
+     * @return 参考DataIndicatorTaLinearRegAngle对象
      * @throws IOException
      */
 
@@ -4662,9 +4450,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaLinearRegAngle> getIndicatorTaLinearRegAngle(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaLinearRegAngle> getIndicatorTaLinearRegAngle(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaLinearRegAngle(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaLinearRegAngle>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaLinearRegAngle>>() {
         }.getType());
     }
 
@@ -4682,7 +4470,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaLinearRegIntercept对象
+     * @return 参考DataIndicatorTaLinearRegIntercept对象
      * @throws IOException
      */
 
@@ -4705,9 +4493,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaLinearRegIntercept> getIndicatorTaLinearRegIntercept(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaLinearRegIntercept> getIndicatorTaLinearRegIntercept(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaLinearRegIntercept(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaLinearRegIntercept>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaLinearRegIntercept>>() {
         }.getType());
     }
 
@@ -4725,7 +4513,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaLinearRegSlope对象
+     * @return 参考DataIndicatorTaLinearRegSlope对象
      * @throws IOException
      */
 
@@ -4748,9 +4536,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaLinearRegSlope> getIndicatorTaLinearRegSlope(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaLinearRegSlope> getIndicatorTaLinearRegSlope(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaLinearRegSlope(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaLinearRegSlope>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaLinearRegSlope>>() {
         }.getType());
     }
 
@@ -4767,7 +4555,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaLn对象
+     * @return 参考DataIndicatorTaLn对象
      * @throws IOException
      */
 
@@ -4789,9 +4577,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaLn> getIndicatorTaLn(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaLn> getIndicatorTaLn(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaLn(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaLn>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaLn>>() {
         }.getType());
     }
 
@@ -4808,7 +4596,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaLog10对象
+     * @return 参考DataIndicatorTaLog10对象
      * @throws IOException
      */
 
@@ -4830,9 +4618,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaLog10> getIndicatorTaLog10(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaLog10> getIndicatorTaLog10(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaLog10(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaLog10>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaLog10>>() {
         }.getType());
     }
 
@@ -4852,7 +4640,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMacd对象
+     * @return 参考DataIndicatorTaMacd对象
      * @throws IOException
      */
 
@@ -4877,9 +4665,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMacd> getIndicatorTaMacd(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMacd> getIndicatorTaMacd(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMacd(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , input4 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMacd>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMacd>>() {
         }.getType());
     }
 
@@ -4902,7 +4690,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMacdExt对象
+     * @return 参考DataIndicatorTaMacdExt对象
      * @throws IOException
      */
 
@@ -4930,9 +4718,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMacdExt> getIndicatorTaMacdExt(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String input5, String input6, String input7, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMacdExt> getIndicatorTaMacdExt(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String input5, String input6, String input7, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMacdExt(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , input4 , input5 , input6 , input7 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMacdExt>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMacdExt>>() {
         }.getType());
     }
 
@@ -4950,7 +4738,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMacdFix对象
+     * @return 参考DataIndicatorTaMacdFix对象
      * @throws IOException
      */
 
@@ -4973,9 +4761,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMacdFix> getIndicatorTaMacdFix(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMacdFix> getIndicatorTaMacdFix(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMacdFix(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMacdFix>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMacdFix>>() {
         }.getType());
     }
 
@@ -4994,7 +4782,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMama对象
+     * @return 参考DataIndicatorTaMama对象
      * @throws IOException
      */
 
@@ -5018,9 +4806,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMama> getIndicatorTaMama(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMama> getIndicatorTaMama(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMama(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMama>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMama>>() {
         }.getType());
     }
 
@@ -5038,7 +4826,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMax对象
+     * @return 参考DataIndicatorTaMax对象
      * @throws IOException
      */
 
@@ -5061,9 +4849,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMax> getIndicatorTaMax(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMax> getIndicatorTaMax(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMax(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMax>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMax>>() {
         }.getType());
     }
 
@@ -5081,7 +4869,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMaxIndex对象
+     * @return 参考DataIndicatorTaMaxIndex对象
      * @throws IOException
      */
 
@@ -5104,9 +4892,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMaxIndex> getIndicatorTaMaxIndex(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMaxIndex> getIndicatorTaMaxIndex(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMaxIndex(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMaxIndex>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMaxIndex>>() {
         }.getType());
     }
 
@@ -5122,7 +4910,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMedPrice对象
+     * @return 参考DataIndicatorTaMedPrice对象
      * @throws IOException
      */
 
@@ -5143,9 +4931,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMedPrice> getIndicatorTaMedPrice(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMedPrice> getIndicatorTaMedPrice(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMedPrice(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMedPrice>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMedPrice>>() {
         }.getType());
     }
 
@@ -5162,7 +4950,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMfi对象
+     * @return 参考DataIndicatorTaMfi对象
      * @throws IOException
      */
 
@@ -5184,9 +4972,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMfi> getIndicatorTaMfi(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMfi> getIndicatorTaMfi(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMfi(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMfi>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMfi>>() {
         }.getType());
     }
 
@@ -5204,7 +4992,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMidPoint对象
+     * @return 参考DataIndicatorTaMidPoint对象
      * @throws IOException
      */
 
@@ -5227,9 +5015,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMidPoint> getIndicatorTaMidPoint(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMidPoint> getIndicatorTaMidPoint(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMidPoint(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMidPoint>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMidPoint>>() {
         }.getType());
     }
 
@@ -5246,7 +5034,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMidPrice对象
+     * @return 参考DataIndicatorTaMidPrice对象
      * @throws IOException
      */
 
@@ -5268,9 +5056,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMidPrice> getIndicatorTaMidPrice(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMidPrice> getIndicatorTaMidPrice(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMidPrice(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMidPrice>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMidPrice>>() {
         }.getType());
     }
 
@@ -5288,7 +5076,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMin对象
+     * @return 参考DataIndicatorTaMin对象
      * @throws IOException
      */
 
@@ -5311,9 +5099,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMin> getIndicatorTaMin(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMin> getIndicatorTaMin(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMin(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMin>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMin>>() {
         }.getType());
     }
 
@@ -5331,7 +5119,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMinIndex对象
+     * @return 参考DataIndicatorTaMinIndex对象
      * @throws IOException
      */
 
@@ -5354,9 +5142,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMinIndex> getIndicatorTaMinIndex(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMinIndex> getIndicatorTaMinIndex(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMinIndex(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMinIndex>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMinIndex>>() {
         }.getType());
     }
 
@@ -5374,7 +5162,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMinMax对象
+     * @return 参考DataIndicatorTaMinMax对象
      * @throws IOException
      */
 
@@ -5397,9 +5185,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMinMax> getIndicatorTaMinMax(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMinMax> getIndicatorTaMinMax(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMinMax(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMinMax>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMinMax>>() {
         }.getType());
     }
 
@@ -5417,7 +5205,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMinMaxIndex对象
+     * @return 参考DataIndicatorTaMinMaxIndex对象
      * @throws IOException
      */
 
@@ -5440,9 +5228,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMinMaxIndex> getIndicatorTaMinMaxIndex(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMinMaxIndex> getIndicatorTaMinMaxIndex(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMinMaxIndex(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMinMaxIndex>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMinMaxIndex>>() {
         }.getType());
     }
 
@@ -5459,7 +5247,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMinusDI对象
+     * @return 参考DataIndicatorTaMinusDI对象
      * @throws IOException
      */
 
@@ -5481,9 +5269,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMinusDI> getIndicatorTaMinusDI(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMinusDI> getIndicatorTaMinusDI(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMinusDI(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMinusDI>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMinusDI>>() {
         }.getType());
     }
 
@@ -5500,7 +5288,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMinusDM对象
+     * @return 参考DataIndicatorTaMinusDM对象
      * @throws IOException
      */
 
@@ -5522,9 +5310,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMinusDM> getIndicatorTaMinusDM(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMinusDM> getIndicatorTaMinusDM(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMinusDM(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMinusDM>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMinusDM>>() {
         }.getType());
     }
 
@@ -5542,7 +5330,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMom对象
+     * @return 参考DataIndicatorTaMom对象
      * @throws IOException
      */
 
@@ -5565,9 +5353,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMom> getIndicatorTaMom(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMom> getIndicatorTaMom(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMom(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMom>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMom>>() {
         }.getType());
     }
 
@@ -5586,7 +5374,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMovingAverage对象
+     * @return 参考DataIndicatorTaMovingAverage对象
      * @throws IOException
      */
 
@@ -5610,9 +5398,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMovingAverage> getIndicatorTaMovingAverage(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMovingAverage> getIndicatorTaMovingAverage(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMovingAverage(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMovingAverage>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMovingAverage>>() {
         }.getType());
     }
 
@@ -5630,7 +5418,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaMult对象
+     * @return 参考DataIndicatorTaMult对象
      * @throws IOException
      */
 
@@ -5653,9 +5441,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaMult> getIndicatorTaMult(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaMult> getIndicatorTaMult(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaMult(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaMult>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaMult>>() {
         }.getType());
     }
 
@@ -5672,7 +5460,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaNatr对象
+     * @return 参考DataIndicatorTaNatr对象
      * @throws IOException
      */
 
@@ -5694,9 +5482,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaNatr> getIndicatorTaNatr(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaNatr> getIndicatorTaNatr(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaNatr(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaNatr>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaNatr>>() {
         }.getType());
     }
 
@@ -5713,7 +5501,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaObv对象
+     * @return 参考DataIndicatorTaObv对象
      * @throws IOException
      */
 
@@ -5735,9 +5523,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaObv> getIndicatorTaObv(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaObv> getIndicatorTaObv(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaObv(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaObv>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaObv>>() {
         }.getType());
     }
 
@@ -5754,7 +5542,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaPlusDI对象
+     * @return 参考DataIndicatorTaPlusDI对象
      * @throws IOException
      */
 
@@ -5776,9 +5564,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaPlusDI> getIndicatorTaPlusDI(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaPlusDI> getIndicatorTaPlusDI(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaPlusDI(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaPlusDI>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaPlusDI>>() {
         }.getType());
     }
 
@@ -5795,7 +5583,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaPlusDM对象
+     * @return 参考DataIndicatorTaPlusDM对象
      * @throws IOException
      */
 
@@ -5817,9 +5605,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaPlusDM> getIndicatorTaPlusDM(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaPlusDM> getIndicatorTaPlusDM(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaPlusDM(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaPlusDM>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaPlusDM>>() {
         }.getType());
     }
 
@@ -5839,7 +5627,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaPpo对象
+     * @return 参考DataIndicatorTaPpo对象
      * @throws IOException
      */
 
@@ -5864,9 +5652,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaPpo> getIndicatorTaPpo(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaPpo> getIndicatorTaPpo(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaPpo(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , input4 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaPpo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaPpo>>() {
         }.getType());
     }
 
@@ -5884,7 +5672,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaRoc对象
+     * @return 参考DataIndicatorTaRoc对象
      * @throws IOException
      */
 
@@ -5907,9 +5695,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaRoc> getIndicatorTaRoc(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaRoc> getIndicatorTaRoc(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaRoc(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaRoc>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaRoc>>() {
         }.getType());
     }
 
@@ -5927,7 +5715,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaRocP对象
+     * @return 参考DataIndicatorTaRocP对象
      * @throws IOException
      */
 
@@ -5950,9 +5738,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaRocP> getIndicatorTaRocP(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaRocP> getIndicatorTaRocP(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaRocP(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaRocP>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaRocP>>() {
         }.getType());
     }
 
@@ -5970,7 +5758,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaRocR对象
+     * @return 参考DataIndicatorTaRocR对象
      * @throws IOException
      */
 
@@ -5993,9 +5781,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaRocR> getIndicatorTaRocR(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaRocR> getIndicatorTaRocR(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaRocR(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaRocR>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaRocR>>() {
         }.getType());
     }
 
@@ -6013,7 +5801,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaRocR100对象
+     * @return 参考DataIndicatorTaRocR100对象
      * @throws IOException
      */
 
@@ -6036,9 +5824,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaRocR100> getIndicatorTaRocR100(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaRocR100> getIndicatorTaRocR100(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaRocR100(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaRocR100>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaRocR100>>() {
         }.getType());
     }
 
@@ -6056,7 +5844,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaRsi对象
+     * @return 参考DataIndicatorTaRsi对象
      * @throws IOException
      */
 
@@ -6079,9 +5867,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaRsi> getIndicatorTaRsi(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaRsi> getIndicatorTaRsi(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaRsi(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaRsi>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaRsi>>() {
         }.getType());
     }
 
@@ -6099,7 +5887,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaSar对象
+     * @return 参考DataIndicatorTaSar对象
      * @throws IOException
      */
 
@@ -6122,9 +5910,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaSar> getIndicatorTaSar(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaSar> getIndicatorTaSar(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaSar(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaSar>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaSar>>() {
         }.getType());
     }
 
@@ -6148,7 +5936,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaSarExt对象
+     * @return 参考DataIndicatorTaSarExt对象
      * @throws IOException
      */
 
@@ -6177,9 +5965,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaSarExt> getIndicatorTaSarExt(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String input5, String input6, String input7, String input8, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaSarExt> getIndicatorTaSarExt(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String input5, String input6, String input7, String input8, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaSarExt(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , input4 , input5 , input6 , input7 , input8 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaSarExt>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaSarExt>>() {
         }.getType());
     }
 
@@ -6196,7 +5984,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaSin对象
+     * @return 参考DataIndicatorTaSin对象
      * @throws IOException
      */
 
@@ -6218,9 +6006,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaSin> getIndicatorTaSin(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaSin> getIndicatorTaSin(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaSin(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaSin>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaSin>>() {
         }.getType());
     }
 
@@ -6237,7 +6025,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaSinh对象
+     * @return 参考DataIndicatorTaSinh对象
      * @throws IOException
      */
 
@@ -6259,9 +6047,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaSinh> getIndicatorTaSinh(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaSinh> getIndicatorTaSinh(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaSinh(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaSinh>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaSinh>>() {
         }.getType());
     }
 
@@ -6279,7 +6067,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaSma对象
+     * @return 参考DataIndicatorTaSma对象
      * @throws IOException
      */
 
@@ -6302,9 +6090,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaSma> getIndicatorTaSma(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaSma> getIndicatorTaSma(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaSma(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaSma>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaSma>>() {
         }.getType());
     }
 
@@ -6321,7 +6109,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaSqrt对象
+     * @return 参考DataIndicatorTaSqrt对象
      * @throws IOException
      */
 
@@ -6343,9 +6131,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaSqrt> getIndicatorTaSqrt(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaSqrt> getIndicatorTaSqrt(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaSqrt(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaSqrt>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaSqrt>>() {
         }.getType());
     }
 
@@ -6364,7 +6152,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaStdDev对象
+     * @return 参考DataIndicatorTaStdDev对象
      * @throws IOException
      */
 
@@ -6388,9 +6176,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaStdDev> getIndicatorTaStdDev(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaStdDev> getIndicatorTaStdDev(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaStdDev(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaStdDev>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaStdDev>>() {
         }.getType());
     }
 
@@ -6411,7 +6199,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaStoch对象
+     * @return 参考DataIndicatorTaStoch对象
      * @throws IOException
      */
 
@@ -6437,9 +6225,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaStoch> getIndicatorTaStoch(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String input5, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaStoch> getIndicatorTaStoch(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String input5, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaStoch(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , input4 , input5 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaStoch>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaStoch>>() {
         }.getType());
     }
 
@@ -6458,7 +6246,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaStochF对象
+     * @return 参考DataIndicatorTaStochF对象
      * @throws IOException
      */
 
@@ -6482,9 +6270,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaStochF> getIndicatorTaStochF(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaStochF> getIndicatorTaStochF(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaStochF(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaStochF>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaStochF>>() {
         }.getType());
     }
 
@@ -6505,7 +6293,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaStochRsi对象
+     * @return 参考DataIndicatorTaStochRsi对象
      * @throws IOException
      */
 
@@ -6531,9 +6319,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaStochRsi> getIndicatorTaStochRsi(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String input5, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaStochRsi> getIndicatorTaStochRsi(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String input4, String input5, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaStochRsi(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , input4 , input5 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaStochRsi>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaStochRsi>>() {
         }.getType());
     }
 
@@ -6551,7 +6339,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaSub对象
+     * @return 参考DataIndicatorTaSub对象
      * @throws IOException
      */
 
@@ -6574,9 +6362,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaSub> getIndicatorTaSub(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaSub> getIndicatorTaSub(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaSub(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaSub>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaSub>>() {
         }.getType());
     }
 
@@ -6594,7 +6382,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaSum对象
+     * @return 参考DataIndicatorTaSum对象
      * @throws IOException
      */
 
@@ -6617,9 +6405,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaSum> getIndicatorTaSum(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaSum> getIndicatorTaSum(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaSum(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaSum>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaSum>>() {
         }.getType());
     }
 
@@ -6638,7 +6426,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaT3对象
+     * @return 参考DataIndicatorTaT3对象
      * @throws IOException
      */
 
@@ -6662,9 +6450,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaT3> getIndicatorTaT3(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaT3> getIndicatorTaT3(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaT3(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaT3>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaT3>>() {
         }.getType());
     }
 
@@ -6681,7 +6469,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaTan对象
+     * @return 参考DataIndicatorTaTan对象
      * @throws IOException
      */
 
@@ -6703,9 +6491,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaTan> getIndicatorTaTan(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaTan> getIndicatorTaTan(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaTan(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaTan>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaTan>>() {
         }.getType());
     }
 
@@ -6722,7 +6510,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaTanh对象
+     * @return 参考DataIndicatorTaTanh对象
      * @throws IOException
      */
 
@@ -6744,9 +6532,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaTanh> getIndicatorTaTanh(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaTanh> getIndicatorTaTanh(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaTanh(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaTanh>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaTanh>>() {
         }.getType());
     }
 
@@ -6764,7 +6552,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaTema对象
+     * @return 参考DataIndicatorTaTema对象
      * @throws IOException
      */
 
@@ -6787,9 +6575,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaTema> getIndicatorTaTema(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaTema> getIndicatorTaTema(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaTema(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaTema>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaTema>>() {
         }.getType());
     }
 
@@ -6807,7 +6595,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaTrima对象
+     * @return 参考DataIndicatorTaTrima对象
      * @throws IOException
      */
 
@@ -6830,9 +6618,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaTrima> getIndicatorTaTrima(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaTrima> getIndicatorTaTrima(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaTrima(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaTrima>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaTrima>>() {
         }.getType());
     }
 
@@ -6850,7 +6638,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaTrix对象
+     * @return 参考DataIndicatorTaTrix对象
      * @throws IOException
      */
 
@@ -6873,9 +6661,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaTrix> getIndicatorTaTrix(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaTrix> getIndicatorTaTrix(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaTrix(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaTrix>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaTrix>>() {
         }.getType());
     }
 
@@ -6891,7 +6679,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaTrueRange对象
+     * @return 参考DataIndicatorTaTrueRange对象
      * @throws IOException
      */
 
@@ -6912,9 +6700,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaTrueRange> getIndicatorTaTrueRange(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaTrueRange> getIndicatorTaTrueRange(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaTrueRange(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaTrueRange>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaTrueRange>>() {
         }.getType());
     }
 
@@ -6932,7 +6720,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaTsf对象
+     * @return 参考DataIndicatorTaTsf对象
      * @throws IOException
      */
 
@@ -6955,9 +6743,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaTsf> getIndicatorTaTsf(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaTsf> getIndicatorTaTsf(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaTsf(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaTsf>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaTsf>>() {
         }.getType());
     }
 
@@ -6973,7 +6761,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaTypPrice对象
+     * @return 参考DataIndicatorTaTypPrice对象
      * @throws IOException
      */
 
@@ -6994,9 +6782,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaTypPrice> getIndicatorTaTypPrice(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaTypPrice> getIndicatorTaTypPrice(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaTypPrice(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaTypPrice>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaTypPrice>>() {
         }.getType());
     }
 
@@ -7015,7 +6803,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaUltOsc对象
+     * @return 参考DataIndicatorTaUltOsc对象
      * @throws IOException
      */
 
@@ -7039,9 +6827,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaUltOsc> getIndicatorTaUltOsc(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaUltOsc> getIndicatorTaUltOsc(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaUltOsc(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaUltOsc>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaUltOsc>>() {
         }.getType());
     }
 
@@ -7060,7 +6848,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaVariance对象
+     * @return 参考DataIndicatorTaVariance对象
      * @throws IOException
      */
 
@@ -7084,9 +6872,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaVariance> getIndicatorTaVariance(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaVariance> getIndicatorTaVariance(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String input3, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaVariance(type , code , ktype , fq , startDate , endDate , input1 , input2 , input3 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaVariance>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaVariance>>() {
         }.getType());
     }
 
@@ -7102,7 +6890,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaWclPrice对象
+     * @return 参考DataIndicatorTaWclPrice对象
      * @throws IOException
      */
 
@@ -7123,9 +6911,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaWclPrice> getIndicatorTaWclPrice(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaWclPrice> getIndicatorTaWclPrice(int type, String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaWclPrice(type , code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaWclPrice>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaWclPrice>>() {
         }.getType());
     }
 
@@ -7142,7 +6930,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaWillR对象
+     * @return 参考DataIndicatorTaWillR对象
      * @throws IOException
      */
 
@@ -7164,9 +6952,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaWillR> getIndicatorTaWillR(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaWillR> getIndicatorTaWillR(int type, String code, int ktype, int fq, String startDate, String endDate, String input, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaWillR(type , code , ktype , fq , startDate , endDate , input , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaWillR>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaWillR>>() {
         }.getType());
     }
 
@@ -7184,7 +6972,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考IndicatorTaWma对象
+     * @return 参考DataIndicatorTaWma对象
      * @throws IOException
      */
 
@@ -7207,9 +6995,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<IndicatorTaWma> getIndicatorTaWma(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataIndicatorTaWma> getIndicatorTaWma(int type, String code, int ktype, int fq, String startDate, String endDate, String input1, String input2, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndicatorTaWma(type , code , ktype , fq , startDate , endDate , input1 , input2 , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<IndicatorTaWma>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataIndicatorTaWma>>() {
         }.getType());
     }
 
@@ -7220,7 +7008,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -7236,9 +7024,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getStockHSABaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getStockHSABaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHSABaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -7251,7 +7039,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarketCopy对象
+     * @return 参考DataStockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -7269,9 +7057,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarketCopy> getStockHSADailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockDailyMarketCopy> getStockHSADailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHSADailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockDailyMarketCopy>>() {
         }.getType());
     }
 
@@ -7284,7 +7072,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockMinuteKLine对象
+     * @return 参考DataStockMinuteKLine对象
      * @throws IOException
      */
 
@@ -7302,9 +7090,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockMinuteKLine> getStockHSAMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockMinuteKLine> getStockHSAMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHSAMinuteKLine(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockMinuteKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockMinuteKLine>>() {
         }.getType());
     }
 
@@ -7318,7 +7106,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockHourKLine对象
+     * @return 参考DataStockHourKLine对象
      * @throws IOException
      */
 
@@ -7337,9 +7125,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockHourKLine> getStockHSAHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockHourKLine> getStockHSAHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHSAHourKLine(code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockHourKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockHourKLine>>() {
         }.getType());
     }
 
@@ -7354,7 +7142,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockKLine对象
+     * @return 参考DataStockKLine对象
      * @throws IOException
      */
 
@@ -7374,9 +7162,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockKLine> getStockHSADayKLine(String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockKLine> getStockHSADayKLine(String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHSADayKLine(code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockKLine>>() {
         }.getType());
     }
 
@@ -7387,7 +7175,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -7403,9 +7191,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getStockHSBBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getStockHSBBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHSBBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -7418,7 +7206,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarketCopy对象
+     * @return 参考DataStockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -7436,9 +7224,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarketCopy> getStockHSBDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockDailyMarketCopy> getStockHSBDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHSBDailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockDailyMarketCopy>>() {
         }.getType());
     }
 
@@ -7451,7 +7239,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockMinuteKLine对象
+     * @return 参考DataStockMinuteKLine对象
      * @throws IOException
      */
 
@@ -7469,9 +7257,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockMinuteKLine> getStockHSBMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockMinuteKLine> getStockHSBMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHSBMinuteKLine(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockMinuteKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockMinuteKLine>>() {
         }.getType());
     }
 
@@ -7485,7 +7273,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockHourKLine对象
+     * @return 参考DataStockHourKLine对象
      * @throws IOException
      */
 
@@ -7504,9 +7292,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockHourKLine> getStockHSBHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockHourKLine> getStockHSBHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHSBHourKLine(code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockHourKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockHourKLine>>() {
         }.getType());
     }
 
@@ -7521,7 +7309,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockKLine对象
+     * @return 参考DataStockKLine对象
      * @throws IOException
      */
 
@@ -7541,9 +7329,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockKLine> getStockHSBDayKLine(String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockKLine> getStockHSBDayKLine(String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHSBDayKLine(code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockKLine>>() {
         }.getType());
     }
 
@@ -7555,7 +7343,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考MarketView对象
+     * @return 参考DataMarketView对象
      * @throws IOException
      */
 
@@ -7572,9 +7360,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<MarketView> getMarketView(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataMarketView> getMarketView(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getMarketView(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<MarketView>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataMarketView>>() {
         }.getType());
     }
 
@@ -7585,7 +7373,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考F10CompanyBaseInfo对象
+     * @return 参考DataF10CompanyBaseInfo对象
      * @throws IOException
      */
 
@@ -7601,9 +7389,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<F10CompanyBaseInfo> getF10CompanyBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataF10CompanyBaseInfo> getF10CompanyBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getF10CompanyBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<F10CompanyBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataF10CompanyBaseInfo>>() {
         }.getType());
     }
 
@@ -7616,7 +7404,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockZhuLi对象
+     * @return 参考DataStockZhuLi对象
      * @throws IOException
      */
 
@@ -7634,9 +7422,40 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockZhuLi> getStockZhuLi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockZhuLi> getStockZhuLi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockZhuLi(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockZhuLi>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockZhuLi>>() {
+        }.getType());
+    }
+
+    /**
+     *  盘口异动数据。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
+     * 
+     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
+     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
+     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
+     * @param token       令牌，登录后可获取
+     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
+     * @return 参考DataStockYiDong对象
+     * @throws IOException
+     */
+
+    public String getStockYiDong(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
+        String url = "http://api.waizaowang.com/doc/getStockYiDong";
+        Map<String, Object> para = ImmutableMap.<String, Object>builder()
+                .put("startDate", startDate)
+                .put("endDate", endDate)
+                .put("fields", fields)
+                .put("token", token)
+                .put("filter", filter)
+                .put("export", exportType.getType())
+                .build();
+        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
+    }
+
+    public List<DataStockYiDong> getStockYiDong(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+        String data = getStockYiDong(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
+        return ExportTool.toObj(data, new TypeToken<List<DataStockYiDong>>() {
         }.getType());
     }
 
@@ -7646,7 +7465,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockAHComparePrice对象
+     * @return 参考DataStockAHComparePrice对象
      * @throws IOException
      */
 
@@ -7661,9 +7480,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockAHComparePrice> getStockAHComparePrice(String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockAHComparePrice> getStockAHComparePrice(String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockAHComparePrice(fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockAHComparePrice>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockAHComparePrice>>() {
         }.getType());
     }
 
@@ -7676,7 +7495,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockReName对象
+     * @return 参考DataStockReName对象
      * @throws IOException
      */
 
@@ -7694,9 +7513,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockReName> getStockReName(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockReName> getStockReName(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockReName(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockReName>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockReName>>() {
         }.getType());
     }
 
@@ -7707,7 +7526,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考CompanyInfo对象
+     * @return 参考DataCompanyInfo对象
      * @throws IOException
      */
 
@@ -7723,9 +7542,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<CompanyInfo> getCompanyInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataCompanyInfo> getCompanyInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getCompanyInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<CompanyInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataCompanyInfo>>() {
         }.getType());
     }
 
@@ -7735,7 +7554,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockAccount对象
+     * @return 参考DataStockAccount对象
      * @throws IOException
      */
 
@@ -7750,40 +7569,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockAccount> getStockAccount(String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockAccount> getStockAccount(String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockAccount(fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockAccount>>() {
-        }.getType());
-    }
-
-    /**
-     *  沪深股票市场交易日历。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
-     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考HSTradeDate对象
-     * @throws IOException
-     */
-
-    public String getStockTradeDate(String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getStockTradeDate";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("startDate", startDate)
-                .put("endDate", endDate)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<HSTradeDate> getStockTradeDate(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getStockTradeDate(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<HSTradeDate>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockAccount>>() {
         }.getType());
     }
 
@@ -7796,7 +7584,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考ChuQuanChuXi对象
+     * @return 参考DataChuQuanChuXi对象
      * @throws IOException
      */
 
@@ -7814,9 +7602,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<ChuQuanChuXi> getChuQuanChuXi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataChuQuanChuXi> getChuQuanChuXi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getChuQuanChuXi(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<ChuQuanChuXi>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataChuQuanChuXi>>() {
         }.getType());
     }
 
@@ -7830,7 +7618,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考FuQuanYinZi对象
+     * @return 参考DataFuQuanYinZi对象
      * @throws IOException
      */
 
@@ -7849,9 +7637,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<FuQuanYinZi> getFuQuanYinZi(String code, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataFuQuanYinZi> getFuQuanYinZi(String code, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getFuQuanYinZi(code , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<FuQuanYinZi>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataFuQuanYinZi>>() {
         }.getType());
     }
 
@@ -7864,7 +7652,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考JiGouDiaoYanTongJi对象
+     * @return 参考DataJiGouDiaoYanTongJi对象
      * @throws IOException
      */
 
@@ -7882,9 +7670,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<JiGouDiaoYanTongJi> getJiGouDiaoYanTongJi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataJiGouDiaoYanTongJi> getJiGouDiaoYanTongJi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getJiGouDiaoYanTongJi(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<JiGouDiaoYanTongJi>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataJiGouDiaoYanTongJi>>() {
         }.getType());
     }
 
@@ -7897,7 +7685,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考JiGouDiaoYanXiangXi对象
+     * @return 参考DataJiGouDiaoYanXiangXi对象
      * @throws IOException
      */
 
@@ -7915,9 +7703,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<JiGouDiaoYanXiangXi> getJiGouDiaoYanXiangXi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataJiGouDiaoYanXiangXi> getJiGouDiaoYanXiangXi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getJiGouDiaoYanXiangXi(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<JiGouDiaoYanXiangXi>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataJiGouDiaoYanXiangXi>>() {
         }.getType());
     }
 
@@ -7928,7 +7716,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考JiGouDiaoYanJiLv对象
+     * @return 参考DataJiGouDiaoYanJiLv对象
      * @throws IOException
      */
 
@@ -7944,9 +7732,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<JiGouDiaoYanJiLv> getJiGouDiaoYanJiLv(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataJiGouDiaoYanJiLv> getJiGouDiaoYanJiLv(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getJiGouDiaoYanJiLv(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<JiGouDiaoYanJiLv>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataJiGouDiaoYanJiLv>>() {
         }.getType());
     }
 
@@ -7959,7 +7747,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考LonghbDetail对象
+     * @return 参考DataLonghbDetail对象
      * @throws IOException
      */
 
@@ -7977,9 +7765,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<LonghbDetail> getLonghbDetail(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataLonghbDetail> getLonghbDetail(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getLonghbDetail(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<LonghbDetail>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataLonghbDetail>>() {
         }.getType());
     }
 
@@ -7991,7 +7779,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考LonghbActive对象
+     * @return 参考DataLonghbActive对象
      * @throws IOException
      */
 
@@ -8008,9 +7796,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<LonghbActive> getLonghbActive(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataLonghbActive> getLonghbActive(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getLonghbActive(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<LonghbActive>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataLonghbActive>>() {
         }.getType());
     }
 
@@ -8023,7 +7811,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考LonghbJigou对象
+     * @return 参考DataLonghbJigou对象
      * @throws IOException
      */
 
@@ -8041,9 +7829,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<LonghbJigou> getLonghbJigou(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataLonghbJigou> getLonghbJigou(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getLonghbJigou(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<LonghbJigou>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataLonghbJigou>>() {
         }.getType());
     }
 
@@ -8056,7 +7844,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考RzRjMarket对象
+     * @return 参考DataRzRjMarket对象
      * @throws IOException
      */
 
@@ -8074,9 +7862,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<RzRjMarket> getRzRjMarket(int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataRzRjMarket> getRzRjMarket(int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getRzRjMarket(mtype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<RzRjMarket>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataRzRjMarket>>() {
         }.getType());
     }
 
@@ -8089,7 +7877,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考RzRjHangye对象
+     * @return 参考DataRzRjHangye对象
      * @throws IOException
      */
 
@@ -8107,9 +7895,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<RzRjHangye> getRzRjHangye(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataRzRjHangye> getRzRjHangye(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getRzRjHangye(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<RzRjHangye>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataRzRjHangye>>() {
         }.getType());
     }
 
@@ -8122,7 +7910,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考RzRjStock对象
+     * @return 参考DataRzRjStock对象
      * @throws IOException
      */
 
@@ -8140,9 +7928,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<RzRjStock> getStockRzRj(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataRzRjStock> getStockRzRj(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockRzRj(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<RzRjStock>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataRzRjStock>>() {
         }.getType());
     }
 
@@ -8154,7 +7942,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考RzRjAccount对象
+     * @return 参考DataRzRjAccount对象
      * @throws IOException
      */
 
@@ -8171,46 +7959,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<RzRjAccount> getRzRjAccount(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataRzRjAccount> getRzRjAccount(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getRzRjAccount(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<RzRjAccount>>() {
-        }.getType());
-    }
-
-    /**
-     *  备用沪深京A股股票日线、周线、月线数据。温馨提示：code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param code        股票代码，code参数可以从【沪深京->A股->A股列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
-     * @param ktype       K线类别，取值范围：101|日线；102|周线；103|月线
-     * @param fq          复权信息，取值范围：0|不复权；1|前复权；2|后复权
-     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
-     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考XQStockKLine对象
-     * @throws IOException
-     */
-
-    public String getStockXQHSADayKLine(String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getStockXQHSADayKLine";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("code", code)
-                .put("ktype", ktype)
-                .put("fq", fq)
-                .put("startDate", startDate)
-                .put("endDate", endDate)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<XQStockKLine> getStockXQHSADayKLine(String code, int ktype, int fq, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getStockXQHSADayKLine(code , ktype , fq , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<XQStockKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataRzRjAccount>>() {
         }.getType());
     }
 
@@ -8223,7 +7974,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考YanBaoStock对象
+     * @return 参考DataYanBaoStock对象
      * @throws IOException
      */
 
@@ -8241,9 +7992,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<YanBaoStock> getYanBaoStock(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataYanBaoStock> getYanBaoStock(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getYanBaoStock(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<YanBaoStock>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataYanBaoStock>>() {
         }.getType());
     }
 
@@ -8255,7 +8006,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考YanBaoXinGu对象
+     * @return 参考DataYanBaoXinGu对象
      * @throws IOException
      */
 
@@ -8272,9 +8023,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<YanBaoXinGu> getYanBaoXinGu(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataYanBaoXinGu> getYanBaoXinGu(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getYanBaoXinGu(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<YanBaoXinGu>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataYanBaoXinGu>>() {
         }.getType());
     }
 
@@ -8286,7 +8037,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考YanBaoHangYe对象
+     * @return 参考DataYanBaoHangYe对象
      * @throws IOException
      */
 
@@ -8303,9 +8054,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<YanBaoHangYe> getYanBaoHangYe(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataYanBaoHangYe> getYanBaoHangYe(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getYanBaoHangYe(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<YanBaoHangYe>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataYanBaoHangYe>>() {
         }.getType());
     }
 
@@ -8317,7 +8068,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考YanBaoCeLue对象
+     * @return 参考DataYanBaoCeLue对象
      * @throws IOException
      */
 
@@ -8334,9 +8085,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<YanBaoCeLue> getYanbaoCelue(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataYanBaoCeLue> getYanbaoCelue(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getYanbaoCelue(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<YanBaoCeLue>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataYanBaoCeLue>>() {
         }.getType());
     }
 
@@ -8348,7 +8099,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考YanBaoChenBao对象
+     * @return 参考DataYanBaoChenBao对象
      * @throws IOException
      */
 
@@ -8365,9 +8116,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<YanBaoChenBao> getYanBaoChenBao(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataYanBaoChenBao> getYanBaoChenBao(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getYanBaoChenBao(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<YanBaoChenBao>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataYanBaoChenBao>>() {
         }.getType());
     }
 
@@ -8379,7 +8130,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考YanBaoHongGuan对象
+     * @return 参考DataYanBaoHongGuan对象
      * @throws IOException
      */
 
@@ -8396,9 +8147,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<YanBaoHongGuan> getYanBaoHongGuan(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataYanBaoHongGuan> getYanBaoHongGuan(String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getYanBaoHongGuan(startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<YanBaoHongGuan>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataYanBaoHongGuan>>() {
         }.getType());
     }
 
@@ -8409,7 +8160,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考YanBaoYingLi对象
+     * @return 参考DataYanBaoYingLi对象
      * @throws IOException
      */
 
@@ -8425,9 +8176,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<YanBaoYingLi> getYanBaoYingLi(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataYanBaoYingLi> getYanBaoYingLi(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getYanBaoYingLi(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<YanBaoYingLi>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataYanBaoYingLi>>() {
         }.getType());
     }
 
@@ -8440,7 +8191,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考ReportNianBao对象
+     * @return 参考DataReportNianBao对象
      * @throws IOException
      */
 
@@ -8458,9 +8209,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<ReportNianBao> getReportNianBao(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataReportNianBao> getReportNianBao(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getReportNianBao(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<ReportNianBao>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataReportNianBao>>() {
         }.getType());
     }
 
@@ -8473,7 +8224,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考ReportKuaiBao对象
+     * @return 参考DataReportKuaiBao对象
      * @throws IOException
      */
 
@@ -8491,9 +8242,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<ReportKuaiBao> getReportKuaiBao(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataReportKuaiBao> getReportKuaiBao(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getReportKuaiBao(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<ReportKuaiBao>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataReportKuaiBao>>() {
         }.getType());
     }
 
@@ -8506,7 +8257,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考ReportYugao对象
+     * @return 参考DataReportYugao对象
      * @throws IOException
      */
 
@@ -8524,9 +8275,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<ReportYugao> getReportYugao(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataReportYugao> getReportYugao(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getReportYugao(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<ReportYugao>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataReportYugao>>() {
         }.getType());
     }
 
@@ -8539,7 +8290,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考ReportYuyueTime对象
+     * @return 参考DataReportYuyueTime对象
      * @throws IOException
      */
 
@@ -8557,9 +8308,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<ReportYuyueTime> getReportYuyueTime(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataReportYuyueTime> getReportYuyueTime(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getReportYuyueTime(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<ReportYuyueTime>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataReportYuyueTime>>() {
         }.getType());
     }
 
@@ -8572,7 +8323,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考ReportFuzhai对象
+     * @return 参考DataReportFuzhai对象
      * @throws IOException
      */
 
@@ -8590,9 +8341,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<ReportFuzhai> getReportFuzhai(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataReportFuzhai> getReportFuzhai(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getReportFuzhai(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<ReportFuzhai>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataReportFuzhai>>() {
         }.getType());
     }
 
@@ -8605,7 +8356,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考ReportLirun对象
+     * @return 参考DataReportLirun对象
      * @throws IOException
      */
 
@@ -8623,9 +8374,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<ReportLirun> getReportLirun(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataReportLirun> getReportLirun(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getReportLirun(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<ReportLirun>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataReportLirun>>() {
         }.getType());
     }
 
@@ -8638,7 +8389,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考ReportXianjin对象
+     * @return 参考DataReportXianjin对象
      * @throws IOException
      */
 
@@ -8656,9 +8407,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<ReportXianjin> getReportXianjin(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataReportXianjin> getReportXianjin(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getReportXianjin(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<ReportXianjin>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataReportXianjin>>() {
         }.getType());
     }
 
@@ -8671,7 +8422,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考ReportFenhong对象
+     * @return 参考DataReportFenhong对象
      * @throws IOException
      */
 
@@ -8689,9 +8440,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<ReportFenhong> getReportFenhong(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataReportFenhong> getReportFenhong(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getReportFenhong(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<ReportFenhong>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataReportFenhong>>() {
         }.getType());
     }
 
@@ -8705,7 +8456,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考HSGTMoney对象
+     * @return 参考DataHSGTMoney对象
      * @throws IOException
      */
 
@@ -8724,9 +8475,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<HSGTMoney> getHSGTMoney(int mtype, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataHSGTMoney> getHSGTMoney(int mtype, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getHSGTMoney(mtype , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<HSGTMoney>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataHSGTMoney>>() {
         }.getType());
     }
 
@@ -8739,7 +8490,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考HSGTBlockRank对象
+     * @return 参考DataHSGTBlockRank对象
      * @throws IOException
      */
 
@@ -8757,9 +8508,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<HSGTBlockRank> getHSGTBlockRank(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataHSGTBlockRank> getHSGTBlockRank(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getHSGTBlockRank(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<HSGTBlockRank>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataHSGTBlockRank>>() {
         }.getType());
     }
 
@@ -8772,7 +8523,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考HSGTStockRank对象
+     * @return 参考DataHSGTStockRank对象
      * @throws IOException
      */
 
@@ -8790,9 +8541,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<HSGTStockRank> getHSGTStockRank(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataHSGTStockRank> getHSGTStockRank(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getHSGTStockRank(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<HSGTStockRank>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataHSGTStockRank>>() {
         }.getType());
     }
 
@@ -8805,7 +8556,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考HSGTHistory对象
+     * @return 参考DataHSGTHistory对象
      * @throws IOException
      */
 
@@ -8823,9 +8574,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<HSGTHistory> getHSGTHistory(int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataHSGTHistory> getHSGTHistory(int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getHSGTHistory(mtype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<HSGTHistory>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataHSGTHistory>>() {
         }.getType());
     }
 
@@ -8839,7 +8590,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考HsgtStockTop10对象
+     * @return 参考DataHsgtStockTop10对象
      * @throws IOException
      */
 
@@ -8858,112 +8609,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<HsgtStockTop10> getHsgtStockTop10(String code, int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataHsgtStockTop10> getHsgtStockTop10(String code, int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getHsgtStockTop10(code , mtype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<HsgtStockTop10>>() {
-        }.getType());
-    }
-
-    /**
-     *  沪深股市财务数据主要指标，按报告期、年度数据。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param code        股票代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
-     * @param mtype       报告类型，取值范围：0|按报告期；1|按年度
-     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
-     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考CaiWuZYZBReportHSA对象
-     * @throws IOException
-     */
-
-    public String getCaiWuZYZBReportHSA(String code, int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getCaiWuZYZBReportHSA";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("code", code)
-                .put("mtype", mtype)
-                .put("startDate", startDate)
-                .put("endDate", endDate)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<CaiWuZYZBReportHSA> getCaiWuZYZBReportHSA(String code, int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getCaiWuZYZBReportHSA(code , mtype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<CaiWuZYZBReportHSA>>() {
-        }.getType());
-    }
-
-    /**
-     *  沪深股市财务数据主要指标，按季度数据。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param code        股票代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
-     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
-     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考CaiWuZYZBQuarterHSA对象
-     * @throws IOException
-     */
-
-    public String getCaiWuZYZBQuarterHSA(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getCaiWuZYZBQuarterHSA";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("code", code)
-                .put("startDate", startDate)
-                .put("endDate", endDate)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<CaiWuZYZBQuarterHSA> getCaiWuZYZBQuarterHSA(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getCaiWuZYZBQuarterHSA(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<CaiWuZYZBQuarterHSA>>() {
-        }.getType());
-    }
-
-    /**
-     *  沪深股市财务数据企业负债表，同比字段单位为百分比（%）。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param code        股票代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
-     * @param mtype       报告类型，取值范围：0|按报告期；1|按年度
-     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
-     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考FinanceHSDebt对象
-     * @throws IOException
-     */
-
-    public String getFinanceHSDebt(String code, int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getFinanceHSDebt";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("code", code)
-                .put("mtype", mtype)
-                .put("startDate", startDate)
-                .put("endDate", endDate)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<FinanceHSDebt> getFinanceHSDebt(String code, int mtype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getFinanceHSDebt(code , mtype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<FinanceHSDebt>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataHsgtStockTop10>>() {
         }.getType());
     }
 
@@ -8976,7 +8624,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考SharePeoples对象
+     * @return 参考DataSharePeoples对象
      * @throws IOException
      */
 
@@ -8994,9 +8642,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<SharePeoples> getSharePeoples(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataSharePeoples> getSharePeoples(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getSharePeoples(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<SharePeoples>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataSharePeoples>>() {
         }.getType());
     }
 
@@ -9009,7 +8657,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考ShareTopHolder对象
+     * @return 参考DataShareTopHolder对象
      * @throws IOException
      */
 
@@ -9027,9 +8675,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<ShareTopHolder> getShareTopHolder(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataShareTopHolder> getShareTopHolder(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getShareTopHolder(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<ShareTopHolder>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataShareTopHolder>>() {
         }.getType());
     }
 
@@ -9042,7 +8690,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考ShareJieJin对象
+     * @return 参考DataShareJieJin对象
      * @throws IOException
      */
 
@@ -9060,9 +8708,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<ShareJieJin> getShareJieJin(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataShareJieJin> getShareJieJin(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getShareJieJin(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<ShareJieJin>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataShareJieJin>>() {
         }.getType());
     }
 
@@ -9075,7 +8723,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考ShareZengJianChi对象
+     * @return 参考DataShareZengJianChi对象
      * @throws IOException
      */
 
@@ -9093,9 +8741,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<ShareZengJianChi> getShareZengJianChi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataShareZengJianChi> getShareZengJianChi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getShareZengJianChi(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<ShareZengJianChi>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataShareZengJianChi>>() {
         }.getType());
     }
 
@@ -9108,7 +8756,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考ShareGaoGuanZengJianChi对象
+     * @return 参考DataShareGaoGuanZengJianChi对象
      * @throws IOException
      */
 
@@ -9126,9 +8774,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<ShareGaoGuanZengJianChi> getShareGaoGuanZengJianChi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataShareGaoGuanZengJianChi> getShareGaoGuanZengJianChi(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getShareGaoGuanZengJianChi(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<ShareGaoGuanZengJianChi>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataShareGaoGuanZengJianChi>>() {
         }.getType());
     }
 
@@ -9139,7 +8787,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -9155,9 +8803,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getCnFundBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getCnFundBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getCnFundBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -9170,7 +8818,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarketCopy对象
+     * @return 参考DataStockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -9188,9 +8836,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarketCopy> getCnFundDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockDailyMarketCopy> getCnFundDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getCnFundDailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockDailyMarketCopy>>() {
         }.getType());
     }
 
@@ -9203,7 +8851,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockMinuteKLine对象
+     * @return 参考DataStockMinuteKLine对象
      * @throws IOException
      */
 
@@ -9221,9 +8869,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockMinuteKLine> getCnFundMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockMinuteKLine> getCnFundMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getCnFundMinuteKLine(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockMinuteKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockMinuteKLine>>() {
         }.getType());
     }
 
@@ -9237,7 +8885,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockHourKLine对象
+     * @return 参考DataStockHourKLine对象
      * @throws IOException
      */
 
@@ -9256,9 +8904,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockHourKLine> getCnFundHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockHourKLine> getCnFundHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getCnFundHourKLine(code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockHourKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockHourKLine>>() {
         }.getType());
     }
 
@@ -9272,7 +8920,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockKLine对象
+     * @return 参考DataStockKLine对象
      * @throws IOException
      */
 
@@ -9291,9 +8939,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockKLine> getCnFundADayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockKLine> getCnFundADayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getCnFundADayKLine(code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockKLine>>() {
         }.getType());
     }
 
@@ -9304,7 +8952,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考FundBaseInfo对象
+     * @return 参考DataFundBaseInfo对象
      * @throws IOException
      */
 
@@ -9320,9 +8968,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<FundBaseInfo> getFundBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataFundBaseInfo> getFundBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getFundBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<FundBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataFundBaseInfo>>() {
         }.getType());
     }
 
@@ -9335,7 +8983,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考FundRank对象
+     * @return 参考DataFundRank对象
      * @throws IOException
      */
 
@@ -9353,9 +9001,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<FundRank> getFundRank(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataFundRank> getFundRank(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getFundRank(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<FundRank>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataFundRank>>() {
         }.getType());
     }
 
@@ -9368,7 +9016,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考FundNav对象
+     * @return 参考DataFundNav对象
      * @throws IOException
      */
 
@@ -9386,9 +9034,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<FundNav> getFundNav(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataFundNav> getFundNav(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getFundNav(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<FundNav>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataFundNav>>() {
         }.getType());
     }
 
@@ -9399,7 +9047,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考FundMaxBack对象
+     * @return 参考DataFundMaxBack对象
      * @throws IOException
      */
 
@@ -9415,42 +9063,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<FundMaxBack> getFundMaxBack(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataFundMaxBack> getFundMaxBack(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getFundMaxBack(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<FundMaxBack>>() {
-        }.getType());
-    }
-
-    /**
-     *  基金持仓数据。温馨提示：code参数可以从【基金->基金列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param code        基金代码，code参数可以从【基金->基金列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
-     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
-     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考FundPosition对象
-     * @throws IOException
-     */
-
-    public String getFundPosition(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getFundPosition";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("code", code)
-                .put("startDate", startDate)
-                .put("endDate", endDate)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<FundPosition> getFundPosition(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getFundPosition(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<FundPosition>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataFundMaxBack>>() {
         }.getType());
     }
 
@@ -9463,7 +9078,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考FundPosition对象
+     * @return 参考DataFundPosition对象
      * @throws IOException
      */
 
@@ -9481,9 +9096,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<FundPosition> getStockPosition(String scode, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataFundPosition> getStockPosition(String scode, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockPosition(scode , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<FundPosition>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataFundPosition>>() {
         }.getType());
     }
 
@@ -9494,7 +9109,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -9510,9 +9125,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getStockHyBKBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getStockHyBKBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHyBKBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -9523,7 +9138,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -9539,9 +9154,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getStockGnBKBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getStockGnBKBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockGnBKBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -9552,7 +9167,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -9568,9 +9183,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getStockDyBKBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getStockDyBKBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockDyBKBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -9583,7 +9198,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarketCopy对象
+     * @return 参考DataStockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -9601,9 +9216,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarketCopy> getStockHYADailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockDailyMarketCopy> getStockHYADailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHYADailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockDailyMarketCopy>>() {
         }.getType());
     }
 
@@ -9617,7 +9232,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockKLine对象
+     * @return 参考DataStockKLine对象
      * @throws IOException
      */
 
@@ -9636,9 +9251,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockKLine> getStockBKDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockKLine> getStockBKDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockBKDayKLine(code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockKLine>>() {
         }.getType());
     }
 
@@ -9651,7 +9266,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考GZMarket对象
+     * @return 参考DataGZMarket对象
      * @throws IOException
      */
 
@@ -9669,9 +9284,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<GZMarket> getGZMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataGZMarket> getGZMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getGZMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<GZMarket>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataGZMarket>>() {
         }.getType());
     }
 
@@ -9684,7 +9299,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考GZHangYe对象
+     * @return 参考DataGZHangYe对象
      * @throws IOException
      */
 
@@ -9702,9 +9317,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<GZHangYe> getGZHangYe(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataGZHangYe> getGZHangYe(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getGZHangYe(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<GZHangYe>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataGZHangYe>>() {
         }.getType());
     }
 
@@ -9717,7 +9332,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考GZStock对象
+     * @return 参考DataGZStock对象
      * @throws IOException
      */
 
@@ -9735,67 +9350,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<GZStock> getHSGZStock(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataGZStock> getHSGZStock(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getHSGZStock(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<GZStock>>() {
-        }.getType());
-    }
-
-    /**
-     *  行业数据包括行业板块、概念板块、地域板块、证监会行业板块。温馨提示：建议选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param type        资产类型，取值范围：40|行业板块；41|概念板块；42|地域板块；43|证监会行业板块
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfoPlatB对象
-     * @throws IOException
-     */
-
-    public String getBaseInfoPlatB(int type, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getBaseInfoPlatB";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("type", type)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<StockBaseInfoPlatB> getBaseInfoPlatB(int type, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getBaseInfoPlatB(type , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfoPlatB>>() {
-        }.getType());
-    }
-
-    /**
-     *  查询行业板块、概念板块、地域板块、证监会行业板块下的成分股。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param bkcode      板块代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；不支持all参数查询。
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfoPlatB对象
-     * @throws IOException
-     */
-
-    public String getHangyeCfgPlatB(String bkcode, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getHangyeCfgPlatB";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("bkcode", bkcode)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<StockBaseInfoPlatB> getHangyeCfgPlatB(String bkcode, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getHangyeCfgPlatB(bkcode , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfoPlatB>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataGZStock>>() {
         }.getType());
     }
 
@@ -9806,7 +9363,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -9822,9 +9379,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getStockHKBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getStockHKBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHKBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -9837,7 +9394,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarketCopy对象
+     * @return 参考DataStockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -9855,9 +9412,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarketCopy> getStockHKDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockDailyMarketCopy> getStockHKDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHKDailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockDailyMarketCopy>>() {
         }.getType());
     }
 
@@ -9870,7 +9427,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockMinuteKLine对象
+     * @return 参考DataStockMinuteKLine对象
      * @throws IOException
      */
 
@@ -9888,9 +9445,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockMinuteKLine> getStockHKMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockMinuteKLine> getStockHKMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHKMinuteKLine(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockMinuteKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockMinuteKLine>>() {
         }.getType());
     }
 
@@ -9904,7 +9461,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockHourKLine对象
+     * @return 参考DataStockHourKLine对象
      * @throws IOException
      */
 
@@ -9923,9 +9480,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockHourKLine> getStockHKHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockHourKLine> getStockHKHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHKHourKLine(code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockHourKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockHourKLine>>() {
         }.getType());
     }
 
@@ -9939,7 +9496,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockKLine对象
+     * @return 参考DataStockKLine对象
      * @throws IOException
      */
 
@@ -9958,9 +9515,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockKLine> getStockHKDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockKLine> getStockHKDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockHKDayKLine(code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockKLine>>() {
         }.getType());
     }
 
@@ -9971,7 +9528,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -9987,9 +9544,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getStockUSABaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getStockUSABaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockUSABaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -10002,7 +9559,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarketCopy对象
+     * @return 参考DataStockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -10020,9 +9577,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarketCopy> getStockUSADailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockDailyMarketCopy> getStockUSADailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockUSADailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockDailyMarketCopy>>() {
         }.getType());
     }
 
@@ -10035,7 +9592,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockMinuteKLine对象
+     * @return 参考DataStockMinuteKLine对象
      * @throws IOException
      */
 
@@ -10053,9 +9610,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockMinuteKLine> getStockUSAMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockMinuteKLine> getStockUSAMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockUSAMinuteKLine(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockMinuteKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockMinuteKLine>>() {
         }.getType());
     }
 
@@ -10069,7 +9626,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockHourKLine对象
+     * @return 参考DataStockHourKLine对象
      * @throws IOException
      */
 
@@ -10088,9 +9645,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockHourKLine> getStockUSAHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockHourKLine> getStockUSAHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockUSAHourKLine(code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockHourKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockHourKLine>>() {
         }.getType());
     }
 
@@ -10104,7 +9661,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockKLine对象
+     * @return 参考DataStockKLine对象
      * @throws IOException
      */
 
@@ -10123,9 +9680,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockKLine> getStockUSADayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockKLine> getStockUSADayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getStockUSADayKLine(code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockKLine>>() {
         }.getType());
     }
 
@@ -10136,7 +9693,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -10152,9 +9709,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getIndexHSBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getIndexHSBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndexHSBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -10165,7 +9722,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -10181,9 +9738,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getIndexHKBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getIndexHKBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndexHKBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -10194,7 +9751,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -10210,9 +9767,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getIndexQQBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getIndexQQBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndexQQBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -10223,7 +9780,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -10239,9 +9796,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getIndexBondBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getIndexBondBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndexBondBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -10254,7 +9811,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarketCopy对象
+     * @return 参考DataStockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -10272,9 +9829,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarketCopy> getIndexDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockDailyMarketCopy> getIndexDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndexDailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockDailyMarketCopy>>() {
         }.getType());
     }
 
@@ -10288,7 +9845,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockHourKLine对象
+     * @return 参考DataStockHourKLine对象
      * @throws IOException
      */
 
@@ -10307,9 +9864,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockHourKLine> getIndexHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockHourKLine> getIndexHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndexHourKLine(code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockHourKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockHourKLine>>() {
         }.getType());
     }
 
@@ -10323,7 +9880,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockKLine对象
+     * @return 参考DataStockKLine对象
      * @throws IOException
      */
 
@@ -10342,9 +9899,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockKLine> getIndexDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockKLine> getIndexDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getIndexDayKLine(code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockKLine>>() {
         }.getType());
     }
 
@@ -10355,7 +9912,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -10371,9 +9928,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getBondHSBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getBondHSBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getBondHSBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -10384,7 +9941,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考BondBaseInfo对象
+     * @return 参考DataBondBaseInfo对象
      * @throws IOException
      */
 
@@ -10400,9 +9957,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<BondBaseInfo> getBondHSDetailInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataBondBaseInfo> getBondHSDetailInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getBondHSDetailInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<BondBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataBondBaseInfo>>() {
         }.getType());
     }
 
@@ -10415,7 +9972,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockDailyMarketCopy对象
+     * @return 参考DataStockDailyMarketCopy对象
      * @throws IOException
      */
 
@@ -10433,9 +9990,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockDailyMarketCopy> getBondHSDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockDailyMarketCopy> getBondHSDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getBondHSDailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockDailyMarketCopy>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockDailyMarketCopy>>() {
         }.getType());
     }
 
@@ -10448,7 +10005,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockMinuteKLine对象
+     * @return 参考DataStockMinuteKLine对象
      * @throws IOException
      */
 
@@ -10466,9 +10023,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockMinuteKLine> getBondMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockMinuteKLine> getBondMinuteKLine(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getBondMinuteKLine(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockMinuteKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockMinuteKLine>>() {
         }.getType());
     }
 
@@ -10482,7 +10039,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockHourKLine对象
+     * @return 参考DataStockHourKLine对象
      * @throws IOException
      */
 
@@ -10501,9 +10058,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockHourKLine> getBondHSHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockHourKLine> getBondHSHourKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getBondHSHourKLine(code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockHourKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockHourKLine>>() {
         }.getType());
     }
 
@@ -10517,7 +10074,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockKLine对象
+     * @return 参考DataStockKLine对象
      * @throws IOException
      */
 
@@ -10536,9 +10093,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockKLine> getBondHSDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockKLine> getBondHSDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getBondHSDayKLine(code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockKLine>>() {
         }.getType());
     }
 
@@ -10549,7 +10106,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -10565,9 +10122,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getGoldBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getGoldBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getGoldBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -10581,7 +10138,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockKLine对象
+     * @return 参考DataStockKLine对象
      * @throws IOException
      */
 
@@ -10600,9 +10157,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockKLine> getGoldDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockKLine> getGoldDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getGoldDayKLine(code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockKLine>>() {
         }.getType());
     }
 
@@ -10613,7 +10170,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -10629,9 +10186,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getWaihuiBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getWaihuiBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getWaihuiBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -10645,7 +10202,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockKLine对象
+     * @return 参考DataStockKLine对象
      * @throws IOException
      */
 
@@ -10664,9 +10221,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockKLine> getWaihuiDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockKLine> getWaihuiDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getWaihuiDayKLine(code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockKLine>>() {
         }.getType());
     }
 
@@ -10677,7 +10234,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockBaseInfo对象
+     * @return 参考DataStockBaseInfo对象
      * @throws IOException
      */
 
@@ -10693,9 +10250,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockBaseInfo> getReitsBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockBaseInfo> getReitsBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getReitsBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockBaseInfo>>() {
         }.getType());
     }
 
@@ -10709,7 +10266,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考StockKLine对象
+     * @return 参考DataStockKLine对象
      * @throws IOException
      */
 
@@ -10728,9 +10285,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<StockKLine> getReitsDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataStockKLine> getReitsDayKLine(String code, int ktype, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getReitsDayKLine(code , ktype , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<StockKLine>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataStockKLine>>() {
         }.getType());
     }
 
@@ -10741,7 +10298,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考QiHuoBaseInfo对象
+     * @return 参考DataQiHuoBaseInfo对象
      * @throws IOException
      */
 
@@ -10757,9 +10314,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<QiHuoBaseInfo> getQihuoBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataQiHuoBaseInfo> getQihuoBaseInfo(String code, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getQihuoBaseInfo(code , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<QiHuoBaseInfo>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataQiHuoBaseInfo>>() {
         }.getType());
     }
 
@@ -10772,7 +10329,7 @@ public class StockApi {
      * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
      * @param token       令牌，登录后可获取
      * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考QiHuoKLine对象
+     * @return 参考DataQiHuoKLine对象
      * @throws IOException
      */
 
@@ -10790,44 +10347,9 @@ public class StockApi {
         return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
     }
 
-    public List<QiHuoKLine> getQihuoDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
+    public List<DataQiHuoKLine> getQihuoDailyMarket(String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
         String data = getQihuoDailyMarket(code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<QiHuoKLine>>() {
-        }.getType());
-    }
-
-    /**
-     *  提供各大机构持有沪深京A股、沪深京B股、港股数据。主要用于分析个股每个季度被各大基金机构持有情况。温馨提示：code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据。
-     * 
-     * @param type        资产类型，取值范围：1|沪深京A股；2|沪深京B股；3|港股
-     * @param code        股票代码，code参数可以从【通用接口->股票列表】接口中批量获取，也可以选择左上角菜单栏【浏览模式】查询数据；支持批量查询，用逗号分隔，每次最多50个；若为all，则表示全部，即可获取任意一天内的所有数据。
-     * @param startDate   开始日期，yyyy-MM-dd格式，例如：2020-01-01
-     * @param endDate     结束日期，yyyy-MM-dd格式，例如：2050-01-01
-     * @param fields      数据字段，多个字段之间使用逗号分隔，若获取所有字段，则取值为all。
-     * @param token       令牌，登录后可获取
-     * @param filter      过滤参数，例如filter=open>=15。建议选择左上角菜单栏【浏览模式】操作数据
-     * @return 参考TSStockPosition对象
-     * @throws IOException
-     */
-
-    public String getTSStockPosition(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method, ExportType exportType) throws IOException {
-        String url = "http://api.waizaowang.com/doc/getTSStockPosition";
-        Map<String, Object> para = ImmutableMap.<String, Object>builder()
-                .put("type", type)
-                .put("code", code)
-                .put("startDate", startDate)
-                .put("endDate", endDate)
-                .put("fields", fields)
-                .put("token", token)
-                .put("filter", filter)
-                .put("export", exportType.getType())
-                .build();
-        return method.equals(MethodType.GET) ? HttpClientRest.getIntance().get(url, para) : HttpClientRest.getIntance().post(url, para);
-    }
-
-    public List<TSStockPosition> getTSStockPosition(int type, String code, String startDate, String endDate, String fields, String token, String filter,  MethodType method) throws IOException {
-        String data = getTSStockPosition(type , code , startDate , endDate , fields , token , filter ,  method, ExportType.String_Json);
-        return ExportTool.toObj(data, new TypeToken<List<TSStockPosition>>() {
+        return ExportTool.toObj(data, new TypeToken<List<DataQiHuoKLine>>() {
         }.getType());
     }
 

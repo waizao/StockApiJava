@@ -3,7 +3,7 @@ package stock.spider;
 import client.HttpClientRest;
 import org.apache.http.Header;
 import org.apache.http.message.BasicHeader;
-import stock.bean.StockPanKou;
+import stock.bean.DataStockPanKou;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,19 +24,19 @@ public class SpiderApi {
      * @return StockPanKou
      * @throws IOException
      */
-    public List<StockPanKou> getPanKou(List<String> codes) throws IOException {
+    public List<DataStockPanKou> getPanKou(List<String> codes) throws IOException {
         String url = String.format("https://hq.sinajs.cn/rn=%s&list=%s", System.currentTimeMillis(), codes.stream().collect(Collectors.joining(",")));
         Header[] headers = new BasicHeader[]{new BasicHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"),
                 new BasicHeader("Referer", "https://finance.sina.com.cn"), new BasicHeader("host", "hq.sinajs.cn")};
         String result = HttpClientRest.intance.get(url, headers);
         Matcher matcher = dataPattern.matcher(result);
-        List<StockPanKou> stockPanKous = new ArrayList<>();
+        List<DataStockPanKou> stockPanKous = new ArrayList<>();
         int index = 0;
         while (matcher.find()) {
             String[] datas = matcher.group().replace("\"", "").split(",");
             String code = codes.get(index++);
             if (datas.length >= 33) {
-                StockPanKou stockPanKou = new StockPanKou();
+                DataStockPanKou stockPanKou = new DataStockPanKou();
                 stockPanKou.setCode(code);
                 stockPanKou.setName(datas[0]);
                 stockPanKou.setOpen(Float.valueOf(datas[1]));

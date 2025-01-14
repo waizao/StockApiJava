@@ -3,8 +3,8 @@ import com.google.gson.reflect.TypeToken;
 import constant.*;
 import stock.ExportTool;
 import stock.api.StockApi;
-import stock.bean.StockKLine;
-import stock.bean.StockPanKou;
+import stock.bean.DataStockKLine;
+import stock.bean.DataStockPanKou;
 import stock.spider.SpiderApi;
 
 import java.io.File;
@@ -23,7 +23,7 @@ public class ApiDemo {
     public static void main(String[] args) throws IOException {
         //请求买卖五档，盘口数据
         SpiderApi realTimeApi = new SpiderApi();
-        List<StockPanKou> datas = realTimeApi.getPanKou(ImmutableList.of("sz000001", "sh600000", "bj833171"));
+        List<DataStockPanKou> datas = realTimeApi.getPanKou(ImmutableList.of("sz000001", "sh600000", "bj833171"));
         System.out.println(String.format("输出List对象：%s", datas));//沪深京股票输出
 
         String token = "";//歪枣网（www.waizaowang.com）上登录后获取Token
@@ -45,7 +45,7 @@ public class ApiDemo {
         System.out.println(String.format("输出Json字符串：%s", result));//输出
 
         //返回的Json字符串转Obj对象
-        List<StockKLine> list = ExportTool.toObj(result, new TypeToken<List<StockKLine>>() {
+        List<DataStockKLine> list = ExportTool.toObj(result, new TypeToken<List<DataStockKLine>>() {
         }.getType());
         System.out.println(String.format("输出List对象：%s", list));//输出
 
@@ -54,7 +54,7 @@ public class ApiDemo {
         System.out.println(String.format("输出map对象：%s", map));//输出
 
         //请求日线数据，返回List<StockKLine>格式
-        List<StockKLine> data =
+        List<DataStockKLine> data =
                 restSpider.getDayKLine(
                         AssertType.Stock_HS_A.getType(),
                         "000001,000002",
