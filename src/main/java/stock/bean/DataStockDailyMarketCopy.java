@@ -82,6 +82,9 @@ public class DataStockDailyMarketCopy implements Serializable {
    //内盘（手）
     private float npan ;
 
+   //平均每户持股数（流通A股）（股）
+    private float z11 ;
+
    //ROE
     private float roe ;
 
@@ -165,6 +168,15 @@ public class DataStockDailyMarketCopy implements Serializable {
 
    //今日小单净流入-净占比（%）
     private float z39 ;
+
+   //大单动向
+    private float z40 ;
+
+   //涨跌动因
+    private float z41 ;
+
+   //大单差分差
+    private float z42 ;
 
    //归属行业板块名称
     private String z50 ;

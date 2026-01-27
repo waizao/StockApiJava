@@ -37,8 +37,5 @@ public class DataStockHourKLine implements Serializable {
    //成交额
     private float cje ;
 
-   //换手率
-    private float hsl ;
-
 }
 
